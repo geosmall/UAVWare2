@@ -1,0 +1,162 @@
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 44656275 		.ascii	"Debug console initialized\015\012\000"
+  22      6720636F 
+  22      6E736F6C 
+  22      6520696E 
+  22      69746961 
+  23              		.section	.text.main,"ax",%progbits
+  24              		.align	1
+  25              		.global	main
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  30              	main:
+  31              	.LFB1372:
+  32              		.file 1 "flight/targets/nucleo_f411re/main.c"
+   1:flight/targets/nucleo_f411re/main.c **** #include <uavware.h>
+   2:flight/targets/nucleo_f411re/main.c **** // #include <uavobjectsinit.h>
+   3:flight/targets/nucleo_f411re/main.c **** // #include <systemmod.h>
+   4:flight/targets/nucleo_f411re/main.c **** #include "printf.h"
+   5:flight/targets/nucleo_f411re/main.c **** 
+   6:flight/targets/nucleo_f411re/main.c ****   /* Global Variables */
+   7:flight/targets/nucleo_f411re/main.c **** 
+   8:flight/targets/nucleo_f411re/main.c ****   /* Local Variables */
+   9:flight/targets/nucleo_f411re/main.c **** 
+  10:flight/targets/nucleo_f411re/main.c **** /**
+  11:flight/targets/nucleo_f411re/main.c ****  * UAVWare Main function:
+  12:flight/targets/nucleo_f411re/main.c ****  *
+  13:flight/targets/nucleo_f411re/main.c ****  * Initialize UVOS<BR>
+  14:flight/targets/nucleo_f411re/main.c ****  * Create the "System" task (SystemModInitializein Modules/System/systemmod.c) <BR>
+  15:flight/targets/nucleo_f411re/main.c ****  * Start FreeRTOS Scheduler (vTaskStartScheduler)<BR>
+  16:flight/targets/nucleo_f411re/main.c ****  * If something goes wrong, blink LED1 and LED2 every 100ms
+  17:flight/targets/nucleo_f411re/main.c ****  *
+  18:flight/targets/nucleo_f411re/main.c ****  */
+  19:flight/targets/nucleo_f411re/main.c **** int main( void )
+  20:flight/targets/nucleo_f411re/main.c **** {
+  33              		.loc 1 20 1 view -0
+  34              		.cfi_startproc
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s 			page 2
+
+
+  35              		@ Volatile: function does not return.
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38 0000 08B5     		push	{r3, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 3, -8
+  42              		.cfi_offset 14, -4
+  21:flight/targets/nucleo_f411re/main.c ****   /* NOTE: Do NOT modify the following start-up sequence */
+  22:flight/targets/nucleo_f411re/main.c ****   /* Any new initialization functions should be added in UAVWareInit() */
+  23:flight/targets/nucleo_f411re/main.c ****   // vPortInitialiseBlocks();
+  24:flight/targets/nucleo_f411re/main.c **** 
+  25:flight/targets/nucleo_f411re/main.c ****   /* Brings up System using CMSIS functions, initializes periph clock, gpio pins. */
+  26:flight/targets/nucleo_f411re/main.c ****   UVOS_SYS_Init();
+  43              		.loc 1 26 3 view .LVU1
+  44 0002 FFF7FEFF 		bl	UVOS_SYS_Init
+  45              	.LVL0:
+  27:flight/targets/nucleo_f411re/main.c **** 
+  28:flight/targets/nucleo_f411re/main.c ****   /* board driver init */
+  29:flight/targets/nucleo_f411re/main.c ****   UVOS_Board_Init();
+  46              		.loc 1 29 3 view .LVU2
+  47 0006 FFF7FEFF 		bl	UVOS_Board_Init
+  48              	.LVL1:
+  30:flight/targets/nucleo_f411re/main.c **** 
+  31:flight/targets/nucleo_f411re/main.c ****   /* Start up System module, create main System thread */
+  32:flight/targets/nucleo_f411re/main.c ****   // SystemModStart();
+  33:flight/targets/nucleo_f411re/main.c **** 
+  34:flight/targets/nucleo_f411re/main.c ****   /* Start the FreeRTOS scheduler */
+  35:flight/targets/nucleo_f411re/main.c ****   // vTaskStartScheduler();
+  36:flight/targets/nucleo_f411re/main.c **** 
+  37:flight/targets/nucleo_f411re/main.c ****   printf_( "Debug console initialized\r\n" );
+  49              		.loc 1 37 3 view .LVU3
+  50 000a 0548     		ldr	r0, .L4
+  51 000c FFF7FEFF 		bl	printf_
+  52              	.LVL2:
+  38:flight/targets/nucleo_f411re/main.c **** 
+  39:flight/targets/nucleo_f411re/main.c ****   /* If all is well we will never reach here as the scheduler will now be running. */
+  40:flight/targets/nucleo_f411re/main.c ****   /* Do some UVOS_LED_HEARTBEAT to user that something bad just happened */
+  41:flight/targets/nucleo_f411re/main.c ****   UVOS_LED_On( UVOS_LED_HEARTBEAT );
+  53              		.loc 1 41 3 view .LVU4
+  54 0010 0020     		movs	r0, #0
+  55 0012 FFF7FEFF 		bl	UVOS_LED_On
+  56              	.LVL3:
+  57              	.L2:
+  42:flight/targets/nucleo_f411re/main.c **** #if defined(UVOS_LED_ALARM)
+  43:flight/targets/nucleo_f411re/main.c ****   UVOS_LED_Off( UVOS_LED_ALARM );
+  44:flight/targets/nucleo_f411re/main.c **** #endif /* UVOS_LED_ALARM */
+  45:flight/targets/nucleo_f411re/main.c **** 
+  46:flight/targets/nucleo_f411re/main.c ****   for ( ;; ) {
+  58              		.loc 1 46 3 discriminator 1 view .LVU5
+  47:flight/targets/nucleo_f411re/main.c ****     // UVOS_LED_Toggle( UVOS_LED_HEARTBEAT );
+  48:flight/targets/nucleo_f411re/main.c **** // #if defined(UVOS_LED_ALARM)
+  49:flight/targets/nucleo_f411re/main.c **** //     UVOS_LED_Toggle( UVOS_LED_ALARM );
+  50:flight/targets/nucleo_f411re/main.c **** // #endif /* UVOS_LED_ALARM */
+  51:flight/targets/nucleo_f411re/main.c **** 
+  52:flight/targets/nucleo_f411re/main.c ****     UVOS_DELAY_WaitmS( 500 );
+  59              		.loc 1 52 5 discriminator 1 view .LVU6
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s 			page 3
+
+
+  60 0016 4FF4FA70 		mov	r0, #500
+  61 001a FFF7FEFF 		bl	UVOS_DELAY_WaitmS
+  62              	.LVL4:
+  46:flight/targets/nucleo_f411re/main.c ****     // UVOS_LED_Toggle( UVOS_LED_HEARTBEAT );
+  63              		.loc 1 46 10 discriminator 1 view .LVU7
+  64 001e FAE7     		b	.L2
+  65              	.L5:
+  66              		.align	2
+  67              	.L4:
+  68 0020 00000000 		.word	.LC0
+  69              		.cfi_endproc
+  70              	.LFE1372:
+  72              		.text
+  73              	.Letext0:
+  74              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+  75              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+  76              		.file 4 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+  77              		.file 5 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
+  78              		.file 6 "./flight/uvos/inc/uvos_sys.h"
+  79              		.file 7 "./flight/targets/nucleo_f411re/uvos_board.h"
+  80              		.file 8 "./flight/libraries/printf/printf.h"
+  81              		.file 9 "./flight/uvos/inc/uvos_led.h"
+  82              		.file 10 "./flight/uvos/inc/uvos_delay.h"
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s:20     .rodata.main.str1.4:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s:24     .text.main:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s:30     .text.main:00000000 main
+C:\Users\geoma\AppData\Local\Temp\ccAJlygf.s:68     .text.main:00000020 $d
+
+UNDEFINED SYMBOLS
+UVOS_SYS_Init
+UVOS_Board_Init
+printf_
+UVOS_LED_On
+UVOS_DELAY_WaitmS

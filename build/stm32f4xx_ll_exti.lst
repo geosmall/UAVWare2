@@ -1,0 +1,1508 @@
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_ll_exti.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.LL_EXTI_DeInit,"ax",%progbits
+  20              		.align	1
+  21              		.global	LL_EXTI_DeInit
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	LL_EXTI_DeInit:
+  27              	.LFB146:
+  28              		.file 1 "flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c"
+   1:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /**
+   2:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   ******************************************************************************
+   3:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @file    stm32f4xx_ll_exti.c
+   4:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @author  MCD Application Team
+   5:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @brief   EXTI LL module driver.
+   6:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   ******************************************************************************
+   7:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @attention
+   8:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *
+   9:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  10:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * All rights reserved.</center></h2>
+  11:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *
+  12:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+  13:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * the "License"; You may not use this file except in compliance with the
+  14:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * License. You may obtain a copy of the License at:
+  15:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *                        opensource.org/licenses/BSD-3-Clause
+  16:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *
+  17:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   ******************************************************************************
+  18:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  19:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #if defined(USE_FULL_LL_DRIVER)
+  20:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  21:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Includes ------------------------------------------------------------------*/
+  22:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #include "stm32f4xx_ll_exti.h"
+  23:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #ifdef  USE_FULL_ASSERT
+  24:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #include "stm32_assert.h"
+  25:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #else
+  26:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #define assert_param(expr) ((void)0U)
+  27:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #endif
+  28:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  29:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /** @addtogroup STM32F4xx_LL_Driver
+  30:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @{
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 2
+
+
+  31:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  32:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  33:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #if defined (EXTI)
+  34:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  35:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /** @defgroup EXTI_LL EXTI
+  36:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @{
+  37:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  38:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  39:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Private types -------------------------------------------------------------*/
+  40:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Private variables ---------------------------------------------------------*/
+  41:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Private constants ---------------------------------------------------------*/
+  42:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Private macros ------------------------------------------------------------*/
+  43:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /** @addtogroup EXTI_LL_Private_Macros
+  44:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @{
+  45:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  46:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  47:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #define IS_LL_EXTI_LINE_0_31(__VALUE__)              (((__VALUE__) & ~LL_EXTI_LINE_ALL_0_31) == 0x0
+  48:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  49:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #define IS_LL_EXTI_MODE(__VALUE__)                   (((__VALUE__) == LL_EXTI_MODE_IT)            \
+  50:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****                                                    || ((__VALUE__) == LL_EXTI_MODE_EVENT)         \
+  51:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****                                                    || ((__VALUE__) == LL_EXTI_MODE_IT_EVENT))
+  52:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  53:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  54:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** #define IS_LL_EXTI_TRIGGER(__VALUE__)                (((__VALUE__) == LL_EXTI_TRIGGER_NONE)       \
+  55:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****                                                    || ((__VALUE__) == LL_EXTI_TRIGGER_RISING)     \
+  56:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****                                                    || ((__VALUE__) == LL_EXTI_TRIGGER_FALLING)    \
+  57:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****                                                    || ((__VALUE__) == LL_EXTI_TRIGGER_RISING_FALLIN
+  58:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  59:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /**
+  60:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @}
+  61:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  62:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  63:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Private function prototypes -----------------------------------------------*/
+  64:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  65:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /* Exported functions --------------------------------------------------------*/
+  66:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /** @addtogroup EXTI_LL_Exported_Functions
+  67:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @{
+  68:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  69:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  70:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /** @addtogroup EXTI_LL_EF_Init
+  71:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @{
+  72:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  73:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  74:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /**
+  75:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @brief  De-initialize the EXTI registers to their default reset values.
+  76:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @retval An ErrorStatus enumeration value:
+  77:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *          - SUCCESS: EXTI registers are de-initialized
+  78:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *          - ERROR: not applicable
+  79:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+  80:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** uint32_t LL_EXTI_DeInit(void)
+  81:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** {
+  29              		.loc 1 81 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  82:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Interrupt mask register set to default reset values */
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 3
+
+
+  83:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(IMR,   0x00000000U);
+  34              		.loc 1 83 3 view .LVU1
+  35 0000 054B     		ldr	r3, .L2
+  36 0002 0020     		movs	r0, #0
+  37 0004 1860     		str	r0, [r3]
+  84:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Event mask register set to default reset values */
+  85:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(EMR,   0x00000000U);
+  38              		.loc 1 85 3 view .LVU2
+  39 0006 5860     		str	r0, [r3, #4]
+  86:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Rising Trigger selection register set to default reset values */
+  87:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(RTSR,  0x00000000U);
+  40              		.loc 1 87 3 view .LVU3
+  41 0008 9860     		str	r0, [r3, #8]
+  88:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Falling Trigger selection register set to default reset values */
+  89:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(FTSR,  0x00000000U);
+  42              		.loc 1 89 3 view .LVU4
+  43 000a D860     		str	r0, [r3, #12]
+  90:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Software interrupt event register set to default reset values */
+  91:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(SWIER, 0x00000000U);
+  44              		.loc 1 91 3 view .LVU5
+  45 000c 1861     		str	r0, [r3, #16]
+  92:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Pending register set to default reset values */
+  93:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   LL_EXTI_WriteReg(PR,    0x00FFFFFFU);
+  46              		.loc 1 93 3 view .LVU6
+  47 000e 6FF07F42 		mvn	r2, #-16777216
+  48 0012 5A61     		str	r2, [r3, #20]
+  94:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  95:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   return SUCCESS;
+  49              		.loc 1 95 3 view .LVU7
+  96:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** }
+  50              		.loc 1 96 1 is_stmt 0 view .LVU8
+  51 0014 7047     		bx	lr
+  52              	.L3:
+  53 0016 00BF     		.align	2
+  54              	.L2:
+  55 0018 003C0140 		.word	1073822720
+  56              		.cfi_endproc
+  57              	.LFE146:
+  59              		.section	.text.LL_EXTI_Init,"ax",%progbits
+  60              		.align	1
+  61              		.global	LL_EXTI_Init
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  66              	LL_EXTI_Init:
+  67              	.LVL0:
+  68              	.LFB147:
+  97:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+  98:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /**
+  99:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @brief  Initialize the EXTI registers according to the specified parameters in EXTI_InitStruct.
+ 100:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @param  EXTI_InitStruct pointer to a @ref LL_EXTI_InitTypeDef structure.
+ 101:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @retval An ErrorStatus enumeration value:
+ 102:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *          - SUCCESS: EXTI registers are initialized
+ 103:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   *          - ERROR: not applicable
+ 104:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+ 105:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** uint32_t LL_EXTI_Init(LL_EXTI_InitTypeDef *EXTI_InitStruct)
+ 106:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** {
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 4
+
+
+  69              		.loc 1 106 1 is_stmt 1 view -0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73              		@ link register save eliminated.
+  74              		.loc 1 106 1 is_stmt 0 view .LVU10
+  75 0000 10B4     		push	{r4}
+  76              	.LCFI0:
+  77              		.cfi_def_cfa_offset 4
+  78              		.cfi_offset 4, -4
+  79 0002 0346     		mov	r3, r0
+ 107:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   ErrorStatus status = SUCCESS;
+  80              		.loc 1 107 3 is_stmt 1 view .LVU11
+  81              	.LVL1:
+ 108:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Check the parameters */
+ 109:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   assert_param(IS_LL_EXTI_LINE_0_31(EXTI_InitStruct->Line_0_31));
+  82              		.loc 1 109 3 view .LVU12
+ 110:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   assert_param(IS_FUNCTIONAL_STATE(EXTI_InitStruct->LineCommand));
+  83              		.loc 1 110 3 view .LVU13
+ 111:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   assert_param(IS_LL_EXTI_MODE(EXTI_InitStruct->Mode));
+  84              		.loc 1 111 3 view .LVU14
+ 112:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+ 113:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* ENABLE LineCommand */
+ 114:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   if (EXTI_InitStruct->LineCommand != DISABLE)
+  85              		.loc 1 114 3 view .LVU15
+  86              		.loc 1 114 22 is_stmt 0 view .LVU16
+  87 0004 0079     		ldrb	r0, [r0, #4]	@ zero_extendqisi2
+  88              	.LVL2:
+  89              		.loc 1 114 6 view .LVU17
+  90 0006 0028     		cmp	r0, #0
+  91 0008 53D0     		beq	.L5
+ 115:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   {
+ 116:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     assert_param(IS_LL_EXTI_TRIGGER(EXTI_InitStruct->Trigger));
+  92              		.loc 1 116 5 is_stmt 1 view .LVU18
+ 117:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+ 118:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     /* Configure EXTI Lines in range from 0 to 31 */
+ 119:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     if (EXTI_InitStruct->Line_0_31 != LL_EXTI_LINE_NONE)
+  93              		.loc 1 119 5 view .LVU19
+  94              		.loc 1 119 24 is_stmt 0 view .LVU20
+  95 000a 1A68     		ldr	r2, [r3]
+  96              		.loc 1 119 8 view .LVU21
+  97 000c 002A     		cmp	r2, #0
+  98 000e 5ED0     		beq	.L12
+ 120:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     {
+ 121:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       switch (EXTI_InitStruct->Mode)
+  99              		.loc 1 121 7 is_stmt 1 view .LVU22
+ 100              		.loc 1 121 30 is_stmt 0 view .LVU23
+ 101 0010 5879     		ldrb	r0, [r3, #5]	@ zero_extendqisi2
+ 102              		.loc 1 121 7 view .LVU24
+ 103 0012 0128     		cmp	r0, #1
+ 104 0014 18D0     		beq	.L7
+ 105 0016 0228     		cmp	r0, #2
+ 106 0018 21D0     		beq	.L8
+ 107 001a 58B1     		cbz	r0, .L16
+ 108 001c 0120     		movs	r0, #1
+ 109              	.L9:
+ 110              	.LVL3:
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 5
+
+
+ 122:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       {
+ 123:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         case LL_EXTI_MODE_IT:
+ 124:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* First Disable Event on provided Lines */
+ 125:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_DisableEvent_0_31(EXTI_InitStruct->Line_0_31);
+ 126:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* Then Enable IT on provided Lines */
+ 127:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_EnableIT_0_31(EXTI_InitStruct->Line_0_31);
+ 128:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 129:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         case LL_EXTI_MODE_EVENT:
+ 130:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* First Disable IT on provided Lines */
+ 131:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_DisableIT_0_31(EXTI_InitStruct->Line_0_31);
+ 132:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* Then Enable Event on provided Lines */
+ 133:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_EnableEvent_0_31(EXTI_InitStruct->Line_0_31);
+ 134:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 135:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         case LL_EXTI_MODE_IT_EVENT:
+ 136:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* Directly Enable IT & Event on provided Lines */
+ 137:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_EnableIT_0_31(EXTI_InitStruct->Line_0_31);
+ 138:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_EnableEvent_0_31(EXTI_InitStruct->Line_0_31);
+ 139:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 140:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         default:
+ 141:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           status = ERROR;
+ 142:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 143:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       }
+ 144:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       if (EXTI_InitStruct->Trigger != LL_EXTI_TRIGGER_NONE)
+ 111              		.loc 1 144 7 is_stmt 1 view .LVU25
+ 112              		.loc 1 144 26 is_stmt 0 view .LVU26
+ 113 001e 9A79     		ldrb	r2, [r3, #6]	@ zero_extendqisi2
+ 114              		.loc 1 144 10 view .LVU27
+ 115 0020 002A     		cmp	r2, #0
+ 116 0022 51D0     		beq	.L6
+ 145:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       {
+ 146:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         switch (EXTI_InitStruct->Trigger)
+ 117              		.loc 1 146 9 is_stmt 1 view .LVU28
+ 118 0024 022A     		cmp	r2, #2
+ 119 0026 2FD0     		beq	.L10
+ 120 0028 032A     		cmp	r2, #3
+ 121 002a 38D0     		beq	.L11
+ 122 002c 012A     		cmp	r2, #1
+ 123 002e 20D0     		beq	.L17
+ 124 0030 0120     		movs	r0, #1
+ 125              	.LVL4:
+ 126              		.loc 1 146 9 is_stmt 0 view .LVU29
+ 127 0032 49E0     		b	.L6
+ 128              	.LVL5:
+ 129              	.L16:
+ 125:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* Then Enable IT on provided Lines */
+ 130              		.loc 1 125 11 is_stmt 1 view .LVU30
+ 131              	.LBB30:
+ 132              	.LBI30:
+ 133              		.file 2 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h"
+   1:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+   2:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   ******************************************************************************
+   3:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @file    stm32f4xx_ll_exti.h
+   4:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @author  MCD Application Team
+   5:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief   Header file of EXTI LL module.
+   6:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   ******************************************************************************
+   7:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @attention
+   8:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 6
+
+
+   9:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  10:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * All rights reserved.</center></h2>
+  11:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *
+  12:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * This software component is licensed by ST under BSD 3-Clause license,
+  13:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * the "License"; You may not use this file except in compliance with the
+  14:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * License. You may obtain a copy of the License at:
+  15:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *                        opensource.org/licenses/BSD-3-Clause
+  16:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *
+  17:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   ******************************************************************************
+  18:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  19:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  20:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Define to prevent recursive inclusion -------------------------------------*/
+  21:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #ifndef __STM32F4xx_LL_EXTI_H
+  22:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define __STM32F4xx_LL_EXTI_H
+  23:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  24:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #ifdef __cplusplus
+  25:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** extern "C" {
+  26:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+  27:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  28:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Includes ------------------------------------------------------------------*/
+  29:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #include "stm32f4xx.h"
+  30:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  31:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @addtogroup STM32F4xx_LL_Driver
+  32:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  33:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  34:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  35:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined (EXTI)
+  36:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  37:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL EXTI
+  38:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  39:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  40:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  41:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Private types -------------------------------------------------------------*/
+  42:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Private variables ---------------------------------------------------------*/
+  43:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Private constants ---------------------------------------------------------*/
+  44:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Private Macros ------------------------------------------------------------*/
+  45:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(USE_FULL_LL_DRIVER)
+  46:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_Private_Macros EXTI Private Macros
+  47:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  48:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  49:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+  50:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+  51:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  52:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif /*USE_FULL_LL_DRIVER*/
+  53:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Exported types ------------------------------------------------------------*/
+  54:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(USE_FULL_LL_DRIVER)
+  55:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_ES_INIT EXTI Exported Init structure
+  56:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  57:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  58:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** typedef struct
+  59:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+  60:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  61:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   uint32_t Line_0_31;           /*!< Specifies the EXTI lines to be enabled or disabled for Lines i
+  62:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****                                      This parameter can be any combination of @ref EXTI_LL_EC_LINE 
+  63:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  64:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   FunctionalState LineCommand;  /*!< Specifies the new state of the selected EXTI lines.
+  65:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****                                      This parameter can be set either to ENABLE or DISABLE */
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 7
+
+
+  66:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  67:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   uint8_t Mode;                 /*!< Specifies the mode for the EXTI lines.
+  68:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****                                      This parameter can be a value of @ref EXTI_LL_EC_MODE. */
+  69:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  70:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   uint8_t Trigger;              /*!< Specifies the trigger signal active edge for the EXTI lines.
+  71:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****                                      This parameter can be a value of @ref EXTI_LL_EC_TRIGGER. */
+  72:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** } LL_EXTI_InitTypeDef;
+  73:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  74:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+  75:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+  76:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  77:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif /*USE_FULL_LL_DRIVER*/
+  78:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  79:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Exported constants --------------------------------------------------------*/
+  80:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_Exported_Constants EXTI Exported Constants
+  81:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  82:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  83:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+  84:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EC_LINE LINE
+  85:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+  86:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+  87:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_0                 EXTI_IMR_IM0           /*!< Extended line 0 */
+  88:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_1                 EXTI_IMR_IM1           /*!< Extended line 1 */
+  89:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_2                 EXTI_IMR_IM2           /*!< Extended line 2 */
+  90:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_3                 EXTI_IMR_IM3           /*!< Extended line 3 */
+  91:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_4                 EXTI_IMR_IM4           /*!< Extended line 4 */
+  92:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_5                 EXTI_IMR_IM5           /*!< Extended line 5 */
+  93:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_6                 EXTI_IMR_IM6           /*!< Extended line 6 */
+  94:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_7                 EXTI_IMR_IM7           /*!< Extended line 7 */
+  95:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_8                 EXTI_IMR_IM8           /*!< Extended line 8 */
+  96:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_9                 EXTI_IMR_IM9           /*!< Extended line 9 */
+  97:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_10                EXTI_IMR_IM10          /*!< Extended line 10 */
+  98:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_11                EXTI_IMR_IM11          /*!< Extended line 11 */
+  99:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_12                EXTI_IMR_IM12          /*!< Extended line 12 */
+ 100:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_13                EXTI_IMR_IM13          /*!< Extended line 13 */
+ 101:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_14                EXTI_IMR_IM14          /*!< Extended line 14 */
+ 102:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_15                EXTI_IMR_IM15          /*!< Extended line 15 */
+ 103:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM16)
+ 104:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_16                EXTI_IMR_IM16          /*!< Extended line 16 */
+ 105:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 106:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_17                EXTI_IMR_IM17          /*!< Extended line 17 */
+ 107:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM18)
+ 108:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_18                EXTI_IMR_IM18          /*!< Extended line 18 */
+ 109:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 110:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_19                EXTI_IMR_IM19          /*!< Extended line 19 */
+ 111:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM20)
+ 112:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_20                EXTI_IMR_IM20          /*!< Extended line 20 */
+ 113:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 114:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM21)
+ 115:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_21                EXTI_IMR_IM21          /*!< Extended line 21 */
+ 116:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 117:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM22)
+ 118:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_22                EXTI_IMR_IM22          /*!< Extended line 22 */
+ 119:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 120:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM23)
+ 121:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_23                EXTI_IMR_IM23          /*!< Extended line 23 */
+ 122:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 8
+
+
+ 123:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM24)
+ 124:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_24                EXTI_IMR_IM24          /*!< Extended line 24 */
+ 125:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 126:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM25)
+ 127:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_25                EXTI_IMR_IM25          /*!< Extended line 25 */
+ 128:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 129:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM26)
+ 130:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_26                EXTI_IMR_IM26          /*!< Extended line 26 */
+ 131:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 132:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM27)
+ 133:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_27                EXTI_IMR_IM27          /*!< Extended line 27 */
+ 134:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 135:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM28)
+ 136:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_28                EXTI_IMR_IM28          /*!< Extended line 28 */
+ 137:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 138:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM29)
+ 139:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_29                EXTI_IMR_IM29          /*!< Extended line 29 */
+ 140:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 141:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM30)
+ 142:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_30                EXTI_IMR_IM30          /*!< Extended line 30 */
+ 143:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 144:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(EXTI_IMR_IM31)
+ 145:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_31                EXTI_IMR_IM31          /*!< Extended line 31 */
+ 146:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif
+ 147:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_ALL_0_31          EXTI_IMR_IM            /*!< All Extended line not reserved*/
+ 148:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 149:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 150:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_ALL               ((uint32_t)0xFFFFFFFFU)  /*!< All Extended line */
+ 151:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 152:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(USE_FULL_LL_DRIVER)
+ 153:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_LINE_NONE              ((uint32_t)0x00000000U)  /*!< None Extended line */
+ 154:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif /*USE_FULL_LL_DRIVER*/
+ 155:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 156:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 157:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 158:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 159:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #if defined(USE_FULL_LL_DRIVER)
+ 160:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 161:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EC_MODE Mode
+ 162:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 163:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 164:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_MODE_IT                 ((uint8_t)0x00U) /*!< Interrupt Mode */
+ 165:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_MODE_EVENT              ((uint8_t)0x01U) /*!< Event Mode */
+ 166:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_MODE_IT_EVENT           ((uint8_t)0x02U) /*!< Interrupt & Event Mode */
+ 167:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 168:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 169:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 170:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 171:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EC_TRIGGER Edge Trigger
+ 172:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 173:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 174:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_TRIGGER_NONE            ((uint8_t)0x00U) /*!< No Trigger Mode */
+ 175:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_TRIGGER_RISING          ((uint8_t)0x01U) /*!< Trigger Rising Mode */
+ 176:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_TRIGGER_FALLING         ((uint8_t)0x02U) /*!< Trigger Falling Mode */
+ 177:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_TRIGGER_RISING_FALLING  ((uint8_t)0x03U) /*!< Trigger Rising & Falling Mode */
+ 178:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 179:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 9
+
+
+ 180:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 181:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 182:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 183:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 184:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #endif /*USE_FULL_LL_DRIVER*/
+ 185:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 186:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 187:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 188:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 189:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 190:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 191:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Exported macro ------------------------------------------------------------*/
+ 192:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_Exported_Macros EXTI Exported Macros
+ 193:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 194:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 195:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 196:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EM_WRITE_READ Common Write and read registers Macros
+ 197:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 198:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 199:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 200:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 201:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Write a value in EXTI register
+ 202:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  __REG__ Register to be written
+ 203:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  __VALUE__ Value to be written in the register
+ 204:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 205:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 206:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_WriteReg(__REG__, __VALUE__) WRITE_REG(EXTI->__REG__, (__VALUE__))
+ 207:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 208:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 209:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Read a value in EXTI register
+ 210:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  __REG__ Register to be read
+ 211:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval Register value
+ 212:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 213:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** #define LL_EXTI_ReadReg(__REG__) READ_REG(EXTI->__REG__)
+ 214:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 215:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 216:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 217:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 218:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 219:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 220:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 221:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 222:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 223:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 224:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 225:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /* Exported functions --------------------------------------------------------*/
+ 226:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_Exported_Functions EXTI Exported Functions
+ 227:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****  * @{
+ 228:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****  */
+ 229:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EF_IT_Management IT_Management
+ 230:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 231:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 232:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 233:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 234:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Enable ExtiLine Interrupt request for Lines in range 0 to 31
+ 235:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The reset value for the direct or internal lines (see RM)
+ 236:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       is set to 1 in order to enable the interrupt by default.
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 10
+
+
+ 237:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Bits are set automatically at Power on.
+ 238:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll IMR         IMx           LL_EXTI_EnableIT_0_31
+ 239:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 240:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 241:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 242:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 243:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 244:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 245:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 246:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 247:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 248:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 249:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 250:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 251:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 252:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 253:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 254:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 255:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 256:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 257:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 258:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 259:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 260:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 261:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 262:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 263:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ 264:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 265:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 266:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 267:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 268:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 269:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_EnableIT_0_31(uint32_t ExtiLine)
+ 270:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   SET_BIT(EXTI->IMR, ExtiLine);
+ 272:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 273:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 274:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 275:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Disable ExtiLine Interrupt request for Lines in range 0 to 31
+ 276:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The reset value for the direct or internal lines (see RM)
+ 277:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       is set to 1 in order to enable the interrupt by default.
+ 278:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Bits are set automatically at Power on.
+ 279:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll IMR         IMx           LL_EXTI_DisableIT_0_31
+ 280:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 281:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 282:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 283:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 284:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 285:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 286:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 287:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 288:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 289:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 290:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 291:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 292:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 293:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 11
+
+
+ 294:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 295:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 296:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 297:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 298:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 299:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 300:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 301:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 302:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 303:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 304:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ 305:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 306:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 307:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 308:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 309:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 310:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_DisableIT_0_31(uint32_t ExtiLine)
+ 311:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   CLEAR_BIT(EXTI->IMR, ExtiLine);
+ 313:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 314:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 315:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 316:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 317:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Indicate if ExtiLine Interrupt request is enabled for Lines in range 0 to 31
+ 318:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The reset value for the direct or internal lines (see RM)
+ 319:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       is set to 1 in order to enable the interrupt by default.
+ 320:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Bits are set automatically at Power on.
+ 321:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll IMR         IMx           LL_EXTI_IsEnabledIT_0_31
+ 322:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 323:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 324:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 325:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 326:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 327:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 328:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 329:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 330:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 331:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 332:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 333:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 334:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 335:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 336:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 337:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 338:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 339:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 340:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 341:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 342:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 343:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 344:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 345:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 346:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ 347:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 348:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 349:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 350:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval State of bit (1 or 0).
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 12
+
+
+ 351:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 352:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE uint32_t LL_EXTI_IsEnabledIT_0_31(uint32_t ExtiLine)
+ 353:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 354:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   return (READ_BIT(EXTI->IMR, ExtiLine) == (ExtiLine));
+ 355:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 356:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 357:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 358:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 359:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 360:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 361:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 362:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EF_Event_Management Event_Management
+ 363:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 364:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 365:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 366:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 367:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Enable ExtiLine Event request for Lines in range 0 to 31
+ 368:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll EMR         EMx           LL_EXTI_EnableEvent_0_31
+ 369:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 370:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 371:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 372:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 373:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 374:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 375:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 376:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 377:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 378:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 379:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 380:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 381:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 382:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 383:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 384:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 385:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 386:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 387:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 388:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 389:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 390:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 391:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 392:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 393:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ 394:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 395:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 396:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 397:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 398:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 399:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_EnableEvent_0_31(uint32_t ExtiLine)
+ 400:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   SET_BIT(EXTI->EMR, ExtiLine);
+ 402:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 404:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 405:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 406:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 407:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Disable ExtiLine Event request for Lines in range 0 to 31
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 13
+
+
+ 408:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll EMR         EMx           LL_EXTI_DisableEvent_0_31
+ 409:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 410:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 411:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 412:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 413:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 414:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 415:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 416:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 417:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 418:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 419:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 420:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 421:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 422:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 423:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 424:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 425:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 426:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 427:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 428:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 429:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 430:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 431:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 432:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 433:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ 434:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 435:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 436:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 437:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 438:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 439:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_DisableEvent_0_31(uint32_t ExtiLine)
+ 134              		.loc 2 439 22 view .LVU31
+ 135              	.LBB31:
+ 440:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 441:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   CLEAR_BIT(EXTI->EMR, ExtiLine);
+ 136              		.loc 2 441 3 view .LVU32
+ 137 0034 2749     		ldr	r1, .L18
+ 138 0036 4C68     		ldr	r4, [r1, #4]
+ 139 0038 24EA0202 		bic	r2, r4, r2
+ 140              	.LVL6:
+ 141              		.loc 2 441 3 is_stmt 0 view .LVU33
+ 142 003c 4A60     		str	r2, [r1, #4]
+ 143              	.LVL7:
+ 144              		.loc 2 441 3 view .LVU34
+ 145              	.LBE31:
+ 146              	.LBE30:
+ 127:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 147              		.loc 1 127 11 is_stmt 1 view .LVU35
+ 148 003e 1A68     		ldr	r2, [r3]
+ 149              	.LVL8:
+ 150              	.LBB32:
+ 151              	.LBI32:
+ 269:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 152              		.loc 2 269 22 view .LVU36
+ 153              	.LBB33:
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 14
+
+
+ 154              		.loc 2 271 3 view .LVU37
+ 155 0040 0C68     		ldr	r4, [r1]
+ 156 0042 2243     		orrs	r2, r2, r4
+ 157              	.LVL9:
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 158              		.loc 2 271 3 is_stmt 0 view .LVU38
+ 159 0044 0A60     		str	r2, [r1]
+ 160              	.LVL10:
+ 272:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 161              		.loc 2 272 1 view .LVU39
+ 162 0046 EAE7     		b	.L9
+ 163              	.L7:
+ 272:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 164              		.loc 2 272 1 view .LVU40
+ 165              	.LBE33:
+ 166              	.LBE32:
+ 131:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           /* Then Enable Event on provided Lines */
+ 167              		.loc 1 131 11 is_stmt 1 view .LVU41
+ 168              	.LVL11:
+ 169              	.LBB34:
+ 170              	.LBI34:
+ 310:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 171              		.loc 2 310 22 view .LVU42
+ 172              	.LBB35:
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 173              		.loc 2 312 3 view .LVU43
+ 174 0048 2249     		ldr	r1, .L18
+ 175 004a 0868     		ldr	r0, [r1]
+ 176 004c 20EA0202 		bic	r2, r0, r2
+ 177              	.LVL12:
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 178              		.loc 2 312 3 is_stmt 0 view .LVU44
+ 179 0050 0A60     		str	r2, [r1]
+ 180              	.LVL13:
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 181              		.loc 2 312 3 view .LVU45
+ 182              	.LBE35:
+ 183              	.LBE34:
+ 133:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 184              		.loc 1 133 11 is_stmt 1 view .LVU46
+ 185 0052 1A68     		ldr	r2, [r3]
+ 186              	.LVL14:
+ 187              	.LBB36:
+ 188              	.LBI36:
+ 399:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 189              		.loc 2 399 22 view .LVU47
+ 190              	.LBB37:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 191              		.loc 2 401 3 view .LVU48
+ 192 0054 4868     		ldr	r0, [r1, #4]
+ 193 0056 0243     		orrs	r2, r2, r0
+ 194              	.LVL15:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 195              		.loc 2 401 3 is_stmt 0 view .LVU49
+ 196 0058 4A60     		str	r2, [r1, #4]
+ 197              	.LVL16:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 15
+
+
+ 198              		.loc 2 401 3 view .LVU50
+ 199              	.LBE37:
+ 200              	.LBE36:
+ 107:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Check the parameters */
+ 201              		.loc 1 107 15 view .LVU51
+ 202 005a 0020     		movs	r0, #0
+ 203              	.LBB39:
+ 204              	.LBB38:
+ 403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 205              		.loc 2 403 1 view .LVU52
+ 206 005c DFE7     		b	.L9
+ 207              	.L8:
+ 403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 208              		.loc 2 403 1 view .LVU53
+ 209              	.LBE38:
+ 210              	.LBE39:
+ 137:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           LL_EXTI_EnableEvent_0_31(EXTI_InitStruct->Line_0_31);
+ 211              		.loc 1 137 11 is_stmt 1 view .LVU54
+ 212              	.LVL17:
+ 213              	.LBB40:
+ 214              	.LBI40:
+ 269:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 215              		.loc 2 269 22 view .LVU55
+ 216              	.LBB41:
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 217              		.loc 2 271 3 view .LVU56
+ 218 005e 1D49     		ldr	r1, .L18
+ 219 0060 0868     		ldr	r0, [r1]
+ 220 0062 0243     		orrs	r2, r2, r0
+ 221              	.LVL18:
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 222              		.loc 2 271 3 is_stmt 0 view .LVU57
+ 223 0064 0A60     		str	r2, [r1]
+ 224              	.LVL19:
+ 271:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 225              		.loc 2 271 3 view .LVU58
+ 226              	.LBE41:
+ 227              	.LBE40:
+ 138:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           break;
+ 228              		.loc 1 138 11 is_stmt 1 view .LVU59
+ 229 0066 1A68     		ldr	r2, [r3]
+ 230              	.LVL20:
+ 231              	.LBB42:
+ 232              	.LBI42:
+ 399:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 233              		.loc 2 399 22 view .LVU60
+ 234              	.LBB43:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 235              		.loc 2 401 3 view .LVU61
+ 236 0068 4868     		ldr	r0, [r1, #4]
+ 237 006a 0243     		orrs	r2, r2, r0
+ 238              	.LVL21:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 239              		.loc 2 401 3 is_stmt 0 view .LVU62
+ 240 006c 4A60     		str	r2, [r1, #4]
+ 241              	.LVL22:
+ 401:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 16
+
+
+ 242              		.loc 2 401 3 view .LVU63
+ 243              	.LBE43:
+ 244              	.LBE42:
+ 107:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Check the parameters */
+ 245              		.loc 1 107 15 view .LVU64
+ 246 006e 0020     		movs	r0, #0
+ 247              	.LBB45:
+ 248              	.LBB44:
+ 403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 249              		.loc 2 403 1 view .LVU65
+ 250 0070 D5E7     		b	.L9
+ 251              	.LVL23:
+ 252              	.L17:
+ 403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 253              		.loc 2 403 1 view .LVU66
+ 254              	.LBE44:
+ 255              	.LBE45:
+ 147:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         {
+ 148:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           case LL_EXTI_TRIGGER_RISING:
+ 149:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             /* First Disable Falling Trigger on provided Lines */
+ 150:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_DisableFallingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 256              		.loc 1 150 13 is_stmt 1 view .LVU67
+ 257 0072 1C68     		ldr	r4, [r3]
+ 258              	.LVL24:
+ 259              	.LBB46:
+ 260              	.LBI46:
+ 442:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 443:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 444:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 445:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 446:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Indicate if ExtiLine Event request is enabled for Lines in range 0 to 31
+ 447:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll EMR         EMx           LL_EXTI_IsEnabledEvent_0_31
+ 448:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be one of the following values:
+ 449:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 450:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 451:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 452:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 453:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 454:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 455:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 456:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 457:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 458:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 459:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 460:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 461:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 462:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 463:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 464:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 465:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 466:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_17
+ 467:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 468:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 469:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 470:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 471:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 472:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_23(*)
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 17
+
+
+ 473:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_ALL_0_31
+ 474:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 475:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 476:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval State of bit (1 or 0).
+ 477:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 478:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE uint32_t LL_EXTI_IsEnabledEvent_0_31(uint32_t ExtiLine)
+ 479:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 480:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   return (READ_BIT(EXTI->EMR, ExtiLine) == (ExtiLine));
+ 481:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 482:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 483:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 484:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 485:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 486:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 487:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 488:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 489:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EF_Rising_Trigger_Management Rising_Trigger_Management
+ 490:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 491:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 492:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 493:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 494:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Enable ExtiLine Rising Edge Trigger for Lines in range 0 to 31
+ 495:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The configurable wakeup lines are edge-triggered. No glitch must be
+ 496:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       generated on these lines. If a rising edge on a configurable interrupt
+ 497:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       line occurs during a write operation in the EXTI_RTSR register, the
+ 498:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       pending bit is not set.
+ 499:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Rising and falling edge triggers can be set for
+ 500:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       the same interrupt line. In this case, both generate a trigger
+ 501:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       condition.
+ 502:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll RTSR        RTx           LL_EXTI_EnableRisingTrig_0_31
+ 503:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be a combination of the following values:
+ 504:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 505:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 506:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 507:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 508:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 509:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 510:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 511:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 512:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 513:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 514:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 515:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 516:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 517:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 518:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 519:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 520:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 521:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 522:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 523:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 524:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 525:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 526:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 527:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 528:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 529:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 18
+
+
+ 530:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_EnableRisingTrig_0_31(uint32_t ExtiLine)
+ 531:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   SET_BIT(EXTI->RTSR, ExtiLine);
+ 533:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 534:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 535:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 536:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 537:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 538:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Disable ExtiLine Rising Edge Trigger for Lines in range 0 to 31
+ 539:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The configurable wakeup lines are edge-triggered. No glitch must be
+ 540:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       generated on these lines. If a rising edge on a configurable interrupt
+ 541:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       line occurs during a write operation in the EXTI_RTSR register, the
+ 542:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       pending bit is not set.
+ 543:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Rising and falling edge triggers can be set for
+ 544:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       the same interrupt line. In this case, both generate a trigger
+ 545:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       condition.
+ 546:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll RTSR        RTx           LL_EXTI_DisableRisingTrig_0_31
+ 547:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be a combination of the following values:
+ 548:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 549:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 550:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 551:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 552:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 553:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 554:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 555:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 556:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 557:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 558:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 559:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 560:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 561:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 562:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 563:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 564:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 565:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 566:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 567:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 568:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 569:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 570:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 571:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 572:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 573:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 574:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_DisableRisingTrig_0_31(uint32_t ExtiLine)
+ 575:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 576:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   CLEAR_BIT(EXTI->RTSR, ExtiLine);
+ 577:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 578:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 579:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 580:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 581:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 582:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Check if rising edge trigger is enabled for Lines in range 0 to 31
+ 583:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll RTSR        RTx           LL_EXTI_IsEnabledRisingTrig_0_31
+ 584:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be a combination of the following values:
+ 585:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 586:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 19
+
+
+ 587:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 588:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 589:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 590:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 591:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 592:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 593:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 594:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 595:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 596:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 597:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 598:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 599:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 600:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 601:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 602:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 603:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 604:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 605:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 606:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 607:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 608:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 609:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval State of bit (1 or 0).
+ 610:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 611:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE uint32_t LL_EXTI_IsEnabledRisingTrig_0_31(uint32_t ExtiLine)
+ 612:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 613:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   return (READ_BIT(EXTI->RTSR, ExtiLine) == (ExtiLine));
+ 614:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 615:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 616:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 617:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 618:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @}
+ 619:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 620:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 621:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /** @defgroup EXTI_LL_EF_Falling_Trigger_Management Falling_Trigger_Management
+ 622:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @{
+ 623:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 624:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 625:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 626:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Enable ExtiLine Falling Edge Trigger for Lines in range 0 to 31
+ 627:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The configurable wakeup lines are edge-triggered. No glitch must be
+ 628:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       generated on these lines. If a falling edge on a configurable interrupt
+ 629:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       line occurs during a write operation in the EXTI_FTSR register, the
+ 630:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       pending bit is not set.
+ 631:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Rising and falling edge triggers can be set for
+ 632:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       the same interrupt line. In this case, both generate a trigger
+ 633:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       condition.
+ 634:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll FTSR        FTx           LL_EXTI_EnableFallingTrig_0_31
+ 635:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be a combination of the following values:
+ 636:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 637:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 638:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 639:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 640:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 641:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 642:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 643:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 20
+
+
+ 644:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 645:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 646:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 647:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 648:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 649:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 650:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 651:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 652:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 653:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 654:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 655:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 656:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 657:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 658:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ 659:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 660:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 661:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 662:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_EnableFallingTrig_0_31(uint32_t ExtiLine)
+ 663:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   SET_BIT(EXTI->FTSR, ExtiLine);
+ 665:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 666:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 667:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 668:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** /**
+ 669:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @brief  Disable ExtiLine Falling Edge Trigger for Lines in range 0 to 31
+ 670:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note The configurable wakeup lines are edge-triggered. No glitch must be
+ 671:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       generated on these lines. If a Falling edge on a configurable interrupt
+ 672:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       line occurs during a write operation in the EXTI_FTSR register, the
+ 673:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       pending bit is not set.
+ 674:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       Rising and falling edge triggers can be set for the same interrupt line.
+ 675:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *       In this case, both generate a trigger condition.
+ 676:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @rmtoll FTSR        FTx           LL_EXTI_DisableFallingTrig_0_31
+ 677:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @param  ExtiLine This parameter can be a combination of the following values:
+ 678:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_0
+ 679:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_1
+ 680:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_2
+ 681:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_3
+ 682:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_4
+ 683:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_5
+ 684:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_6
+ 685:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_7
+ 686:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_8
+ 687:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_9
+ 688:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_10
+ 689:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_11
+ 690:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_12
+ 691:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_13
+ 692:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_14
+ 693:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_15
+ 694:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_16
+ 695:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_18
+ 696:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_19(*)
+ 697:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_20(*)
+ 698:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_21
+ 699:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   *         @arg @ref LL_EXTI_LINE_22
+ 700:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   (*): Available in some devices
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 21
+
+
+ 701:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @note   Please check each device line mapping for EXTI Line availability
+ 702:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   * @retval None
+ 703:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   */
+ 704:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** __STATIC_INLINE void LL_EXTI_DisableFallingTrig_0_31(uint32_t ExtiLine)
+ 261              		.loc 2 704 22 view .LVU68
+ 262              	.LBB47:
+ 705:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 706:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h ****   CLEAR_BIT(EXTI->FTSR, ExtiLine);
+ 263              		.loc 2 706 3 view .LVU69
+ 264 0074 174A     		ldr	r2, .L18
+ 265 0076 D168     		ldr	r1, [r2, #12]
+ 266 0078 21EA0401 		bic	r1, r1, r4
+ 267 007c D160     		str	r1, [r2, #12]
+ 268              	.LVL25:
+ 269              		.loc 2 706 3 is_stmt 0 view .LVU70
+ 270              	.LBE47:
+ 271              	.LBE46:
+ 151:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             /* Then Enable Rising Trigger on provided Lines */
+ 152:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_EnableRisingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 272              		.loc 1 152 13 is_stmt 1 view .LVU71
+ 273 007e 1B68     		ldr	r3, [r3]
+ 274              	.LVL26:
+ 275              	.LBB48:
+ 276              	.LBI48:
+ 530:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 277              		.loc 2 530 22 view .LVU72
+ 278              	.LBB49:
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 279              		.loc 2 532 3 view .LVU73
+ 280 0080 9168     		ldr	r1, [r2, #8]
+ 281 0082 0B43     		orrs	r3, r3, r1
+ 282              	.LVL27:
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 283              		.loc 2 532 3 is_stmt 0 view .LVU74
+ 284 0084 9360     		str	r3, [r2, #8]
+ 285              	.LVL28:
+ 534:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 286              		.loc 2 534 1 view .LVU75
+ 287 0086 1FE0     		b	.L6
+ 288              	.LVL29:
+ 289              	.L10:
+ 534:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 290              		.loc 2 534 1 view .LVU76
+ 291              	.LBE49:
+ 292              	.LBE48:
+ 153:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             break;
+ 154:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           case LL_EXTI_TRIGGER_FALLING:
+ 155:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             /* First Disable Rising Trigger on provided Lines */
+ 156:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_DisableRisingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 293              		.loc 1 156 13 is_stmt 1 view .LVU77
+ 294 0088 1C68     		ldr	r4, [r3]
+ 295              	.LVL30:
+ 296              	.LBB50:
+ 297              	.LBI50:
+ 574:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 298              		.loc 2 574 22 view .LVU78
+ 299              	.LBB51:
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 22
+
+
+ 576:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 300              		.loc 2 576 3 view .LVU79
+ 301 008a 124A     		ldr	r2, .L18
+ 302 008c 9168     		ldr	r1, [r2, #8]
+ 303 008e 21EA0401 		bic	r1, r1, r4
+ 304 0092 9160     		str	r1, [r2, #8]
+ 305              	.LVL31:
+ 576:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 306              		.loc 2 576 3 is_stmt 0 view .LVU80
+ 307              	.LBE51:
+ 308              	.LBE50:
+ 157:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             /* Then Enable Falling Trigger on provided Lines */
+ 158:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_EnableFallingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 309              		.loc 1 158 13 is_stmt 1 view .LVU81
+ 310 0094 1B68     		ldr	r3, [r3]
+ 311              	.LVL32:
+ 312              	.LBB52:
+ 313              	.LBI52:
+ 662:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 314              		.loc 2 662 22 view .LVU82
+ 315              	.LBB53:
+ 664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 316              		.loc 2 664 3 view .LVU83
+ 317 0096 D168     		ldr	r1, [r2, #12]
+ 318 0098 0B43     		orrs	r3, r3, r1
+ 319              	.LVL33:
+ 664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 320              		.loc 2 664 3 is_stmt 0 view .LVU84
+ 321 009a D360     		str	r3, [r2, #12]
+ 322              	.LVL34:
+ 665:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 323              		.loc 2 665 1 view .LVU85
+ 324 009c 14E0     		b	.L6
+ 325              	.LVL35:
+ 326              	.L11:
+ 665:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 327              		.loc 2 665 1 view .LVU86
+ 328              	.LBE53:
+ 329              	.LBE52:
+ 159:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             break;
+ 160:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           case LL_EXTI_TRIGGER_RISING_FALLING:
+ 161:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_EnableRisingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 330              		.loc 1 161 13 is_stmt 1 view .LVU87
+ 331 009e 1968     		ldr	r1, [r3]
+ 332              	.LVL36:
+ 333              	.LBB54:
+ 334              	.LBI54:
+ 530:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 335              		.loc 2 530 22 view .LVU88
+ 336              	.LBB55:
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 337              		.loc 2 532 3 view .LVU89
+ 338 00a0 0C4A     		ldr	r2, .L18
+ 339 00a2 9468     		ldr	r4, [r2, #8]
+ 340 00a4 2143     		orrs	r1, r1, r4
+ 341              	.LVL37:
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 23
+
+
+ 342              		.loc 2 532 3 is_stmt 0 view .LVU90
+ 343 00a6 9160     		str	r1, [r2, #8]
+ 344              	.LVL38:
+ 532:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 345              		.loc 2 532 3 view .LVU91
+ 346              	.LBE55:
+ 347              	.LBE54:
+ 162:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             LL_EXTI_EnableFallingTrig_0_31(EXTI_InitStruct->Line_0_31);
+ 348              		.loc 1 162 13 is_stmt 1 view .LVU92
+ 349 00a8 1B68     		ldr	r3, [r3]
+ 350              	.LVL39:
+ 351              	.LBB56:
+ 352              	.LBI56:
+ 662:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 353              		.loc 2 662 22 view .LVU93
+ 354              	.LBB57:
+ 664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 355              		.loc 2 664 3 view .LVU94
+ 356 00aa D168     		ldr	r1, [r2, #12]
+ 357 00ac 0B43     		orrs	r3, r3, r1
+ 358              	.LVL40:
+ 664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 359              		.loc 2 664 3 is_stmt 0 view .LVU95
+ 360 00ae D360     		str	r3, [r2, #12]
+ 361              	.LVL41:
+ 665:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 362              		.loc 2 665 1 view .LVU96
+ 363 00b0 0AE0     		b	.L6
+ 364              	.LVL42:
+ 365              	.L5:
+ 665:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** 
+ 366              		.loc 2 665 1 view .LVU97
+ 367              	.LBE57:
+ 368              	.LBE56:
+ 163:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             break;
+ 164:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****           default:
+ 165:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             status = ERROR;
+ 166:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****             break;
+ 167:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****         }
+ 168:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****       }
+ 169:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     }
+ 170:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   }
+ 171:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* DISABLE LineCommand */
+ 172:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   else
+ 173:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   {
+ 174:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     /* De-configure EXTI Lines in range from 0 to 31 */
+ 175:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     LL_EXTI_DisableIT_0_31(EXTI_InitStruct->Line_0_31);
+ 369              		.loc 1 175 5 is_stmt 1 view .LVU98
+ 370              	.LBB58:
+ 371              	.LBI58:
+ 310:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 372              		.loc 2 310 22 view .LVU99
+ 373              	.LBB59:
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 374              		.loc 2 312 3 view .LVU100
+ 375 00b2 084A     		ldr	r2, .L18
+ 376 00b4 1168     		ldr	r1, [r2]
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 24
+
+
+ 377 00b6 1C68     		ldr	r4, [r3]
+ 378 00b8 21EA0401 		bic	r1, r1, r4
+ 379 00bc 1160     		str	r1, [r2]
+ 380              	.LVL43:
+ 312:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 381              		.loc 2 312 3 is_stmt 0 view .LVU101
+ 382              	.LBE59:
+ 383              	.LBE58:
+ 176:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****     LL_EXTI_DisableEvent_0_31(EXTI_InitStruct->Line_0_31);
+ 384              		.loc 1 176 5 is_stmt 1 view .LVU102
+ 385 00be 1968     		ldr	r1, [r3]
+ 386              	.LVL44:
+ 387              	.LBB60:
+ 388              	.LBI60:
+ 439:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** {
+ 389              		.loc 2 439 22 view .LVU103
+ 390              	.LBB61:
+ 441:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 391              		.loc 2 441 3 view .LVU104
+ 392 00c0 5368     		ldr	r3, [r2, #4]
+ 393              	.LVL45:
+ 441:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 394              		.loc 2 441 3 is_stmt 0 view .LVU105
+ 395 00c2 23EA0103 		bic	r3, r3, r1
+ 396 00c6 5360     		str	r3, [r2, #4]
+ 397              	.LVL46:
+ 398              	.L6:
+ 441:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h **** }
+ 399              		.loc 2 441 3 view .LVU106
+ 400              	.LBE61:
+ 401              	.LBE60:
+ 177:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   }
+ 178:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   return status;
+ 402              		.loc 1 178 3 is_stmt 1 view .LVU107
+ 179:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** }
+ 403              		.loc 1 179 1 is_stmt 0 view .LVU108
+ 404 00c8 5DF8044B 		ldr	r4, [sp], #4
+ 405              	.LCFI1:
+ 406              		.cfi_remember_state
+ 407              		.cfi_restore 4
+ 408              		.cfi_def_cfa_offset 0
+ 409 00cc 7047     		bx	lr
+ 410              	.LVL47:
+ 411              	.L12:
+ 412              	.LCFI2:
+ 413              		.cfi_restore_state
+ 107:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   /* Check the parameters */
+ 414              		.loc 1 107 15 view .LVU109
+ 415 00ce 0020     		movs	r0, #0
+ 416 00d0 FAE7     		b	.L6
+ 417              	.L19:
+ 418 00d2 00BF     		.align	2
+ 419              	.L18:
+ 420 00d4 003C0140 		.word	1073822720
+ 421              		.cfi_endproc
+ 422              	.LFE147:
+ 424              		.section	.text.LL_EXTI_StructInit,"ax",%progbits
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 25
+
+
+ 425              		.align	1
+ 426              		.global	LL_EXTI_StructInit
+ 427              		.syntax unified
+ 428              		.thumb
+ 429              		.thumb_func
+ 431              	LL_EXTI_StructInit:
+ 432              	.LVL48:
+ 433              	.LFB148:
+ 180:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** 
+ 181:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** /**
+ 182:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @brief  Set each @ref LL_EXTI_InitTypeDef field to default value.
+ 183:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @param  EXTI_InitStruct Pointer to a @ref LL_EXTI_InitTypeDef structure.
+ 184:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   * @retval None
+ 185:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   */
+ 186:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** void LL_EXTI_StructInit(LL_EXTI_InitTypeDef *EXTI_InitStruct)
+ 187:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** {
+ 434              		.loc 1 187 1 is_stmt 1 view -0
+ 435              		.cfi_startproc
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 438              		@ link register save eliminated.
+ 188:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   EXTI_InitStruct->Line_0_31      = LL_EXTI_LINE_NONE;
+ 439              		.loc 1 188 3 view .LVU111
+ 440              		.loc 1 188 35 is_stmt 0 view .LVU112
+ 441 0000 0023     		movs	r3, #0
+ 442 0002 0360     		str	r3, [r0]
+ 189:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   EXTI_InitStruct->LineCommand    = DISABLE;
+ 443              		.loc 1 189 3 is_stmt 1 view .LVU113
+ 444              		.loc 1 189 35 is_stmt 0 view .LVU114
+ 445 0004 0371     		strb	r3, [r0, #4]
+ 190:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   EXTI_InitStruct->Mode           = LL_EXTI_MODE_IT;
+ 446              		.loc 1 190 3 is_stmt 1 view .LVU115
+ 447              		.loc 1 190 35 is_stmt 0 view .LVU116
+ 448 0006 4371     		strb	r3, [r0, #5]
+ 191:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c ****   EXTI_InitStruct->Trigger        = LL_EXTI_TRIGGER_FALLING;
+ 449              		.loc 1 191 3 is_stmt 1 view .LVU117
+ 450              		.loc 1 191 35 is_stmt 0 view .LVU118
+ 451 0008 0223     		movs	r3, #2
+ 452 000a 8371     		strb	r3, [r0, #6]
+ 192:flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c **** }
+ 453              		.loc 1 192 1 view .LVU119
+ 454 000c 7047     		bx	lr
+ 455              		.cfi_endproc
+ 456              	.LFE148:
+ 458              		.text
+ 459              	.Letext0:
+ 460              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 461              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 462              		.file 5 "./flight/uvos/stm32f4xx/libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 463              		.file 6 "./flight/uvos/stm32f4xx/libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_ll_exti.c
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:20     .text.LL_EXTI_DeInit:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:26     .text.LL_EXTI_DeInit:00000000 LL_EXTI_DeInit
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:55     .text.LL_EXTI_DeInit:00000018 $d
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:60     .text.LL_EXTI_Init:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:66     .text.LL_EXTI_Init:00000000 LL_EXTI_Init
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:420    .text.LL_EXTI_Init:000000d4 $d
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:425    .text.LL_EXTI_StructInit:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccxbAK1z.s:431    .text.LL_EXTI_StructInit:00000000 LL_EXTI_StructInit
+
+NO UNDEFINED SYMBOLS

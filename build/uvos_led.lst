@@ -1,0 +1,276 @@
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uvos_led.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UVOS_LED_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	UVOS_LED_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	UVOS_LED_Init:
+  27              	.LVL0:
+  28              	.LFB1372:
+  29              		.file 1 "flight/uvos/common/uvos_led.c"
+   1:flight/uvos/common/uvos_led.c **** #include "uvos.h"
+   2:flight/uvos/common/uvos_led.c **** 
+   3:flight/uvos/common/uvos_led.c **** #ifdef UVOS_INCLUDE_LED
+   4:flight/uvos/common/uvos_led.c **** 
+   5:flight/uvos/common/uvos_led.c **** #include <uvos_gpio_priv.h>
+   6:flight/uvos/common/uvos_led.c **** #include <uvos_gpio.h>
+   7:flight/uvos/common/uvos_led.c **** 
+   8:flight/uvos/common/uvos_led.c **** static uint32_t uvos_led_gpios_id;
+   9:flight/uvos/common/uvos_led.c **** 
+  10:flight/uvos/common/uvos_led.c **** /**
+  11:flight/uvos/common/uvos_led.c ****  * Initialises all the LED's
+  12:flight/uvos/common/uvos_led.c ****  */
+  13:flight/uvos/common/uvos_led.c **** int32_t UVOS_LED_Init( const struct uvos_gpio_cfg * cfg )
+  14:flight/uvos/common/uvos_led.c **** {
+  30              		.loc 1 14 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  15:flight/uvos/common/uvos_led.c ****   UVOS_Assert( cfg );
+  34              		.loc 1 15 3 view .LVU1
+  35 0000 28B1     		cbz	r0, .L3
+  14:flight/uvos/common/uvos_led.c ****   UVOS_Assert( cfg );
+  36              		.loc 1 14 1 is_stmt 0 discriminator 2 view .LVU2
+  37 0002 08B5     		push	{r3, lr}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 3, -8
+  41              		.cfi_offset 14, -4
+  42 0004 0146     		mov	r1, r0
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 2
+
+
+  43              		.loc 1 15 21 is_stmt 1 discriminator 2 view .LVU3
+  16:flight/uvos/common/uvos_led.c ****   return UVOS_GPIO_Init( &uvos_led_gpios_id, cfg );
+  44              		.loc 1 16 3 discriminator 2 view .LVU4
+  45              		.loc 1 16 10 is_stmt 0 discriminator 2 view .LVU5
+  46 0006 0248     		ldr	r0, .L6
+  47              	.LVL1:
+  48              		.loc 1 16 10 discriminator 2 view .LVU6
+  49 0008 FFF7FEFF 		bl	UVOS_GPIO_Init
+  50              	.LVL2:
+  17:flight/uvos/common/uvos_led.c **** }
+  51              		.loc 1 17 1 discriminator 2 view .LVU7
+  52 000c 08BD     		pop	{r3, pc}
+  53              	.LVL3:
+  54              	.L3:
+  55              	.LCFI1:
+  56              		.cfi_def_cfa_offset 0
+  57              		.cfi_restore 3
+  58              		.cfi_restore 14
+  15:flight/uvos/common/uvos_led.c ****   return UVOS_GPIO_Init( &uvos_led_gpios_id, cfg );
+  59              		.loc 1 15 3 is_stmt 1 discriminator 1 view .LVU8
+  15:flight/uvos/common/uvos_led.c ****   return UVOS_GPIO_Init( &uvos_led_gpios_id, cfg );
+  60              		.loc 1 15 3 discriminator 1 view .LVU9
+  15:flight/uvos/common/uvos_led.c ****   return UVOS_GPIO_Init( &uvos_led_gpios_id, cfg );
+  61              		.loc 1 15 3 discriminator 1 view .LVU10
+  62 000e FEE7     		b	.L3
+  63              	.L7:
+  64              		.align	2
+  65              	.L6:
+  66 0010 00000000 		.word	.LANCHOR0
+  67              		.cfi_endproc
+  68              	.LFE1372:
+  70              		.section	.text.UVOS_LED_On,"ax",%progbits
+  71              		.align	1
+  72              		.global	UVOS_LED_On
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	UVOS_LED_On:
+  78              	.LVL4:
+  79              	.LFB1373:
+  18:flight/uvos/common/uvos_led.c **** 
+  19:flight/uvos/common/uvos_led.c **** /**
+  20:flight/uvos/common/uvos_led.c ****  * Turn on LED
+  21:flight/uvos/common/uvos_led.c ****  * \param[in] LED LED id
+  22:flight/uvos/common/uvos_led.c ****  */
+  23:flight/uvos/common/uvos_led.c **** void UVOS_LED_On( uint32_t led_id )
+  24:flight/uvos/common/uvos_led.c **** {
+  80              		.loc 1 24 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		.loc 1 24 1 is_stmt 0 view .LVU12
+  85 0000 08B5     		push	{r3, lr}
+  86              	.LCFI2:
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 3, -8
+  89              		.cfi_offset 14, -4
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 3
+
+
+  25:flight/uvos/common/uvos_led.c ****   UVOS_GPIO_On( uvos_led_gpios_id, led_id );
+  90              		.loc 1 25 3 is_stmt 1 view .LVU13
+  91 0002 C1B2     		uxtb	r1, r0
+  92 0004 024B     		ldr	r3, .L10
+  93 0006 1868     		ldr	r0, [r3]
+  94              	.LVL5:
+  95              		.loc 1 25 3 is_stmt 0 view .LVU14
+  96 0008 FFF7FEFF 		bl	UVOS_GPIO_On
+  97              	.LVL6:
+  26:flight/uvos/common/uvos_led.c **** }
+  98              		.loc 1 26 1 view .LVU15
+  99 000c 08BD     		pop	{r3, pc}
+ 100              	.L11:
+ 101 000e 00BF     		.align	2
+ 102              	.L10:
+ 103 0010 00000000 		.word	.LANCHOR0
+ 104              		.cfi_endproc
+ 105              	.LFE1373:
+ 107              		.section	.text.UVOS_LED_Off,"ax",%progbits
+ 108              		.align	1
+ 109              		.global	UVOS_LED_Off
+ 110              		.syntax unified
+ 111              		.thumb
+ 112              		.thumb_func
+ 114              	UVOS_LED_Off:
+ 115              	.LVL7:
+ 116              	.LFB1374:
+  27:flight/uvos/common/uvos_led.c **** 
+  28:flight/uvos/common/uvos_led.c **** /**
+  29:flight/uvos/common/uvos_led.c ****  * Turn off LED
+  30:flight/uvos/common/uvos_led.c ****  * \param[in] LED LED id
+  31:flight/uvos/common/uvos_led.c ****  */
+  32:flight/uvos/common/uvos_led.c **** void UVOS_LED_Off( uint32_t led_id )
+  33:flight/uvos/common/uvos_led.c **** {
+ 117              		.loc 1 33 1 is_stmt 1 view -0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              		.loc 1 33 1 is_stmt 0 view .LVU17
+ 122 0000 08B5     		push	{r3, lr}
+ 123              	.LCFI3:
+ 124              		.cfi_def_cfa_offset 8
+ 125              		.cfi_offset 3, -8
+ 126              		.cfi_offset 14, -4
+  34:flight/uvos/common/uvos_led.c ****   UVOS_GPIO_Off( uvos_led_gpios_id, led_id );
+ 127              		.loc 1 34 3 is_stmt 1 view .LVU18
+ 128 0002 C1B2     		uxtb	r1, r0
+ 129 0004 024B     		ldr	r3, .L14
+ 130 0006 1868     		ldr	r0, [r3]
+ 131              	.LVL8:
+ 132              		.loc 1 34 3 is_stmt 0 view .LVU19
+ 133 0008 FFF7FEFF 		bl	UVOS_GPIO_Off
+ 134              	.LVL9:
+  35:flight/uvos/common/uvos_led.c **** }
+ 135              		.loc 1 35 1 view .LVU20
+ 136 000c 08BD     		pop	{r3, pc}
+ 137              	.L15:
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 4
+
+
+ 138 000e 00BF     		.align	2
+ 139              	.L14:
+ 140 0010 00000000 		.word	.LANCHOR0
+ 141              		.cfi_endproc
+ 142              	.LFE1374:
+ 144              		.section	.text.UVOS_LED_Toggle,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	UVOS_LED_Toggle
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	UVOS_LED_Toggle:
+ 152              	.LVL10:
+ 153              	.LFB1375:
+  36:flight/uvos/common/uvos_led.c **** 
+  37:flight/uvos/common/uvos_led.c **** /**
+  38:flight/uvos/common/uvos_led.c ****  * Toggle LED on/off
+  39:flight/uvos/common/uvos_led.c ****  * \param[in] LED LED id
+  40:flight/uvos/common/uvos_led.c ****  */
+  41:flight/uvos/common/uvos_led.c **** void UVOS_LED_Toggle( uint32_t led_id )
+  42:flight/uvos/common/uvos_led.c **** {
+ 154              		.loc 1 42 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		.loc 1 42 1 is_stmt 0 view .LVU22
+ 159 0000 08B5     		push	{r3, lr}
+ 160              	.LCFI4:
+ 161              		.cfi_def_cfa_offset 8
+ 162              		.cfi_offset 3, -8
+ 163              		.cfi_offset 14, -4
+  43:flight/uvos/common/uvos_led.c ****   UVOS_GPIO_Toggle( uvos_led_gpios_id, led_id );
+ 164              		.loc 1 43 3 is_stmt 1 view .LVU23
+ 165 0002 C1B2     		uxtb	r1, r0
+ 166 0004 024B     		ldr	r3, .L18
+ 167 0006 1868     		ldr	r0, [r3]
+ 168              	.LVL11:
+ 169              		.loc 1 43 3 is_stmt 0 view .LVU24
+ 170 0008 FFF7FEFF 		bl	UVOS_GPIO_Toggle
+ 171              	.LVL12:
+  44:flight/uvos/common/uvos_led.c **** }
+ 172              		.loc 1 44 1 view .LVU25
+ 173 000c 08BD     		pop	{r3, pc}
+ 174              	.L19:
+ 175 000e 00BF     		.align	2
+ 176              	.L18:
+ 177 0010 00000000 		.word	.LANCHOR0
+ 178              		.cfi_endproc
+ 179              	.LFE1375:
+ 181              		.section	.bss.uvos_led_gpios_id,"aw",%nobits
+ 182              		.align	2
+ 183              		.set	.LANCHOR0,. + 0
+ 186              	uvos_led_gpios_id:
+ 187 0000 00000000 		.space	4
+ 188              		.text
+ 189              	.Letext0:
+ 190              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 5
+
+
+ 191              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 192              		.file 4 "./flight/uvos/stm32f4xx/libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 193              		.file 5 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h"
+ 194              		.file 6 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ 195              		.file 7 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
+ 196              		.file 8 "./flight/uvos/inc/uvos_stm32.h"
+ 197              		.file 9 "./flight/uvos/inc/uvos_gpio_priv.h"
+ 198              		.file 10 "./flight/uvos/inc/uvos_gpio.h"
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uvos_led.c
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:20     .text.UVOS_LED_Init:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:26     .text.UVOS_LED_Init:00000000 UVOS_LED_Init
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:66     .text.UVOS_LED_Init:00000010 $d
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:71     .text.UVOS_LED_On:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:77     .text.UVOS_LED_On:00000000 UVOS_LED_On
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:103    .text.UVOS_LED_On:00000010 $d
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:108    .text.UVOS_LED_Off:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:114    .text.UVOS_LED_Off:00000000 UVOS_LED_Off
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:140    .text.UVOS_LED_Off:00000010 $d
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:145    .text.UVOS_LED_Toggle:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:151    .text.UVOS_LED_Toggle:00000000 UVOS_LED_Toggle
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:177    .text.UVOS_LED_Toggle:00000010 $d
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:182    .bss.uvos_led_gpios_id:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\cc24i5Lm.s:186    .bss.uvos_led_gpios_id:00000000 uvos_led_gpios_id
+
+UNDEFINED SYMBOLS
+UVOS_GPIO_Init
+UVOS_GPIO_On
+UVOS_GPIO_Off
+UVOS_GPIO_Toggle

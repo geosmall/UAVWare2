@@ -1,0 +1,661 @@
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uvos_rcvr.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UVOS_RCVR_validate,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	UVOS_RCVR_validate:
+  26              	.LVL0:
+  27              	.LFB1372:
+  28              		.file 1 "flight/uvos/common/uvos_rcvr.c"
+   1:flight/uvos/common/uvos_rcvr.c **** #include "uvos.h"
+   2:flight/uvos/common/uvos_rcvr.c **** 
+   3:flight/uvos/common/uvos_rcvr.c **** #ifdef UVOS_INCLUDE_RCVR
+   4:flight/uvos/common/uvos_rcvr.c **** 
+   5:flight/uvos/common/uvos_rcvr.c **** #include <uvos_rcvr_priv.h>
+   6:flight/uvos/common/uvos_rcvr.c **** 
+   7:flight/uvos/common/uvos_rcvr.c **** enum uvos_rcvr_dev_magic {
+   8:flight/uvos/common/uvos_rcvr.c ****   UVOS_RCVR_DEV_MAGIC = 0x99aabbcc,
+   9:flight/uvos/common/uvos_rcvr.c **** };
+  10:flight/uvos/common/uvos_rcvr.c **** 
+  11:flight/uvos/common/uvos_rcvr.c **** struct uvos_rcvr_dev {
+  12:flight/uvos/common/uvos_rcvr.c ****   enum uvos_rcvr_dev_magic magic;
+  13:flight/uvos/common/uvos_rcvr.c ****   uint32_t lower_id;
+  14:flight/uvos/common/uvos_rcvr.c ****   const struct uvos_rcvr_driver * driver;
+  15:flight/uvos/common/uvos_rcvr.c **** };
+  16:flight/uvos/common/uvos_rcvr.c **** 
+  17:flight/uvos/common/uvos_rcvr.c **** static bool UVOS_RCVR_validate( struct uvos_rcvr_dev * rcvr_dev )
+  18:flight/uvos/common/uvos_rcvr.c **** {
+  29              		.loc 1 18 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  19:flight/uvos/common/uvos_rcvr.c ****   return rcvr_dev->magic == UVOS_RCVR_DEV_MAGIC;
+  34              		.loc 1 19 3 view .LVU1
+  35              		.loc 1 19 18 is_stmt 0 view .LVU2
+  36 0000 0068     		ldr	r0, [r0]
+  37              	.LVL1:
+  20:flight/uvos/common/uvos_rcvr.c **** }
+  38              		.loc 1 20 1 view .LVU3
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 2
+
+
+  39 0002 034B     		ldr	r3, .L2
+  40 0004 9842     		cmp	r0, r3
+  41 0006 14BF     		ite	ne
+  42 0008 0020     		movne	r0, #0
+  43 000a 0120     		moveq	r0, #1
+  44 000c 7047     		bx	lr
+  45              	.L3:
+  46 000e 00BF     		.align	2
+  47              	.L2:
+  48 0010 CCBBAA99 		.word	-1716864052
+  49              		.cfi_endproc
+  50              	.LFE1372:
+  52              		.section	.text.UVOS_RCVR_alloc,"ax",%progbits
+  53              		.align	1
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	UVOS_RCVR_alloc:
+  59              	.LFB1373:
+  21:flight/uvos/common/uvos_rcvr.c **** 
+  22:flight/uvos/common/uvos_rcvr.c **** #if defined(UVOS_INCLUDE_FREERTOS)
+  23:flight/uvos/common/uvos_rcvr.c **** static struct uvos_rcvr_dev * UVOS_RCVR_alloc( void )
+  24:flight/uvos/common/uvos_rcvr.c **** {
+  25:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev;
+  26:flight/uvos/common/uvos_rcvr.c **** 
+  27:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev = ( struct uvos_rcvr_dev * )UVOS_malloc( sizeof( *rcvr_dev ) );
+  28:flight/uvos/common/uvos_rcvr.c ****   if ( !rcvr_dev ) {
+  29:flight/uvos/common/uvos_rcvr.c ****     return NULL;
+  30:flight/uvos/common/uvos_rcvr.c ****   }
+  31:flight/uvos/common/uvos_rcvr.c **** 
+  32:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev->magic = UVOS_RCVR_DEV_MAGIC;
+  33:flight/uvos/common/uvos_rcvr.c ****   return rcvr_dev;
+  34:flight/uvos/common/uvos_rcvr.c **** }
+  35:flight/uvos/common/uvos_rcvr.c **** #else
+  36:flight/uvos/common/uvos_rcvr.c **** static struct uvos_rcvr_dev uvos_rcvr_devs[UVOS_RCVR_MAX_DEVS];
+  37:flight/uvos/common/uvos_rcvr.c **** static uint8_t uvos_rcvr_num_devs;
+  38:flight/uvos/common/uvos_rcvr.c **** static struct uvos_rcvr_dev * UVOS_RCVR_alloc( void )
+  39:flight/uvos/common/uvos_rcvr.c **** {
+  60              		.loc 1 39 1 is_stmt 1 view -0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  40:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev;
+  65              		.loc 1 40 3 view .LVU5
+  41:flight/uvos/common/uvos_rcvr.c **** 
+  42:flight/uvos/common/uvos_rcvr.c ****   if ( uvos_rcvr_num_devs >= UVOS_RCVR_MAX_DEVS ) {
+  66              		.loc 1 42 3 view .LVU6
+  67              		.loc 1 42 27 is_stmt 0 view .LVU7
+  68 0000 084B     		ldr	r3, .L7
+  69 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  70              		.loc 1 42 6 view .LVU8
+  71 0004 022B     		cmp	r3, #2
+  72 0006 0BD8     		bhi	.L6
+  43:flight/uvos/common/uvos_rcvr.c ****     return NULL;
+  44:flight/uvos/common/uvos_rcvr.c ****   }
+  45:flight/uvos/common/uvos_rcvr.c **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 3
+
+
+  46:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev = &uvos_rcvr_devs[uvos_rcvr_num_devs++];
+  73              		.loc 1 46 3 is_stmt 1 view .LVU9
+  74              		.loc 1 46 48 is_stmt 0 view .LVU10
+  75 0008 591C     		adds	r1, r3, #1
+  76 000a 064A     		ldr	r2, .L7
+  77 000c 1170     		strb	r1, [r2]
+  78              		.loc 1 46 12 view .LVU11
+  79 000e 0649     		ldr	r1, .L7+4
+  80 0010 03EB4302 		add	r2, r3, r3, lsl #1
+  81 0014 9000     		lsls	r0, r2, #2
+  82 0016 0844     		add	r0, r0, r1
+  83              	.LVL2:
+  47:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev->magic = UVOS_RCVR_DEV_MAGIC;
+  84              		.loc 1 47 3 is_stmt 1 view .LVU12
+  85              		.loc 1 47 19 is_stmt 0 view .LVU13
+  86 0018 9200     		lsls	r2, r2, #2
+  87 001a 044B     		ldr	r3, .L7+8
+  88 001c 8B50     		str	r3, [r1, r2]
+  48:flight/uvos/common/uvos_rcvr.c **** 
+  49:flight/uvos/common/uvos_rcvr.c ****   return rcvr_dev;
+  89              		.loc 1 49 3 is_stmt 1 view .LVU14
+  90              		.loc 1 49 10 is_stmt 0 view .LVU15
+  91 001e 7047     		bx	lr
+  92              	.LVL3:
+  93              	.L6:
+  43:flight/uvos/common/uvos_rcvr.c ****   }
+  94              		.loc 1 43 12 view .LVU16
+  95 0020 0020     		movs	r0, #0
+  50:flight/uvos/common/uvos_rcvr.c **** }
+  96              		.loc 1 50 1 view .LVU17
+  97 0022 7047     		bx	lr
+  98              	.L8:
+  99              		.align	2
+ 100              	.L7:
+ 101 0024 00000000 		.word	.LANCHOR0
+ 102 0028 00000000 		.word	.LANCHOR1
+ 103 002c CCBBAA99 		.word	-1716864052
+ 104              		.cfi_endproc
+ 105              	.LFE1373:
+ 107              		.section	.text.UVOS_RCVR_Init,"ax",%progbits
+ 108              		.align	1
+ 109              		.global	UVOS_RCVR_Init
+ 110              		.syntax unified
+ 111              		.thumb
+ 112              		.thumb_func
+ 114              	UVOS_RCVR_Init:
+ 115              	.LVL4:
+ 116              	.LFB1374:
+  51:flight/uvos/common/uvos_rcvr.c **** #endif /* if defined(UVOS_INCLUDE_FREERTOS) */
+  52:flight/uvos/common/uvos_rcvr.c **** 
+  53:flight/uvos/common/uvos_rcvr.c **** /**
+  54:flight/uvos/common/uvos_rcvr.c ****  * Initialises RCVR layer
+  55:flight/uvos/common/uvos_rcvr.c ****  * \param[out] handle
+  56:flight/uvos/common/uvos_rcvr.c ****  * \param[in] driver
+  57:flight/uvos/common/uvos_rcvr.c ****  * \param[in] id
+  58:flight/uvos/common/uvos_rcvr.c ****  * \return < 0 if initialisation failed
+  59:flight/uvos/common/uvos_rcvr.c ****  */
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 4
+
+
+  60:flight/uvos/common/uvos_rcvr.c **** int32_t UVOS_RCVR_Init( uint32_t * rcvr_id, const struct uvos_rcvr_driver * driver, uint32_t lower_
+  61:flight/uvos/common/uvos_rcvr.c **** {
+ 117              		.loc 1 61 1 is_stmt 1 view -0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              		.loc 1 61 1 is_stmt 0 view .LVU19
+ 122 0000 70B5     		push	{r4, r5, r6, lr}
+ 123              	.LCFI0:
+ 124              		.cfi_def_cfa_offset 16
+ 125              		.cfi_offset 4, -16
+ 126              		.cfi_offset 5, -12
+ 127              		.cfi_offset 6, -8
+ 128              		.cfi_offset 14, -4
+ 129 0002 0446     		mov	r4, r0
+ 130 0004 0E46     		mov	r6, r1
+ 131 0006 1546     		mov	r5, r2
+  62:flight/uvos/common/uvos_rcvr.c ****   UVOS_DEBUG_Assert( rcvr_id );
+ 132              		.loc 1 62 31 is_stmt 1 view .LVU20
+  63:flight/uvos/common/uvos_rcvr.c ****   UVOS_DEBUG_Assert( driver );
+ 133              		.loc 1 63 30 view .LVU21
+  64:flight/uvos/common/uvos_rcvr.c **** 
+  65:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev;
+ 134              		.loc 1 65 3 view .LVU22
+  66:flight/uvos/common/uvos_rcvr.c **** 
+  67:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev = ( struct uvos_rcvr_dev * )UVOS_RCVR_alloc();
+ 135              		.loc 1 67 3 view .LVU23
+ 136              		.loc 1 67 14 is_stmt 0 view .LVU24
+ 137 0008 FFF7FEFF 		bl	UVOS_RCVR_alloc
+ 138              	.LVL5:
+  68:flight/uvos/common/uvos_rcvr.c ****   if ( !rcvr_dev ) {
+ 139              		.loc 1 68 3 is_stmt 1 view .LVU25
+ 140              		.loc 1 68 6 is_stmt 0 view .LVU26
+ 141 000c 20B1     		cbz	r0, .L11
+  69:flight/uvos/common/uvos_rcvr.c ****     goto out_fail;
+  70:flight/uvos/common/uvos_rcvr.c ****   }
+  71:flight/uvos/common/uvos_rcvr.c **** 
+  72:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev->driver   = driver;
+ 142              		.loc 1 72 3 is_stmt 1 view .LVU27
+ 143              		.loc 1 72 22 is_stmt 0 view .LVU28
+ 144 000e 8660     		str	r6, [r0, #8]
+  73:flight/uvos/common/uvos_rcvr.c ****   rcvr_dev->lower_id = lower_id;
+ 145              		.loc 1 73 3 is_stmt 1 view .LVU29
+ 146              		.loc 1 73 22 is_stmt 0 view .LVU30
+ 147 0010 4560     		str	r5, [r0, #4]
+  74:flight/uvos/common/uvos_rcvr.c **** 
+  75:flight/uvos/common/uvos_rcvr.c ****   *rcvr_id = ( uint32_t )rcvr_dev;
+ 148              		.loc 1 75 3 is_stmt 1 view .LVU31
+ 149              		.loc 1 75 12 is_stmt 0 view .LVU32
+ 150 0012 2060     		str	r0, [r4]
+  76:flight/uvos/common/uvos_rcvr.c ****   return 0;
+ 151              		.loc 1 76 3 is_stmt 1 view .LVU33
+ 152              		.loc 1 76 10 is_stmt 0 view .LVU34
+ 153 0014 0020     		movs	r0, #0
+ 154              	.LVL6:
+ 155              	.L9:
+  77:flight/uvos/common/uvos_rcvr.c **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 5
+
+
+  78:flight/uvos/common/uvos_rcvr.c **** out_fail:
+  79:flight/uvos/common/uvos_rcvr.c ****   return -1;
+  80:flight/uvos/common/uvos_rcvr.c **** }
+ 156              		.loc 1 80 1 view .LVU35
+ 157 0016 70BD     		pop	{r4, r5, r6, pc}
+ 158              	.LVL7:
+ 159              	.L11:
+  79:flight/uvos/common/uvos_rcvr.c **** }
+ 160              		.loc 1 79 10 view .LVU36
+ 161 0018 4FF0FF30 		mov	r0, #-1
+ 162              	.LVL8:
+ 163              	.LDL1:
+  79:flight/uvos/common/uvos_rcvr.c **** }
+ 164              		.loc 1 79 10 view .LVU37
+ 165 001c FBE7     		b	.L9
+ 166              		.cfi_endproc
+ 167              	.LFE1374:
+ 169              		.section	.text.UVOS_RCVR_Read,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	UVOS_RCVR_Read
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	UVOS_RCVR_Read:
+ 177              	.LVL9:
+ 178              	.LFB1375:
+  81:flight/uvos/common/uvos_rcvr.c **** 
+  82:flight/uvos/common/uvos_rcvr.c **** /**
+  83:flight/uvos/common/uvos_rcvr.c ****  * @brief Reads an input channel from the appropriate driver
+  84:flight/uvos/common/uvos_rcvr.c ****  * @param[in] rcvr_id driver to read from
+  85:flight/uvos/common/uvos_rcvr.c ****  * @param[in] channel channel to read
+  86:flight/uvos/common/uvos_rcvr.c ****  * @returns Unitless input value
+  87:flight/uvos/common/uvos_rcvr.c ****  *  @retval UVOS_RCVR_TIMEOUT indicates a failsafe or timeout from that channel
+  88:flight/uvos/common/uvos_rcvr.c ****  *  @retval UVOS_RCVR_INVALID invalid channel for this driver (usually out of range supported)
+  89:flight/uvos/common/uvos_rcvr.c ****  *  @retval UVOS_RCVR_NODRIVER driver was not initialized
+  90:flight/uvos/common/uvos_rcvr.c ****  */
+  91:flight/uvos/common/uvos_rcvr.c **** int32_t UVOS_RCVR_Read( uint32_t rcvr_id, uint8_t channel )
+  92:flight/uvos/common/uvos_rcvr.c **** {
+ 179              		.loc 1 92 1 is_stmt 1 view -0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+  93:flight/uvos/common/uvos_rcvr.c ****   // Publicly facing API uses channel 1 for first channel
+  94:flight/uvos/common/uvos_rcvr.c ****   if ( channel == 0 ) {
+ 183              		.loc 1 94 3 view .LVU39
+ 184              		.loc 1 94 6 is_stmt 0 view .LVU40
+ 185 0000 71B1     		cbz	r1, .L17
+  92:flight/uvos/common/uvos_rcvr.c ****   // Publicly facing API uses channel 1 for first channel
+ 186              		.loc 1 92 1 view .LVU41
+ 187 0002 38B5     		push	{r3, r4, r5, lr}
+ 188              	.LCFI1:
+ 189              		.cfi_def_cfa_offset 16
+ 190              		.cfi_offset 3, -16
+ 191              		.cfi_offset 4, -12
+ 192              		.cfi_offset 5, -8
+ 193              		.cfi_offset 14, -4
+ 194 0004 0446     		mov	r4, r0
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 6
+
+
+  95:flight/uvos/common/uvos_rcvr.c ****     return UVOS_RCVR_INVALID;
+  96:flight/uvos/common/uvos_rcvr.c ****   } else {
+  97:flight/uvos/common/uvos_rcvr.c ****     channel--;
+ 195              		.loc 1 97 5 is_stmt 1 view .LVU42
+ 196              		.loc 1 97 12 is_stmt 0 view .LVU43
+ 197 0006 4B1E     		subs	r3, r1, #1
+ 198 0008 DDB2     		uxtb	r5, r3
+ 199              	.LVL10:
+  98:flight/uvos/common/uvos_rcvr.c ****   }
+  99:flight/uvos/common/uvos_rcvr.c **** 
+ 100:flight/uvos/common/uvos_rcvr.c ****   if ( rcvr_id == 0 ) {
+ 200              		.loc 1 100 3 is_stmt 1 view .LVU44
+ 201              		.loc 1 100 6 is_stmt 0 view .LVU45
+ 202 000a 60B1     		cbz	r0, .L18
+ 101:flight/uvos/common/uvos_rcvr.c ****     return UVOS_RCVR_NODRIVER;
+ 102:flight/uvos/common/uvos_rcvr.c ****   }
+ 103:flight/uvos/common/uvos_rcvr.c **** 
+ 104:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev = ( struct uvos_rcvr_dev * )rcvr_id;
+ 203              		.loc 1 104 3 is_stmt 1 view .LVU46
+ 204              	.LVL11:
+ 105:flight/uvos/common/uvos_rcvr.c **** 
+ 106:flight/uvos/common/uvos_rcvr.c ****   if ( !UVOS_RCVR_validate( rcvr_dev ) ) {
+ 205              		.loc 1 106 3 view .LVU47
+ 206              		.loc 1 106 9 is_stmt 0 view .LVU48
+ 207 000c FFF7FEFF 		bl	UVOS_RCVR_validate
+ 208              	.LVL12:
+ 209              		.loc 1 106 6 view .LVU49
+ 210 0010 00B9     		cbnz	r0, .L15
+ 211              	.L16:
+ 107:flight/uvos/common/uvos_rcvr.c ****     /* Undefined RCVR port for this board (see uvos_board.c) */
+ 108:flight/uvos/common/uvos_rcvr.c ****     UVOS_Assert( 0 );
+ 212              		.loc 1 108 5 is_stmt 1 discriminator 1 view .LVU50
+ 213              		.loc 1 108 5 discriminator 1 view .LVU51
+ 214              		.loc 1 108 5 discriminator 1 view .LVU52
+ 215 0012 FEE7     		b	.L16
+ 216              	.L15:
+ 217              		.loc 1 108 21 discriminator 2 view .LVU53
+ 109:flight/uvos/common/uvos_rcvr.c ****   }
+ 110:flight/uvos/common/uvos_rcvr.c **** 
+ 111:flight/uvos/common/uvos_rcvr.c ****   UVOS_DEBUG_Assert( rcvr_dev->driver->read );
+ 218              		.loc 1 111 46 discriminator 2 view .LVU54
+ 112:flight/uvos/common/uvos_rcvr.c **** 
+ 113:flight/uvos/common/uvos_rcvr.c ****   return rcvr_dev->driver->read( rcvr_dev->lower_id, channel );
+ 219              		.loc 1 113 3 discriminator 2 view .LVU55
+ 220              		.loc 1 113 18 is_stmt 0 discriminator 2 view .LVU56
+ 221 0014 A368     		ldr	r3, [r4, #8]
+ 222              		.loc 1 113 26 discriminator 2 view .LVU57
+ 223 0016 5B68     		ldr	r3, [r3, #4]
+ 224              		.loc 1 113 10 discriminator 2 view .LVU58
+ 225 0018 2946     		mov	r1, r5
+ 226 001a 6068     		ldr	r0, [r4, #4]
+ 227 001c 9847     		blx	r3
+ 228              	.LVL13:
+ 229              	.L13:
+ 114:flight/uvos/common/uvos_rcvr.c **** }
+ 230              		.loc 1 114 1 view .LVU59
+ 231 001e 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 7
+
+
+ 232              	.LVL14:
+ 233              	.L17:
+ 234              	.LCFI2:
+ 235              		.cfi_def_cfa_offset 0
+ 236              		.cfi_restore 3
+ 237              		.cfi_restore 4
+ 238              		.cfi_restore 5
+ 239              		.cfi_restore 14
+  95:flight/uvos/common/uvos_rcvr.c ****   } else {
+ 240              		.loc 1 95 12 view .LVU60
+ 241 0020 6FF00100 		mvn	r0, #1
+ 242              	.LVL15:
+ 243              		.loc 1 114 1 view .LVU61
+ 244 0024 7047     		bx	lr
+ 245              	.LVL16:
+ 246              	.L18:
+ 247              	.LCFI3:
+ 248              		.cfi_def_cfa_offset 16
+ 249              		.cfi_offset 3, -16
+ 250              		.cfi_offset 4, -12
+ 251              		.cfi_offset 5, -8
+ 252              		.cfi_offset 14, -4
+ 101:flight/uvos/common/uvos_rcvr.c ****   }
+ 253              		.loc 1 101 12 view .LVU62
+ 254 0026 6FF00200 		mvn	r0, #2
+ 255              	.LVL17:
+ 101:flight/uvos/common/uvos_rcvr.c ****   }
+ 256              		.loc 1 101 12 view .LVU63
+ 257 002a F8E7     		b	.L13
+ 258              		.cfi_endproc
+ 259              	.LFE1375:
+ 261              		.section	.text.UVOS_RCVR_GetQuality,"ax",%progbits
+ 262              		.align	1
+ 263              		.global	UVOS_RCVR_GetQuality
+ 264              		.syntax unified
+ 265              		.thumb
+ 266              		.thumb_func
+ 268              	UVOS_RCVR_GetQuality:
+ 269              	.LVL18:
+ 270              	.LFB1376:
+ 115:flight/uvos/common/uvos_rcvr.c **** 
+ 116:flight/uvos/common/uvos_rcvr.c **** /**
+ 117:flight/uvos/common/uvos_rcvr.c ****  * @brief Reads input quality from the appropriate driver
+ 118:flight/uvos/common/uvos_rcvr.c ****  * @param[in] rcvr_id driver to read from
+ 119:flight/uvos/common/uvos_rcvr.c ****  * @returns received signal quality expressed as a %
+ 120:flight/uvos/common/uvos_rcvr.c ****  *  @retval UVOS_RCVR_NODRIVER driver was not initialized
+ 121:flight/uvos/common/uvos_rcvr.c ****  */
+ 122:flight/uvos/common/uvos_rcvr.c **** uint8_t UVOS_RCVR_GetQuality( uint32_t rcvr_id )
+ 123:flight/uvos/common/uvos_rcvr.c **** {
+ 271              		.loc 1 123 1 is_stmt 1 view -0
+ 272              		.cfi_startproc
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124:flight/uvos/common/uvos_rcvr.c ****   if ( rcvr_id == 0 ) {
+ 275              		.loc 1 124 3 view .LVU65
+ 276              		.loc 1 124 6 is_stmt 0 view .LVU66
+ 277 0000 50B1     		cbz	r0, .L25
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 8
+
+
+ 123:flight/uvos/common/uvos_rcvr.c ****   if ( rcvr_id == 0 ) {
+ 278              		.loc 1 123 1 view .LVU67
+ 279 0002 10B5     		push	{r4, lr}
+ 280              	.LCFI4:
+ 281              		.cfi_def_cfa_offset 8
+ 282              		.cfi_offset 4, -8
+ 283              		.cfi_offset 14, -4
+ 284 0004 0446     		mov	r4, r0
+ 125:flight/uvos/common/uvos_rcvr.c ****     return UVOS_RCVR_NODRIVER;
+ 126:flight/uvos/common/uvos_rcvr.c ****   }
+ 127:flight/uvos/common/uvos_rcvr.c **** 
+ 128:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev = ( struct uvos_rcvr_dev * )rcvr_id;
+ 285              		.loc 1 128 3 is_stmt 1 view .LVU68
+ 286              	.LVL19:
+ 129:flight/uvos/common/uvos_rcvr.c **** 
+ 130:flight/uvos/common/uvos_rcvr.c ****   if ( !UVOS_RCVR_validate( rcvr_dev ) ) {
+ 287              		.loc 1 130 3 view .LVU69
+ 288              		.loc 1 130 9 is_stmt 0 view .LVU70
+ 289 0006 FFF7FEFF 		bl	UVOS_RCVR_validate
+ 290              	.LVL20:
+ 291              		.loc 1 130 6 view .LVU71
+ 292 000a 38B1     		cbz	r0, .L26
+ 131:flight/uvos/common/uvos_rcvr.c ****     /* Undefined RCVR port for this board (see uvos_board.c) */
+ 132:flight/uvos/common/uvos_rcvr.c ****     /* As no receiver is available assume min */
+ 133:flight/uvos/common/uvos_rcvr.c ****     return 0;
+ 134:flight/uvos/common/uvos_rcvr.c ****   }
+ 135:flight/uvos/common/uvos_rcvr.c **** 
+ 136:flight/uvos/common/uvos_rcvr.c ****   if ( !rcvr_dev->driver->get_quality ) {
+ 293              		.loc 1 136 3 is_stmt 1 view .LVU72
+ 294              		.loc 1 136 17 is_stmt 0 view .LVU73
+ 295 000c A368     		ldr	r3, [r4, #8]
+ 296              		.loc 1 136 25 view .LVU74
+ 297 000e DB68     		ldr	r3, [r3, #12]
+ 298              		.loc 1 136 6 view .LVU75
+ 299 0010 33B1     		cbz	r3, .L27
+ 137:flight/uvos/common/uvos_rcvr.c ****     /* If no quality is available assume max */
+ 138:flight/uvos/common/uvos_rcvr.c ****     return 100;
+ 139:flight/uvos/common/uvos_rcvr.c ****   }
+ 140:flight/uvos/common/uvos_rcvr.c **** 
+ 141:flight/uvos/common/uvos_rcvr.c ****   return rcvr_dev->driver->get_quality( rcvr_dev->lower_id );
+ 300              		.loc 1 141 3 is_stmt 1 view .LVU76
+ 301              		.loc 1 141 10 is_stmt 0 view .LVU77
+ 302 0012 6068     		ldr	r0, [r4, #4]
+ 303 0014 9847     		blx	r3
+ 304              	.LVL21:
+ 305              	.L24:
+ 142:flight/uvos/common/uvos_rcvr.c **** }
+ 306              		.loc 1 142 1 view .LVU78
+ 307 0016 10BD     		pop	{r4, pc}
+ 308              	.LVL22:
+ 309              	.L25:
+ 310              	.LCFI5:
+ 311              		.cfi_def_cfa_offset 0
+ 312              		.cfi_restore 4
+ 313              		.cfi_restore 14
+ 125:flight/uvos/common/uvos_rcvr.c ****   }
+ 314              		.loc 1 125 12 view .LVU79
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 9
+
+
+ 315 0018 FD20     		movs	r0, #253
+ 316              	.LVL23:
+ 317              		.loc 1 142 1 view .LVU80
+ 318 001a 7047     		bx	lr
+ 319              	.LVL24:
+ 320              	.L26:
+ 321              	.LCFI6:
+ 322              		.cfi_def_cfa_offset 8
+ 323              		.cfi_offset 4, -8
+ 324              		.cfi_offset 14, -4
+ 133:flight/uvos/common/uvos_rcvr.c ****   }
+ 325              		.loc 1 133 12 view .LVU81
+ 326 001c 0020     		movs	r0, #0
+ 327 001e FAE7     		b	.L24
+ 328              	.L27:
+ 138:flight/uvos/common/uvos_rcvr.c ****   }
+ 329              		.loc 1 138 12 view .LVU82
+ 330 0020 6420     		movs	r0, #100
+ 331 0022 F8E7     		b	.L24
+ 332              		.cfi_endproc
+ 333              	.LFE1376:
+ 335              		.section	.text.UVOS_RCVR_GetFrameAvailableFlag,"ax",%progbits
+ 336              		.align	1
+ 337              		.global	UVOS_RCVR_GetFrameAvailableFlag
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	UVOS_RCVR_GetFrameAvailableFlag:
+ 343              	.LVL25:
+ 344              	.LFB1377:
+ 143:flight/uvos/common/uvos_rcvr.c **** 
+ 144:flight/uvos/common/uvos_rcvr.c **** /**
+ 145:flight/uvos/common/uvos_rcvr.c ****  * @brief Get a flag that signals when a new rcvr frame is available.
+ 146:flight/uvos/common/uvos_rcvr.c ****  * @param[in] rcvr_id driver to read from
+ 147:flight/uvos/common/uvos_rcvr.c ****  * @returns The flag, or NULL if not supported.
+ 148:flight/uvos/common/uvos_rcvr.c ****  */
+ 149:flight/uvos/common/uvos_rcvr.c **** bool UVOS_RCVR_GetFrameAvailableFlag( uint32_t rcvr_id )
+ 150:flight/uvos/common/uvos_rcvr.c **** {
+ 345              		.loc 1 150 1 is_stmt 1 view -0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 0
+ 348              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151:flight/uvos/common/uvos_rcvr.c **** 
+ 152:flight/uvos/common/uvos_rcvr.c ****   if ( rcvr_id == 0 ) {
+ 349              		.loc 1 152 3 view .LVU84
+ 350              		.loc 1 152 6 is_stmt 0 view .LVU85
+ 351 0000 70B1     		cbz	r0, .L36
+ 150:flight/uvos/common/uvos_rcvr.c **** 
+ 352              		.loc 1 150 1 view .LVU86
+ 353 0002 10B5     		push	{r4, lr}
+ 354              	.LCFI7:
+ 355              		.cfi_def_cfa_offset 8
+ 356              		.cfi_offset 4, -8
+ 357              		.cfi_offset 14, -4
+ 358 0004 0446     		mov	r4, r0
+ 153:flight/uvos/common/uvos_rcvr.c ****     return false;
+ 154:flight/uvos/common/uvos_rcvr.c ****   }
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 10
+
+
+ 155:flight/uvos/common/uvos_rcvr.c **** 
+ 156:flight/uvos/common/uvos_rcvr.c ****   struct uvos_rcvr_dev * rcvr_dev = ( struct uvos_rcvr_dev * )rcvr_id;
+ 359              		.loc 1 156 3 is_stmt 1 view .LVU87
+ 360              	.LVL26:
+ 157:flight/uvos/common/uvos_rcvr.c **** 
+ 158:flight/uvos/common/uvos_rcvr.c ****   if ( !UVOS_RCVR_validate( rcvr_dev ) ) {
+ 361              		.loc 1 158 3 view .LVU88
+ 362              		.loc 1 158 9 is_stmt 0 view .LVU89
+ 363 0006 FFF7FEFF 		bl	UVOS_RCVR_validate
+ 364              	.LVL27:
+ 365              		.loc 1 158 6 view .LVU90
+ 366 000a 00B9     		cbnz	r0, .L34
+ 367              	.L35:
+ 159:flight/uvos/common/uvos_rcvr.c ****     /* Undefined RCVR port for this board (see uvos_board.c) */
+ 160:flight/uvos/common/uvos_rcvr.c ****     UVOS_Assert( 0 );
+ 368              		.loc 1 160 5 is_stmt 1 discriminator 1 view .LVU91
+ 369              		.loc 1 160 5 discriminator 1 view .LVU92
+ 370              		.loc 1 160 5 discriminator 1 view .LVU93
+ 371 000c FEE7     		b	.L35
+ 372              	.L34:
+ 373              		.loc 1 160 21 discriminator 2 view .LVU94
+ 161:flight/uvos/common/uvos_rcvr.c ****   }
+ 162:flight/uvos/common/uvos_rcvr.c **** 
+ 163:flight/uvos/common/uvos_rcvr.c ****   if ( rcvr_dev->driver->get_flag ) {
+ 374              		.loc 1 163 3 discriminator 2 view .LVU95
+ 375              		.loc 1 163 16 is_stmt 0 discriminator 2 view .LVU96
+ 376 000e A368     		ldr	r3, [r4, #8]
+ 377              		.loc 1 163 24 discriminator 2 view .LVU97
+ 378 0010 9B68     		ldr	r3, [r3, #8]
+ 379              		.loc 1 163 6 discriminator 2 view .LVU98
+ 380 0012 3BB1     		cbz	r3, .L37
+ 164:flight/uvos/common/uvos_rcvr.c ****     return rcvr_dev->driver->get_flag( rcvr_dev->lower_id );
+ 381              		.loc 1 164 5 is_stmt 1 view .LVU99
+ 382              		.loc 1 164 12 is_stmt 0 view .LVU100
+ 383 0014 6068     		ldr	r0, [r4, #4]
+ 384 0016 9847     		blx	r3
+ 385              	.LVL28:
+ 386 0018 0038     		subs	r0, r0, #0
+ 387 001a 18BF     		it	ne
+ 388 001c 0120     		movne	r0, #1
+ 389              	.L33:
+ 165:flight/uvos/common/uvos_rcvr.c ****   }
+ 166:flight/uvos/common/uvos_rcvr.c ****   return false;
+ 167:flight/uvos/common/uvos_rcvr.c **** }
+ 390              		.loc 1 167 1 view .LVU101
+ 391 001e 10BD     		pop	{r4, pc}
+ 392              	.LVL29:
+ 393              	.L36:
+ 394              	.LCFI8:
+ 395              		.cfi_def_cfa_offset 0
+ 396              		.cfi_restore 4
+ 397              		.cfi_restore 14
+ 153:flight/uvos/common/uvos_rcvr.c ****   }
+ 398              		.loc 1 153 12 view .LVU102
+ 399 0020 0020     		movs	r0, #0
+ 400              	.LVL30:
+ 401              		.loc 1 167 1 view .LVU103
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 11
+
+
+ 402 0022 7047     		bx	lr
+ 403              	.LVL31:
+ 404              	.L37:
+ 405              	.LCFI9:
+ 406              		.cfi_def_cfa_offset 8
+ 407              		.cfi_offset 4, -8
+ 408              		.cfi_offset 14, -4
+ 166:flight/uvos/common/uvos_rcvr.c **** }
+ 409              		.loc 1 166 10 view .LVU104
+ 410 0024 0020     		movs	r0, #0
+ 411 0026 FAE7     		b	.L33
+ 412              		.cfi_endproc
+ 413              	.LFE1377:
+ 415              		.section	.bss.uvos_rcvr_devs,"aw",%nobits
+ 416              		.align	2
+ 417              		.set	.LANCHOR1,. + 0
+ 420              	uvos_rcvr_devs:
+ 421 0000 00000000 		.space	36
+ 421      00000000 
+ 421      00000000 
+ 421      00000000 
+ 421      00000000 
+ 422              		.section	.bss.uvos_rcvr_num_devs,"aw",%nobits
+ 423              		.set	.LANCHOR0,. + 0
+ 426              	uvos_rcvr_num_devs:
+ 427 0000 00       		.space	1
+ 428              		.text
+ 429              	.Letext0:
+ 430              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 431              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 432              		.file 4 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ 433              		.file 5 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
+ 434              		.file 6 "./flight/uvos/inc/uvos_rcvr.h"
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uvos_rcvr.c
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:20     .text.UVOS_RCVR_validate:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:25     .text.UVOS_RCVR_validate:00000000 UVOS_RCVR_validate
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:48     .text.UVOS_RCVR_validate:00000010 $d
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:53     .text.UVOS_RCVR_alloc:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:58     .text.UVOS_RCVR_alloc:00000000 UVOS_RCVR_alloc
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:101    .text.UVOS_RCVR_alloc:00000024 $d
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:108    .text.UVOS_RCVR_Init:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:114    .text.UVOS_RCVR_Init:00000000 UVOS_RCVR_Init
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:170    .text.UVOS_RCVR_Read:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:176    .text.UVOS_RCVR_Read:00000000 UVOS_RCVR_Read
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:262    .text.UVOS_RCVR_GetQuality:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:268    .text.UVOS_RCVR_GetQuality:00000000 UVOS_RCVR_GetQuality
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:336    .text.UVOS_RCVR_GetFrameAvailableFlag:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:342    .text.UVOS_RCVR_GetFrameAvailableFlag:00000000 UVOS_RCVR_GetFrameAvailableFlag
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:416    .bss.uvos_rcvr_devs:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:420    .bss.uvos_rcvr_devs:00000000 uvos_rcvr_devs
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:426    .bss.uvos_rcvr_num_devs:00000000 uvos_rcvr_num_devs
+C:\Users\geoma\AppData\Local\Temp\ccYEDN7A.s:427    .bss.uvos_rcvr_num_devs:00000000 $d
+
+NO UNDEFINED SYMBOLS

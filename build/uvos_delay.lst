@@ -1,0 +1,689 @@
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uvos_delay.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UVOS_DELAY_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	UVOS_DELAY_Init
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	UVOS_DELAY_Init:
+  27              	.LFB1372:
+  28              		.file 1 "flight/uvos/common/uvos_delay.c"
+   1:flight/uvos/common/uvos_delay.c **** /* Project Includes */
+   2:flight/uvos/common/uvos_delay.c **** #include <uvos.h>
+   3:flight/uvos/common/uvos_delay.c **** 
+   4:flight/uvos/common/uvos_delay.c **** #if defined(UVOS_INCLUDE_DELAY)
+   5:flight/uvos/common/uvos_delay.c **** 
+   6:flight/uvos/common/uvos_delay.c **** /* cycles per microsecond */
+   7:flight/uvos/common/uvos_delay.c **** static uint32_t us_ticks;
+   8:flight/uvos/common/uvos_delay.c **** static uint32_t us_modulo;
+   9:flight/uvos/common/uvos_delay.c **** 
+  10:flight/uvos/common/uvos_delay.c **** /**
+  11:flight/uvos/common/uvos_delay.c ****  * Initialises the Timer used by UVOS_DELAY functions.
+  12:flight/uvos/common/uvos_delay.c ****  *
+  13:flight/uvos/common/uvos_delay.c ****  * \return always zero (success)
+  14:flight/uvos/common/uvos_delay.c ****  */
+  15:flight/uvos/common/uvos_delay.c **** 
+  16:flight/uvos/common/uvos_delay.c **** int32_t UVOS_DELAY_Init( void )
+  17:flight/uvos/common/uvos_delay.c **** {
+  29              		.loc 1 17 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 16
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 85B0     		sub	sp, sp, #20
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 24
+  18:flight/uvos/common/uvos_delay.c **** 	// RCC_ClocksTypeDef	clocks;
+  19:flight/uvos/common/uvos_delay.c **** 	LL_RCC_ClocksTypeDef clocks;
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 2
+
+
+  40              		.loc 1 19 2 view .LVU1
+  20:flight/uvos/common/uvos_delay.c **** 
+  21:flight/uvos/common/uvos_delay.c **** 	/* compute the number of system clocks per microsecond */
+  22:flight/uvos/common/uvos_delay.c **** 	// RCC_GetClocksFreq(&clocks);
+  23:flight/uvos/common/uvos_delay.c **** 	LL_RCC_GetSystemClocksFreq( &clocks );
+  41              		.loc 1 23 2 view .LVU2
+  42 0004 6846     		mov	r0, sp
+  43 0006 FFF7FEFF 		bl	LL_RCC_GetSystemClocksFreq
+  44              	.LVL0:
+  24:flight/uvos/common/uvos_delay.c **** 	us_ticks = clocks.SYSCLK_Frequency / 1000000;
+  45              		.loc 1 24 2 view .LVU3
+  46              		.loc 1 24 37 is_stmt 0 view .LVU4
+  47 000a 009A     		ldr	r2, [sp]
+  48 000c 134B     		ldr	r3, .L5
+  49 000e A3FB0232 		umull	r3, r2, r3, r2
+  50 0012 920C     		lsrs	r2, r2, #18
+  51              		.loc 1 24 11 view .LVU5
+  52 0014 124B     		ldr	r3, .L5+4
+  53 0016 1A60     		str	r2, [r3]
+  25:flight/uvos/common/uvos_delay.c **** 	UVOS_DEBUG_Assert( us_ticks > 1 );
+  54              		.loc 1 25 35 is_stmt 1 view .LVU6
+  26:flight/uvos/common/uvos_delay.c **** 
+  27:flight/uvos/common/uvos_delay.c **** 	// Split this into two steps to avoid 64bit maths
+  28:flight/uvos/common/uvos_delay.c **** 	us_modulo = 0xffffffff / us_ticks;
+  55              		.loc 1 28 2 view .LVU7
+  56              		.loc 1 28 25 is_stmt 0 view .LVU8
+  57 0018 4FF0FF33 		mov	r3, #-1
+  58 001c B3FBF2F3 		udiv	r3, r3, r2
+  59              		.loc 1 28 12 view .LVU9
+  60 0020 1048     		ldr	r0, .L5+8
+  61 0022 0360     		str	r3, [r0]
+  29:flight/uvos/common/uvos_delay.c **** 	us_modulo += ( ( 0xffffffff % us_ticks ) + 1 ) / us_ticks;
+  62              		.loc 1 29 2 is_stmt 1 view .LVU10
+  63              		.loc 1 29 30 is_stmt 0 view .LVU11
+  64 0024 02FB03F1 		mul	r1, r2, r3
+  65              		.loc 1 29 43 view .LVU12
+  66 0028 4942     		rsbs	r1, r1, #0
+  67              		.loc 1 29 49 view .LVU13
+  68 002a B1FBF2F2 		udiv	r2, r1, r2
+  69              		.loc 1 29 12 view .LVU14
+  70 002e 1344     		add	r3, r3, r2
+  71 0030 0360     		str	r3, [r0]
+  30:flight/uvos/common/uvos_delay.c **** 
+  31:flight/uvos/common/uvos_delay.c **** 	// ensure that the us_module is smaller than half of uint32_t max to make modulo operation possibl
+  32:flight/uvos/common/uvos_delay.c **** 	UVOS_Assert( us_modulo < 0x80000000 );
+  72              		.loc 1 32 2 is_stmt 1 view .LVU15
+  73 0032 002B     		cmp	r3, #0
+  74 0034 10DB     		blt	.L3
+  75              		.loc 1 32 39 discriminator 2 view .LVU16
+  33:flight/uvos/common/uvos_delay.c **** 
+  34:flight/uvos/common/uvos_delay.c **** 	/* turn on access to the DWT registers */
+  35:flight/uvos/common/uvos_delay.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+  76              		.loc 1 35 2 discriminator 2 view .LVU17
+  77              		.loc 1 35 19 is_stmt 0 discriminator 2 view .LVU18
+  78 0036 0C4A     		ldr	r2, .L5+12
+  79 0038 D2F8FC30 		ldr	r3, [r2, #252]
+  80 003c 43F08073 		orr	r3, r3, #16777216
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 3
+
+
+  81 0040 C2F8FC30 		str	r3, [r2, #252]
+  36:flight/uvos/common/uvos_delay.c **** 
+  37:flight/uvos/common/uvos_delay.c **** 	/* enable the CPU cycle counter */
+  38:flight/uvos/common/uvos_delay.c **** 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+  82              		.loc 1 38 2 is_stmt 1 discriminator 2 view .LVU19
+  83              		.loc 1 38 12 is_stmt 0 discriminator 2 view .LVU20
+  84 0044 A2F55D42 		sub	r2, r2, #56576
+  85 0048 1368     		ldr	r3, [r2]
+  86 004a 43F00103 		orr	r3, r3, #1
+  87 004e 1360     		str	r3, [r2]
+  39:flight/uvos/common/uvos_delay.c **** 
+  40:flight/uvos/common/uvos_delay.c **** 	return 0;
+  88              		.loc 1 40 2 is_stmt 1 discriminator 2 view .LVU21
+  41:flight/uvos/common/uvos_delay.c **** }
+  89              		.loc 1 41 1 is_stmt 0 discriminator 2 view .LVU22
+  90 0050 0020     		movs	r0, #0
+  91 0052 05B0     		add	sp, sp, #20
+  92              	.LCFI2:
+  93              		.cfi_remember_state
+  94              		.cfi_def_cfa_offset 4
+  95              		@ sp needed
+  96 0054 5DF804FB 		ldr	pc, [sp], #4
+  97              	.L3:
+  98              	.LCFI3:
+  99              		.cfi_restore_state
+  32:flight/uvos/common/uvos_delay.c **** 
+ 100              		.loc 1 32 2 is_stmt 1 discriminator 1 view .LVU23
+  32:flight/uvos/common/uvos_delay.c **** 
+ 101              		.loc 1 32 2 discriminator 1 view .LVU24
+  32:flight/uvos/common/uvos_delay.c **** 
+ 102              		.loc 1 32 2 discriminator 1 view .LVU25
+ 103 0058 FEE7     		b	.L3
+ 104              	.L6:
+ 105 005a 00BF     		.align	2
+ 106              	.L5:
+ 107 005c 83DE1B43 		.word	1125899907
+ 108 0060 00000000 		.word	.LANCHOR0
+ 109 0064 00000000 		.word	.LANCHOR1
+ 110 0068 00ED00E0 		.word	-536810240
+ 111              		.cfi_endproc
+ 112              	.LFE1372:
+ 114              		.section	.text.UVOS_DELAY_WaituS,"ax",%progbits
+ 115              		.align	1
+ 116              		.global	UVOS_DELAY_WaituS
+ 117              		.syntax unified
+ 118              		.thumb
+ 119              		.thumb_func
+ 121              	UVOS_DELAY_WaituS:
+ 122              	.LVL1:
+ 123              	.LFB1373:
+  42:flight/uvos/common/uvos_delay.c **** 
+  43:flight/uvos/common/uvos_delay.c **** /**
+  44:flight/uvos/common/uvos_delay.c ****  * Waits for a specific number of uS
+  45:flight/uvos/common/uvos_delay.c ****  *
+  46:flight/uvos/common/uvos_delay.c ****  * Example:<BR>
+  47:flight/uvos/common/uvos_delay.c ****  * \code
+  48:flight/uvos/common/uvos_delay.c ****  *   // Wait for 500 uS
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 4
+
+
+  49:flight/uvos/common/uvos_delay.c ****  *   UVOS_DELAY_Wait_uS(500);
+  50:flight/uvos/common/uvos_delay.c ****  * \endcode
+  51:flight/uvos/common/uvos_delay.c ****  * \param[in] uS delay
+  52:flight/uvos/common/uvos_delay.c ****  * \return < 0 on errors
+  53:flight/uvos/common/uvos_delay.c ****  */
+  54:flight/uvos/common/uvos_delay.c **** int32_t UVOS_DELAY_WaituS( uint32_t uS )
+  55:flight/uvos/common/uvos_delay.c **** {
+ 124              		.loc 1 55 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		@ link register save eliminated.
+ 129              		.loc 1 55 1 is_stmt 0 view .LVU27
+ 130 0000 10B4     		push	{r4}
+ 131              	.LCFI4:
+ 132              		.cfi_def_cfa_offset 4
+ 133              		.cfi_offset 4, -4
+  56:flight/uvos/common/uvos_delay.c **** 	uint32_t elapsed = 0;
+ 134              		.loc 1 56 2 is_stmt 1 view .LVU28
+ 135              	.LVL2:
+  57:flight/uvos/common/uvos_delay.c **** 	uint32_t last_count;
+ 136              		.loc 1 57 2 view .LVU29
+  58:flight/uvos/common/uvos_delay.c **** 
+  59:flight/uvos/common/uvos_delay.c **** 	/* turn on access to the DWT registers */
+  60:flight/uvos/common/uvos_delay.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+ 137              		.loc 1 60 2 view .LVU30
+ 138              		.loc 1 60 19 is_stmt 0 view .LVU31
+ 139 0002 124A     		ldr	r2, .L12
+ 140 0004 D2F8FC30 		ldr	r3, [r2, #252]
+ 141 0008 43F08073 		orr	r3, r3, #16777216
+ 142 000c C2F8FC30 		str	r3, [r2, #252]
+  61:flight/uvos/common/uvos_delay.c **** 	last_count = DWT->CYCCNT;
+ 143              		.loc 1 61 2 is_stmt 1 view .LVU32
+ 144              		.loc 1 61 13 is_stmt 0 view .LVU33
+ 145 0010 0F4B     		ldr	r3, .L12+4
+ 146 0012 5A68     		ldr	r2, [r3, #4]
+ 147              	.LVL3:
+  56:flight/uvos/common/uvos_delay.c **** 	uint32_t last_count;
+ 148              		.loc 1 56 11 view .LVU34
+ 149 0014 0023     		movs	r3, #0
+ 150 0016 03E0     		b	.L9
+ 151              	.LVL4:
+ 152              	.L11:
+ 153              	.LBB2:
+  62:flight/uvos/common/uvos_delay.c **** 
+  63:flight/uvos/common/uvos_delay.c **** 	for ( ;; ) {
+  64:flight/uvos/common/uvos_delay.c **** 		uint32_t current_count;
+  65:flight/uvos/common/uvos_delay.c **** 		uint32_t elapsed_uS;
+  66:flight/uvos/common/uvos_delay.c **** 
+  67:flight/uvos/common/uvos_delay.c **** 		/* turn on access to the DWT registers */
+  68:flight/uvos/common/uvos_delay.c **** 		CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+  69:flight/uvos/common/uvos_delay.c **** 		current_count = DWT->CYCCNT;
+  70:flight/uvos/common/uvos_delay.c **** 
+  71:flight/uvos/common/uvos_delay.c **** 		/* measure the time elapsed since the last time we checked */
+  72:flight/uvos/common/uvos_delay.c **** 		elapsed += current_count - last_count;
+  73:flight/uvos/common/uvos_delay.c **** 		last_count = current_count;
+  74:flight/uvos/common/uvos_delay.c **** 
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 5
+
+
+  75:flight/uvos/common/uvos_delay.c **** 		/* convert to microseconds */
+  76:flight/uvos/common/uvos_delay.c **** 		elapsed_uS = elapsed / us_ticks;
+  77:flight/uvos/common/uvos_delay.c **** 		if ( elapsed_uS >= uS )
+  78:flight/uvos/common/uvos_delay.c **** 			break;
+  79:flight/uvos/common/uvos_delay.c **** 
+  80:flight/uvos/common/uvos_delay.c **** 		/* reduce the delay by the elapsed time */
+  81:flight/uvos/common/uvos_delay.c **** 		uS -= elapsed_uS;
+ 154              		.loc 1 81 3 is_stmt 1 view .LVU35
+ 155              		.loc 1 81 6 is_stmt 0 view .LVU36
+ 156 0018 001B     		subs	r0, r0, r4
+ 157              	.LVL5:
+  82:flight/uvos/common/uvos_delay.c **** 
+  83:flight/uvos/common/uvos_delay.c **** 		/* keep fractional microseconds for the next iteration */
+  84:flight/uvos/common/uvos_delay.c **** 		elapsed %= us_ticks;
+ 158              		.loc 1 84 3 is_stmt 1 view .LVU37
+ 159              		.loc 1 84 11 is_stmt 0 view .LVU38
+ 160 001a 02FB1433 		mls	r3, r2, r4, r3
+ 161              	.LVL6:
+ 162              		.loc 1 84 11 view .LVU39
+ 163              	.LBE2:
+  63:flight/uvos/common/uvos_delay.c **** 		uint32_t current_count;
+ 164              		.loc 1 63 9 is_stmt 1 view .LVU40
+ 165              	.LBB3:
+  73:flight/uvos/common/uvos_delay.c **** 
+ 166              		.loc 1 73 14 is_stmt 0 view .LVU41
+ 167 001e 0A46     		mov	r2, r1
+ 168              	.LVL7:
+ 169              	.L9:
+  73:flight/uvos/common/uvos_delay.c **** 
+ 170              		.loc 1 73 14 view .LVU42
+ 171              	.LBE3:
+  63:flight/uvos/common/uvos_delay.c **** 		uint32_t current_count;
+ 172              		.loc 1 63 2 is_stmt 1 view .LVU43
+ 173              	.LBB4:
+  64:flight/uvos/common/uvos_delay.c **** 		uint32_t elapsed_uS;
+ 174              		.loc 1 64 3 view .LVU44
+  65:flight/uvos/common/uvos_delay.c **** 
+ 175              		.loc 1 65 3 view .LVU45
+  68:flight/uvos/common/uvos_delay.c **** 		current_count = DWT->CYCCNT;
+ 176              		.loc 1 68 3 view .LVU46
+  68:flight/uvos/common/uvos_delay.c **** 		current_count = DWT->CYCCNT;
+ 177              		.loc 1 68 20 is_stmt 0 view .LVU47
+ 178 0020 0A4C     		ldr	r4, .L12
+ 179 0022 D4F8FC10 		ldr	r1, [r4, #252]
+ 180 0026 41F08071 		orr	r1, r1, #16777216
+ 181 002a C4F8FC10 		str	r1, [r4, #252]
+  69:flight/uvos/common/uvos_delay.c **** 
+ 182              		.loc 1 69 3 is_stmt 1 view .LVU48
+  69:flight/uvos/common/uvos_delay.c **** 
+ 183              		.loc 1 69 17 is_stmt 0 view .LVU49
+ 184 002e 0849     		ldr	r1, .L12+4
+ 185 0030 4968     		ldr	r1, [r1, #4]
+ 186              	.LVL8:
+  72:flight/uvos/common/uvos_delay.c **** 		last_count = current_count;
+ 187              		.loc 1 72 3 is_stmt 1 view .LVU50
+  72:flight/uvos/common/uvos_delay.c **** 		last_count = current_count;
+ 188              		.loc 1 72 28 is_stmt 0 view .LVU51
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 6
+
+
+ 189 0032 8A1A     		subs	r2, r1, r2
+ 190              	.LVL9:
+  72:flight/uvos/common/uvos_delay.c **** 		last_count = current_count;
+ 191              		.loc 1 72 11 view .LVU52
+ 192 0034 1344     		add	r3, r3, r2
+ 193              	.LVL10:
+  73:flight/uvos/common/uvos_delay.c **** 
+ 194              		.loc 1 73 3 is_stmt 1 view .LVU53
+  76:flight/uvos/common/uvos_delay.c **** 		if ( elapsed_uS >= uS )
+ 195              		.loc 1 76 3 view .LVU54
+  76:flight/uvos/common/uvos_delay.c **** 		if ( elapsed_uS >= uS )
+ 196              		.loc 1 76 24 is_stmt 0 view .LVU55
+ 197 0036 074A     		ldr	r2, .L12+8
+ 198 0038 1268     		ldr	r2, [r2]
+  76:flight/uvos/common/uvos_delay.c **** 		if ( elapsed_uS >= uS )
+ 199              		.loc 1 76 14 view .LVU56
+ 200 003a B3FBF2F4 		udiv	r4, r3, r2
+ 201              	.LVL11:
+  77:flight/uvos/common/uvos_delay.c **** 			break;
+ 202              		.loc 1 77 3 is_stmt 1 view .LVU57
+  77:flight/uvos/common/uvos_delay.c **** 			break;
+ 203              		.loc 1 77 6 is_stmt 0 view .LVU58
+ 204 003e A042     		cmp	r0, r4
+ 205 0040 EAD8     		bhi	.L11
+  77:flight/uvos/common/uvos_delay.c **** 			break;
+ 206              		.loc 1 77 6 view .LVU59
+ 207              	.LBE4:
+  85:flight/uvos/common/uvos_delay.c **** 	}
+  86:flight/uvos/common/uvos_delay.c **** 
+  87:flight/uvos/common/uvos_delay.c **** 	/* No error */
+  88:flight/uvos/common/uvos_delay.c **** 	return 0;
+ 208              		.loc 1 88 2 is_stmt 1 view .LVU60
+  89:flight/uvos/common/uvos_delay.c **** }
+ 209              		.loc 1 89 1 is_stmt 0 view .LVU61
+ 210 0042 0020     		movs	r0, #0
+ 211              	.LVL12:
+ 212              		.loc 1 89 1 view .LVU62
+ 213 0044 5DF8044B 		ldr	r4, [sp], #4
+ 214              	.LCFI5:
+ 215              		.cfi_restore 4
+ 216              		.cfi_def_cfa_offset 0
+ 217              	.LVL13:
+ 218              		.loc 1 89 1 view .LVU63
+ 219 0048 7047     		bx	lr
+ 220              	.L13:
+ 221 004a 00BF     		.align	2
+ 222              	.L12:
+ 223 004c 00ED00E0 		.word	-536810240
+ 224 0050 001000E0 		.word	-536866816
+ 225 0054 00000000 		.word	.LANCHOR0
+ 226              		.cfi_endproc
+ 227              	.LFE1373:
+ 229              		.section	.text.UVOS_DELAY_WaitmS,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	UVOS_DELAY_WaitmS
+ 232              		.syntax unified
+ 233              		.thumb
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 7
+
+
+ 234              		.thumb_func
+ 236              	UVOS_DELAY_WaitmS:
+ 237              	.LVL14:
+ 238              	.LFB1374:
+  90:flight/uvos/common/uvos_delay.c **** 
+  91:flight/uvos/common/uvos_delay.c **** /**
+  92:flight/uvos/common/uvos_delay.c ****  * Waits for a specific number of mS
+  93:flight/uvos/common/uvos_delay.c ****  *
+  94:flight/uvos/common/uvos_delay.c ****  * Example:<BR>
+  95:flight/uvos/common/uvos_delay.c ****  * \code
+  96:flight/uvos/common/uvos_delay.c ****  *   // Wait for 500 mS
+  97:flight/uvos/common/uvos_delay.c ****  *   UVOS_DELAY_Wait_mS(500);
+  98:flight/uvos/common/uvos_delay.c ****  * \endcode
+  99:flight/uvos/common/uvos_delay.c ****  * \param[in] mS delay (1..65535 milliseconds)
+ 100:flight/uvos/common/uvos_delay.c ****  * \return < 0 on errors
+ 101:flight/uvos/common/uvos_delay.c ****  */
+ 102:flight/uvos/common/uvos_delay.c **** int32_t UVOS_DELAY_WaitmS( uint32_t mS )
+ 103:flight/uvos/common/uvos_delay.c **** {
+ 239              		.loc 1 103 1 is_stmt 1 view -0
+ 240              		.cfi_startproc
+ 241              		@ args = 0, pretend = 0, frame = 0
+ 242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 243              		.loc 1 103 1 is_stmt 0 view .LVU65
+ 244 0000 10B5     		push	{r4, lr}
+ 245              	.LCFI6:
+ 246              		.cfi_def_cfa_offset 8
+ 247              		.cfi_offset 4, -8
+ 248              		.cfi_offset 14, -4
+ 104:flight/uvos/common/uvos_delay.c **** 	while ( mS-- ) {
+ 249              		.loc 1 104 2 is_stmt 1 view .LVU66
+ 250              		.loc 1 104 8 is_stmt 0 view .LVU67
+ 251 0002 04E0     		b	.L15
+ 252              	.LVL15:
+ 253              	.L16:
+ 105:flight/uvos/common/uvos_delay.c **** 		UVOS_DELAY_WaituS( 1000 );
+ 254              		.loc 1 105 3 is_stmt 1 view .LVU68
+ 255 0004 4FF47A70 		mov	r0, #1000
+ 256 0008 FFF7FEFF 		bl	UVOS_DELAY_WaituS
+ 257              	.LVL16:
+ 104:flight/uvos/common/uvos_delay.c **** 	while ( mS-- ) {
+ 258              		.loc 1 104 12 is_stmt 0 view .LVU69
+ 259 000c 2046     		mov	r0, r4
+ 260              	.LVL17:
+ 261              	.L15:
+ 104:flight/uvos/common/uvos_delay.c **** 	while ( mS-- ) {
+ 262              		.loc 1 104 8 is_stmt 1 view .LVU70
+ 104:flight/uvos/common/uvos_delay.c **** 	while ( mS-- ) {
+ 263              		.loc 1 104 12 is_stmt 0 view .LVU71
+ 264 000e 441E     		subs	r4, r0, #1
+ 265              	.LVL18:
+ 104:flight/uvos/common/uvos_delay.c **** 	while ( mS-- ) {
+ 266              		.loc 1 104 8 view .LVU72
+ 267 0010 0028     		cmp	r0, #0
+ 268 0012 F7D1     		bne	.L16
+ 106:flight/uvos/common/uvos_delay.c **** 	}
+ 107:flight/uvos/common/uvos_delay.c **** 
+ 108:flight/uvos/common/uvos_delay.c **** 	/* No error */
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 8
+
+
+ 109:flight/uvos/common/uvos_delay.c **** 	return 0;
+ 269              		.loc 1 109 2 is_stmt 1 view .LVU73
+ 110:flight/uvos/common/uvos_delay.c **** }
+ 270              		.loc 1 110 1 is_stmt 0 view .LVU74
+ 271 0014 10BD     		pop	{r4, pc}
+ 272              		.loc 1 110 1 view .LVU75
+ 273              		.cfi_endproc
+ 274              	.LFE1374:
+ 276              		.section	.text.UVOS_DELAY_GetuS,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	UVOS_DELAY_GetuS
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 283              	UVOS_DELAY_GetuS:
+ 284              	.LFB1375:
+ 111:flight/uvos/common/uvos_delay.c **** 
+ 112:flight/uvos/common/uvos_delay.c **** /**
+ 113:flight/uvos/common/uvos_delay.c ****  * @brief Query the Delay timer for the current uS
+ 114:flight/uvos/common/uvos_delay.c ****  * @return A microsecond value
+ 115:flight/uvos/common/uvos_delay.c ****  */
+ 116:flight/uvos/common/uvos_delay.c **** uint32_t UVOS_DELAY_GetuS()
+ 117:flight/uvos/common/uvos_delay.c **** {
+ 285              		.loc 1 117 1 is_stmt 1 view -0
+ 286              		.cfi_startproc
+ 287              		@ args = 0, pretend = 0, frame = 0
+ 288              		@ frame_needed = 0, uses_anonymous_args = 0
+ 289              		@ link register save eliminated.
+ 118:flight/uvos/common/uvos_delay.c **** 	/* turn on access to the DWT registers */
+ 119:flight/uvos/common/uvos_delay.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+ 290              		.loc 1 119 2 view .LVU77
+ 291              		.loc 1 119 19 is_stmt 0 view .LVU78
+ 292 0000 064A     		ldr	r2, .L19
+ 293 0002 D2F8FC30 		ldr	r3, [r2, #252]
+ 294 0006 43F08073 		orr	r3, r3, #16777216
+ 295 000a C2F8FC30 		str	r3, [r2, #252]
+ 120:flight/uvos/common/uvos_delay.c **** 	return DWT->CYCCNT / us_ticks;
+ 296              		.loc 1 120 2 is_stmt 1 view .LVU79
+ 297              		.loc 1 120 12 is_stmt 0 view .LVU80
+ 298 000e 044B     		ldr	r3, .L19+4
+ 299 0010 5868     		ldr	r0, [r3, #4]
+ 300              		.loc 1 120 21 view .LVU81
+ 301 0012 044B     		ldr	r3, .L19+8
+ 302 0014 1B68     		ldr	r3, [r3]
+ 121:flight/uvos/common/uvos_delay.c **** }
+ 303              		.loc 1 121 1 view .LVU82
+ 304 0016 B0FBF3F0 		udiv	r0, r0, r3
+ 305 001a 7047     		bx	lr
+ 306              	.L20:
+ 307              		.align	2
+ 308              	.L19:
+ 309 001c 00ED00E0 		.word	-536810240
+ 310 0020 001000E0 		.word	-536866816
+ 311 0024 00000000 		.word	.LANCHOR0
+ 312              		.cfi_endproc
+ 313              	.LFE1375:
+ 315              		.section	.text.UVOS_DELAY_GetuSSince,"ax",%progbits
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 9
+
+
+ 316              		.align	1
+ 317              		.global	UVOS_DELAY_GetuSSince
+ 318              		.syntax unified
+ 319              		.thumb
+ 320              		.thumb_func
+ 322              	UVOS_DELAY_GetuSSince:
+ 323              	.LVL19:
+ 324              	.LFB1376:
+ 122:flight/uvos/common/uvos_delay.c **** 
+ 123:flight/uvos/common/uvos_delay.c **** /**
+ 124:flight/uvos/common/uvos_delay.c ****  * @brief Calculate time in microseconds since a previous time
+ 125:flight/uvos/common/uvos_delay.c ****  * @param[in] t previous time
+ 126:flight/uvos/common/uvos_delay.c ****  * @return time in us since previous time t.
+ 127:flight/uvos/common/uvos_delay.c ****  */
+ 128:flight/uvos/common/uvos_delay.c **** uint32_t UVOS_DELAY_GetuSSince( uint32_t t )
+ 129:flight/uvos/common/uvos_delay.c **** {
+ 325              		.loc 1 129 1 is_stmt 1 view -0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329              		.loc 1 129 1 is_stmt 0 view .LVU84
+ 330 0000 10B5     		push	{r4, lr}
+ 331              	.LCFI7:
+ 332              		.cfi_def_cfa_offset 8
+ 333              		.cfi_offset 4, -8
+ 334              		.cfi_offset 14, -4
+ 335 0002 0446     		mov	r4, r0
+ 130:flight/uvos/common/uvos_delay.c **** 	return ( UVOS_DELAY_GetuS() + us_modulo - t ) % us_modulo;
+ 336              		.loc 1 130 2 is_stmt 1 view .LVU85
+ 337              		.loc 1 130 11 is_stmt 0 view .LVU86
+ 338 0004 FFF7FEFF 		bl	UVOS_DELAY_GetuS
+ 339              	.LVL20:
+ 340              		.loc 1 130 30 view .LVU87
+ 341 0008 044B     		ldr	r3, .L23
+ 342 000a 1A68     		ldr	r2, [r3]
+ 343 000c 8318     		adds	r3, r0, r2
+ 344              		.loc 1 130 42 view .LVU88
+ 345 000e 1B1B     		subs	r3, r3, r4
+ 346              		.loc 1 130 48 view .LVU89
+ 347 0010 B3FBF2F0 		udiv	r0, r3, r2
+ 131:flight/uvos/common/uvos_delay.c **** }
+ 348              		.loc 1 131 1 view .LVU90
+ 349 0014 02FB1030 		mls	r0, r2, r0, r3
+ 350 0018 10BD     		pop	{r4, pc}
+ 351              	.LVL21:
+ 352              	.L24:
+ 353              		.loc 1 131 1 view .LVU91
+ 354 001a 00BF     		.align	2
+ 355              	.L23:
+ 356 001c 00000000 		.word	.LANCHOR1
+ 357              		.cfi_endproc
+ 358              	.LFE1376:
+ 360              		.section	.text.UVOS_DELAY_GetRaw,"ax",%progbits
+ 361              		.align	1
+ 362              		.global	UVOS_DELAY_GetRaw
+ 363              		.syntax unified
+ 364              		.thumb
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 10
+
+
+ 365              		.thumb_func
+ 367              	UVOS_DELAY_GetRaw:
+ 368              	.LFB1377:
+ 132:flight/uvos/common/uvos_delay.c **** 
+ 133:flight/uvos/common/uvos_delay.c **** /**
+ 134:flight/uvos/common/uvos_delay.c ****  * @brief Get the raw delay timer, useful for timing
+ 135:flight/uvos/common/uvos_delay.c ****  * @return Unitless value (uint32 wrap around)
+ 136:flight/uvos/common/uvos_delay.c ****  */
+ 137:flight/uvos/common/uvos_delay.c **** uint32_t UVOS_DELAY_GetRaw()
+ 138:flight/uvos/common/uvos_delay.c **** {
+ 369              		.loc 1 138 1 is_stmt 1 view -0
+ 370              		.cfi_startproc
+ 371              		@ args = 0, pretend = 0, frame = 0
+ 372              		@ frame_needed = 0, uses_anonymous_args = 0
+ 373              		@ link register save eliminated.
+ 139:flight/uvos/common/uvos_delay.c **** 	/* turn on access to the DWT registers */
+ 140:flight/uvos/common/uvos_delay.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+ 374              		.loc 1 140 2 view .LVU93
+ 375              		.loc 1 140 19 is_stmt 0 view .LVU94
+ 376 0000 044A     		ldr	r2, .L26
+ 377 0002 D2F8FC30 		ldr	r3, [r2, #252]
+ 378 0006 43F08073 		orr	r3, r3, #16777216
+ 379 000a C2F8FC30 		str	r3, [r2, #252]
+ 141:flight/uvos/common/uvos_delay.c **** 	return DWT->CYCCNT;
+ 380              		.loc 1 141 2 is_stmt 1 view .LVU95
+ 381              		.loc 1 141 12 is_stmt 0 view .LVU96
+ 382 000e 024B     		ldr	r3, .L26+4
+ 383 0010 5868     		ldr	r0, [r3, #4]
+ 142:flight/uvos/common/uvos_delay.c **** }
+ 384              		.loc 1 142 1 view .LVU97
+ 385 0012 7047     		bx	lr
+ 386              	.L27:
+ 387              		.align	2
+ 388              	.L26:
+ 389 0014 00ED00E0 		.word	-536810240
+ 390 0018 001000E0 		.word	-536866816
+ 391              		.cfi_endproc
+ 392              	.LFE1377:
+ 394              		.section	.text.UVOS_DELAY_DiffuS,"ax",%progbits
+ 395              		.align	1
+ 396              		.global	UVOS_DELAY_DiffuS
+ 397              		.syntax unified
+ 398              		.thumb
+ 399              		.thumb_func
+ 401              	UVOS_DELAY_DiffuS:
+ 402              	.LVL22:
+ 403              	.LFB1378:
+ 143:flight/uvos/common/uvos_delay.c **** 
+ 144:flight/uvos/common/uvos_delay.c **** /**
+ 145:flight/uvos/common/uvos_delay.c ****  * @brief Compare to raw times to and convert to us
+ 146:flight/uvos/common/uvos_delay.c ****  * @return A microsecond value
+ 147:flight/uvos/common/uvos_delay.c ****  */
+ 148:flight/uvos/common/uvos_delay.c **** uint32_t UVOS_DELAY_DiffuS( uint32_t raw )
+ 149:flight/uvos/common/uvos_delay.c **** {
+ 404              		.loc 1 149 1 is_stmt 1 view -0
+ 405              		.cfi_startproc
+ 406              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 11
+
+
+ 407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 408              		@ link register save eliminated.
+ 150:flight/uvos/common/uvos_delay.c **** 	/* turn on access to the DWT registers */
+ 151:flight/uvos/common/uvos_delay.c **** 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+ 409              		.loc 1 151 2 view .LVU99
+ 410              		.loc 1 151 19 is_stmt 0 view .LVU100
+ 411 0000 0749     		ldr	r1, .L29
+ 412 0002 D1F8FC20 		ldr	r2, [r1, #252]
+ 413 0006 42F08072 		orr	r2, r2, #16777216
+ 414 000a C1F8FC20 		str	r2, [r1, #252]
+ 152:flight/uvos/common/uvos_delay.c **** 	uint32_t diff = DWT->CYCCNT - raw;
+ 415              		.loc 1 152 2 is_stmt 1 view .LVU101
+ 416              		.loc 1 152 21 is_stmt 0 view .LVU102
+ 417 000e 054B     		ldr	r3, .L29+4
+ 418 0010 5B68     		ldr	r3, [r3, #4]
+ 419              		.loc 1 152 11 view .LVU103
+ 420 0012 1B1A     		subs	r3, r3, r0
+ 421              	.LVL23:
+ 153:flight/uvos/common/uvos_delay.c **** 	return diff / us_ticks;
+ 422              		.loc 1 153 2 is_stmt 1 view .LVU104
+ 423              		.loc 1 153 14 is_stmt 0 view .LVU105
+ 424 0014 044A     		ldr	r2, .L29+8
+ 425 0016 1068     		ldr	r0, [r2]
+ 426              	.LVL24:
+ 154:flight/uvos/common/uvos_delay.c **** }
+ 427              		.loc 1 154 1 view .LVU106
+ 428 0018 B3FBF0F0 		udiv	r0, r3, r0
+ 429 001c 7047     		bx	lr
+ 430              	.L30:
+ 431 001e 00BF     		.align	2
+ 432              	.L29:
+ 433 0020 00ED00E0 		.word	-536810240
+ 434 0024 001000E0 		.word	-536866816
+ 435 0028 00000000 		.word	.LANCHOR0
+ 436              		.cfi_endproc
+ 437              	.LFE1378:
+ 439              		.section	.bss.us_modulo,"aw",%nobits
+ 440              		.align	2
+ 441              		.set	.LANCHOR1,. + 0
+ 444              	us_modulo:
+ 445 0000 00000000 		.space	4
+ 446              		.section	.bss.us_ticks,"aw",%nobits
+ 447              		.align	2
+ 448              		.set	.LANCHOR0,. + 0
+ 451              	us_ticks:
+ 452 0000 00000000 		.space	4
+ 453              		.text
+ 454              	.Letext0:
+ 455              		.file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 456              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10.3-2021.10\\arm-none-eabi\\include
+ 457              		.file 4 "./flight/uvos/stm32f4xx/libraries/CMSIS/Include/core_cm4.h"
+ 458              		.file 5 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h"
+ 459              		.file 6 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h"
+ 460              		.file 7 "./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h"
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uvos_delay.c
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:20     .text.UVOS_DELAY_Init:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:26     .text.UVOS_DELAY_Init:00000000 UVOS_DELAY_Init
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:107    .text.UVOS_DELAY_Init:0000005c $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:115    .text.UVOS_DELAY_WaituS:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:121    .text.UVOS_DELAY_WaituS:00000000 UVOS_DELAY_WaituS
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:223    .text.UVOS_DELAY_WaituS:0000004c $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:230    .text.UVOS_DELAY_WaitmS:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:236    .text.UVOS_DELAY_WaitmS:00000000 UVOS_DELAY_WaitmS
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:277    .text.UVOS_DELAY_GetuS:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:283    .text.UVOS_DELAY_GetuS:00000000 UVOS_DELAY_GetuS
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:309    .text.UVOS_DELAY_GetuS:0000001c $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:316    .text.UVOS_DELAY_GetuSSince:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:322    .text.UVOS_DELAY_GetuSSince:00000000 UVOS_DELAY_GetuSSince
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:356    .text.UVOS_DELAY_GetuSSince:0000001c $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:361    .text.UVOS_DELAY_GetRaw:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:367    .text.UVOS_DELAY_GetRaw:00000000 UVOS_DELAY_GetRaw
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:389    .text.UVOS_DELAY_GetRaw:00000014 $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:395    .text.UVOS_DELAY_DiffuS:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:401    .text.UVOS_DELAY_DiffuS:00000000 UVOS_DELAY_DiffuS
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:433    .text.UVOS_DELAY_DiffuS:00000020 $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:440    .bss.us_modulo:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:444    .bss.us_modulo:00000000 us_modulo
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:447    .bss.us_ticks:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\ccDasrSK.s:451    .bss.us_ticks:00000000 us_ticks
+
+UNDEFINED SYMBOLS
+LL_RCC_GetSystemClocksFreq
