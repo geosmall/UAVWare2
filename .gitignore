@@ -1,0 +1,2 @@
+# Ignore artifacts of top-level Makefile
+/build
