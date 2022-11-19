@@ -207,9 +207,9 @@ Discarded input sections
  .text.UVOS_SCHED_init_hz
                 0x00000000       0x34 build/uvos_sched.o
  .text.UVOS_SCHED_start
-                0x00000000       0x1c build/uvos_sched.o
+                0x00000000       0x24 build/uvos_sched.o
  .text.UVOS_SCHED_stop
-                0x00000000        0x8 build/uvos_sched.o
+                0x00000000       0x10 build/uvos_sched.o
  .text.UVOS_SCHED_dispatch_tasks
                 0x00000000       0x7c build/uvos_sched.o
  .text.UVOS_SCHED_add_task
@@ -224,16 +224,16 @@ Discarded input sections
                 0x00000000        0x4 build/uvos_sched.o
  .rodata.uvos_sched_tim_callbacks
                 0x00000000        0x8 build/uvos_sched.o
- .debug_info    0x00000000      0x727 build/uvos_sched.o
- .debug_abbrev  0x00000000      0x29e build/uvos_sched.o
- .debug_loc     0x00000000      0x2c6 build/uvos_sched.o
+ .debug_info    0x00000000      0x73b build/uvos_sched.o
+ .debug_abbrev  0x00000000      0x289 build/uvos_sched.o
+ .debug_loc     0x00000000      0x2c5 build/uvos_sched.o
  .debug_aranges
                 0x00000000       0x48 build/uvos_sched.o
  .debug_ranges  0x00000000       0x50 build/uvos_sched.o
- .debug_line    0x00000000      0x4dd build/uvos_sched.o
- .debug_str     0x00000000      0x46a build/uvos_sched.o
+ .debug_line    0x00000000      0x4ee build/uvos_sched.o
+ .debug_str     0x00000000      0x46d build/uvos_sched.o
  .comment       0x00000000       0x4a build/uvos_sched.o
- .debug_frame   0x00000000       0x9c build/uvos_sched.o
+ .debug_frame   0x00000000       0x94 build/uvos_sched.o
  .ARM.attributes
                 0x00000000       0x34 build/uvos_sched.o
  .text          0x00000000        0x0 build/misc.o
@@ -2184,7 +2184,6 @@ UVOS_SYS_Init                                     build/uvos_sys.o
 UVOS_SYS_SerialNumberGet                          build/uvos_sys.o
 UVOS_SYS_SerialNumberGetBinary                    build/uvos_sys.o
 UVOS_SYS_getCPUFlashSize                          build/uvos_sys.o
-UVOS_TIME_sched_stop                              build/uvos_sched.o
 UVOS_TIM_InitChannels                             build/uvos_tim.o
 UVOS_TIM_InitClock                                build/uvos_tim.o
                                                   build/uvos_board.o

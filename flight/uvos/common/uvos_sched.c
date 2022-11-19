@@ -93,14 +93,13 @@ void UVOS_SCHED_start( uint32_t * tim_id )
   // UVOS_TIME_sched_start();
   struct uvos_tim_dev * tim_dev;
   tim_dev = ( struct uvos_tim_dev * )tim_id;
-  // LL_TIM_EnableIT_UPDATE( TIM11 );
-  LL_TIM_EnableIT_UPDATE( tim_dev );
+  LL_TIM_EnableIT_UPDATE( TIM11 );
 }
 
 /*----------------------------------------------------------------------------*/
 void UVOS_SCHED_stop( void )
 {
-  UVOS_TIME_sched_stop();
+  LL_TIM_DisableIT_UPDATE( TIM11 );
 }
 
 /*----------------------------------------------------------------------------*-

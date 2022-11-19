@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
   28:flight/uvos/stm32f4xx/uvos_tim.c **** static ITStatus TIM_GetITStatus( TIM_TypeDef * TIMx, uint16_t TIM_IT )
   29:flight/uvos/stm32f4xx/uvos_tim.c **** {
   29              		.loc 1 29 1 view -0
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 2
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 2
 
 
   30              		.cfi_startproc
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
   70              	.LVL7:
   43:flight/uvos/stm32f4xx/uvos_tim.c ****   }
   44:flight/uvos/stm32f4xx/uvos_tim.c ****   return bitstatus;
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 3
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 3
 
 
   71              		.loc 1 44 3 is_stmt 1 view .LVU18
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
   87:flight/uvos/stm32f4xx/uvos_tim.c ****   const struct uvos_tim_callbacks * callbacks;
   88:flight/uvos/stm32f4xx/uvos_tim.c ****   uint32_t context;
   89:flight/uvos/stm32f4xx/uvos_tim.c **** };
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 4
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 4
 
 
   90:flight/uvos/stm32f4xx/uvos_tim.c **** #define UVOS_TIM_ALL_FLAGS TIM_IT_CC1 | TIM_IT_CC2 | TIM_IT_CC3 | TIM_IT_CC4 | TIM_IT_Trigger | TIM
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  118              	.L7:
  104:flight/uvos/stm32f4xx/uvos_tim.c ****   }
  119              		.loc 1 104 12 view .LVU32
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 5
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 5
 
 
  120 0020 0020     		movs	r0, #0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  146:flight/uvos/stm32f4xx/uvos_tim.c ****   }
  147:flight/uvos/stm32f4xx/uvos_tim.c **** 
  148:flight/uvos/stm32f4xx/uvos_tim.c ****   return 0;
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 6
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 6
 
 
  149:flight/uvos/stm32f4xx/uvos_tim.c **** }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  203:flight/uvos/stm32f4xx/uvos_tim.c ****   *tim_id = ( uint32_t )tim_dev;
  204:flight/uvos/stm32f4xx/uvos_tim.c **** 
  205:flight/uvos/stm32f4xx/uvos_tim.c ****   return 0;
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 7
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 7
 
 
  206:flight/uvos/stm32f4xx/uvos_tim.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  166              		.loc 1 234 17 is_stmt 0 view .LVU38
  167 0008 0026     		movs	r6, #0
  168              		.loc 1 234 3 view .LVU39
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 8
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 8
 
 
  169 000a E7E0     		b	.L11
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  267:flight/uvos/stm32f4xx/uvos_tim.c ****     }
  268:flight/uvos/stm32f4xx/uvos_tim.c **** 
  269:flight/uvos/stm32f4xx/uvos_tim.c ****     for ( uint8_t j = 0; j < tim_dev->num_channels; j++ ) {
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 9
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 9
 
 
  191              		.loc 1 269 5 is_stmt 1 view .LVU47
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  270:flight/uvos/stm32f4xx/uvos_tim.c ****       const struct uvos_tim_channel * chan = &tim_dev->channels[j];
  271:flight/uvos/stm32f4xx/uvos_tim.c **** 
  272:flight/uvos/stm32f4xx/uvos_tim.c ****       if ( chan->timer != timer ) {
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 10
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 10
 
 
  273:flight/uvos/stm32f4xx/uvos_tim.c ****         /* channel is not on this timer */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  256 0054 57F80820 		ldr	r2, [r7, r8]
  257              	.LVL20:
  258              	.LBB29:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 11
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 11
 
 
  259              	.LBI29:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
    8:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *
    9:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
   10:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * All rights reserved.</center></h2>
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 12
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 12
 
 
   11:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
   65:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   8U             /* 6: OC4M, OC4FE, OC4PE */
   66:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** };
   67:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 13
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 13
 
 
   68:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** static const uint8_t SHIFT_TAB_ICxx[] =
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  122:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  123:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /* Mask used to set the DTG[7:5] bits of the DTG bits of the TIMx_BDTR register */
  124:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define DT_RANGE_1 ((uint8_t)0x00)
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 14
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 14
 
 
  125:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define DT_RANGE_2 ((uint8_t)0x80)
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  179:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  180:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
  181:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @brief  TIM Time Base configuration structure definition.
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 15
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 15
 
 
  182:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  236:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                @ref LL_TIM_OC_SetMode().*/
  237:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  238:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint32_t OCState;       /*!< Specifies the TIM Output Compare state.
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 16
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 16
 
 
  239:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCSTATE.
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  293:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                @ref LL_TIM_IC_SetPolarity().*/
  294:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  295:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint32_t ICActiveInput; /*!< Specifies the input.
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 17
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 17
 
 
  296:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_ACTIVEINPUT.
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  350:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint32_t IC2Polarity;      /*!< Specifies the active edge of TI2 input.
  351:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_IC_POLARITY.
  352:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 18
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 18
 
 
  353:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  407:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  408:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function
  409:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                     @ref LL_TIM_OC_SetCompareCH2().*/
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 19
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 19
 
 
  410:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** } LL_TIM_HALLSENSOR_InitTypeDef;
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  464:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                       @ref LL_TIM_ConfigBRK()
  465:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  466:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 20
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 20
 
 
  467:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                       programmed. */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  521:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
  522:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_AUTOMATICOUTPUT_DISABLE         0x00000000U             /*!< MOE can be set only by 
  523:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_AUTOMATICOUTPUT_ENABLE          TIM_BDTR_AOE            /*!< MOE can be set by softw
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 21
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 21
 
 
  524:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  578:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV1              0x00000000U          /*!< tDTS=tCK_INT */
  579:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV2              TIM_CR1_CKD_0        /*!< tDTS=2*tCK_INT */
  580:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_CLOCKDIVISION_DIV4              TIM_CR1_CKD_1        /*!< tDTS=4*tCK_INT */
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 22
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 22
 
 
  581:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  635:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
  636:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  637:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #if defined(USE_FULL_LL_DRIVER)
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 23
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 23
 
 
  638:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OCSTATE Output Configuration State
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  692:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ICPSC Input Configuration Prescaler
  693:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @{
  694:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 24
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 24
 
 
  695:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV1                      0x00000000U                    /*!< No prescaler, ca
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  749:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X2_TI1                     TIM_SMCR_SMS_0                               
  750:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X2_TI2                     TIM_SMCR_SMS_1                               
  751:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_ENCODERMODE_X4_TI12                   (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0)             
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 25
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 25
 
 
  752:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  806:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  807:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /** @defgroup TIM_LL_EC_ETR_PRESCALER External Trigger Prescaler
  808:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 26
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 26
 
 
  809:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  863:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OSSR OSSR
  864:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @{
  865:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 27
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 27
 
 
  866:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #define LL_TIM_OSSR_DISABLE                    0x00000000U             /*!< When inactive, OCx/OCxN
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  920:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @}
  921:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
  922:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 28
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 28
 
 
  923:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  977:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** #endif /* LPTIM_OR_TIM1_ITR2_RMP &&  LPTIM_OR_TIM5_ITR1_RMP && LPTIM_OR_TIM9_ITR1_RMP */
  978:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
  979:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 29
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 29
 
 
  980:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @}
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1034:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                                  (__CKD__))) >> 3U) - (uint8_t) 32) & DT_DELAY_3)) 
 1035:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****     (((uint64_t)((__DT__)*1000U)) < ((32U + (DT_DELAY_4+1U)) * 16U * TIM_CALC_DTS((__TIMCLK__), (__
 1036:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****     (uint8_t)(DT_RANGE_4 | ((uint8_t)((uint8_t)(((((uint64_t)(__DT__)*1000U))/ TIM_CALC_DTS((__TIMC
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 30
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 30
 
 
 1037:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****                                                  (__CKD__))) >> 4U) - (uint8_t) 32) & DT_DELAY_4)) 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1091:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  __ICPSC__ This parameter can be one of the following values:
 1092:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV1
 1093:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV2
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 31
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 31
 
 
 1094:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_ICPSC_DIV4
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1148:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 1149:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return ((READ_BIT(TIMx->CR1, TIM_CR1_CEN) == (TIM_CR1_CEN)) ? 1UL : 0UL);
 1150:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 32
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 32
 
 
 1151:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1205:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
 1206:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
 1207:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @brief  Get actual event update source
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 33
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 33
 
 
 1208:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @rmtoll CR1          URS           LL_TIM_GetUpdateSource
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1262:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_COUNTERMODE_CENTER_UP_DOWN
 1263:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @retval None
 1264:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 34
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 34
 
 
 1265:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE void LL_TIM_SetCounterMode(TIM_TypeDef *TIMx, uint32_t CounterMode)
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1319:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
 1320:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
 1321:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 35
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 35
 
 
 1322:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @brief  Indicates whether auto-reload (ARR) preload is enabled.
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1376:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @retval None
 1377:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
 1378:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE void LL_TIM_SetCounter(TIM_TypeDef *TIMx, uint32_t Counter)
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 36
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 36
 
 
 1379:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1433:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return (uint32_t)(READ_REG(TIMx->PSC));
 1434:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
 1435:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 37
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 37
 
 
 1436:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1490:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
 1491:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
 1492:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 38
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 38
 
 
 1493:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @}
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1547:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  TIMx Timer instance
 1548:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  DMAReqTrigger This parameter can be one of the following values:
 1549:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CCDMAREQUEST_CC
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 39
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 39
 
 
 1550:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CCDMAREQUEST_UPDATE
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1604:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2N
 1605:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
 1606:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3N
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 40
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 40
 
 
 1607:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1661:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 1662:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return ((READ_BIT(TIMx->CCER, Channels) == (Channels)) ? 1UL : 0UL);
 1663:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 41
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 41
 
 
 1664:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1718:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2
 1719:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
 1720:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 42
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 42
 
 
 1721:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  Mode This parameter can be one of the following values:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1775:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCER         CC3NP         LL_TIM_OC_SetPolarity\n
 1776:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCER         CC4P          LL_TIM_OC_SetPolarity
 1777:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  TIMx Timer instance
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 43
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 43
 
 
 1778:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  Channel This parameter can be one of the following values:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1832:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CR2         OIS1N         LL_TIM_OC_SetIdleState\n
 1833:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CR2         OIS2          LL_TIM_OC_SetIdleState\n
 1834:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CR2         OIS2N         LL_TIM_OC_SetIdleState\n
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 44
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 44
 
 
 1835:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CR2         OIS3          LL_TIM_OC_SetIdleState\n
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1889:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @rmtoll CCMR1        OC1FE          LL_TIM_OC_EnableFast\n
 1890:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCMR1        OC2FE          LL_TIM_OC_EnableFast\n
 1891:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCMR2        OC3FE          LL_TIM_OC_EnableFast\n
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 45
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 45
 
 
 1892:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCMR2        OC4FE          LL_TIM_OC_EnableFast
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 1946:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 1947:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint8_t iChannel = TIM_GET_CHANNEL_INDEX(Channel);
 1948:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   const __IO uint32_t *pReg = (__IO uint32_t *)((uint32_t)((uint32_t)(&TIMx->CCMR1) + OFFSET_TAB_CC
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 46
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 46
 
 
 1949:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint32_t bitfield = TIM_CCMR1_OC1FE << SHIFT_TAB_OCxx[iChannel];
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2003:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH1
 2004:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2
 2005:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 47
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 47
 
 
 2006:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2060:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   __IO uint32_t *pReg = (__IO uint32_t *)((uint32_t)((uint32_t)(&TIMx->CCMR1) + OFFSET_TAB_CCMRx[iC
 2061:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   CLEAR_BIT(*pReg, (TIM_CCMR1_OC1CE << SHIFT_TAB_OCxx[iChannel]));
 2062:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 48
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 48
 
 
 2063:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2117:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
 2118:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE void LL_TIM_OC_SetCompareCH1(TIM_TypeDef *TIMx, uint32_t CompareValue)
 2119:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 49
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 49
 
 
 2120:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   WRITE_REG(TIMx->CCR1, CompareValue);
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2174:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
 2175:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @brief  Get compare value (TIMx_CCR1) set for  output channel 1.
 2176:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @note In 32-bit timer implementations returned compare value can be between 0x00000000 and 0xFF
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 50
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 50
 
 
 2177:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @note Macro IS_TIM_32B_COUNTER_INSTANCE(TIMx) can be used to check
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2231:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @retval CompareValue (between Min_Data=0 and Max_Data=65535)
 2232:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   */
 2233:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE uint32_t LL_TIM_OC_GetCompareCH4(TIM_TypeDef *TIMx)
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 51
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 51
 
 
 2234:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2288:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****              (Configuration & (TIM_CCER_CC1NP | TIM_CCER_CC1P)) << SHIFT_TAB_CCxP[iChannel]);
 2289:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
 2290:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 52
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 52
 
 
 2291:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** /**
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2345:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         CCMR2        IC4PSC        LL_TIM_IC_SetPrescaler
 2346:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  TIMx Timer instance
 2347:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  Channel This parameter can be one of the following values:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 53
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 53
 
 
 2348:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2402:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
 2403:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   * @param  ICFilter This parameter can be one of the following values:
 2404:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_IC_FILTER_FDIV1
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 54
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 54
 
 
 2405:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   *         @arg @ref LL_TIM_IC_FILTER_FDIV1_N2
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2459:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE uint32_t LL_TIM_IC_GetFilter(TIM_TypeDef *TIMx, uint32_t Channel)
 2460:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 2461:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint8_t iChannel = TIM_GET_CHANNEL_INDEX(Channel);
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 55
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 55
 
 
 2462:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   const __IO uint32_t *pReg = (__IO uint32_t *)((uint32_t)((uint32_t)(&TIMx->CCMR1) + OFFSET_TAB_CC
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2516:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE uint32_t LL_TIM_IC_GetPolarity(TIM_TypeDef *TIMx, uint32_t Channel)
 2517:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 2518:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   uint8_t iChannel = TIM_GET_CHANNEL_INDEX(Channel);
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 56
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 56
 
 
 2519:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return (READ_BIT(TIMx->CCER, ((TIM_CCER_CC1NP | TIM_CCER_CC1P) << SHIFT_TAB_CCxP[iChannel])) >>
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2573:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE uint32_t LL_TIM_IC_GetCaptureCH1(TIM_TypeDef *TIMx)
 2574:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 2575:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return (uint32_t)(READ_REG(TIMx->CCR1));
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 57
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 57
 
 
 2576:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  315 0082 B3F5805F 		cmp	r3, #4096
  316 0086 05D1     		bne	.L45
  314:flight/uvos/stm32f4xx/uvos_tim.c ****           break;
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 58
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 58
 
 
  317              		.loc 1 314 11 is_stmt 1 view .LVU93
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  336              		.loc 1 320 20 is_stmt 0 view .LVU101
  337 0090 0121     		movs	r1, #1
  315:flight/uvos/stm32f4xx/uvos_tim.c ****         default:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 59
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 59
 
 
  338              		.loc 1 315 11 view .LVU102
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  378              	.LBI37:
 2605:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
  379              		.loc 2 2605 26 is_stmt 1 view .LVU118
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 60
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 60
 
 
  380              	.LBB38:
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  351:flight/uvos/stm32f4xx/uvos_tim.c ****             ( *tim_dev->callbacks->edge )( ( uint32_t )tim_dev, tim_dev->context, j, edge_count );
  352:flight/uvos/stm32f4xx/uvos_tim.c ****           }
  353:flight/uvos/stm32f4xx/uvos_tim.c ****         } else {
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 61
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 61
 
 
  354:flight/uvos/stm32f4xx/uvos_tim.c ****           /* Call the edge callback first */
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  443              		.loc 1 269 54 is_stmt 0 discriminator 2 view .LVU140
  444 00e8 0134     		adds	r4, r4, #1
  445              	.LVL43:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 62
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 62
 
 
  269:flight/uvos/stm32f4xx/uvos_tim.c ****       const struct uvos_tim_channel * chan = &tim_dev->channels[j];
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  485 0124 8AD8     		bhi	.L20
  486 0126 012B     		cmp	r3, #1
  487 0128 91D0     		beq	.L38
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 63
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 63
 
 
  488 012a 102B     		cmp	r3, #16
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  527 0156 0F2E     		cmp	r6, #15
  528 0158 A9D8     		bhi	.L30
  346:flight/uvos/stm32f4xx/uvos_tim.c ****             ( *tim_dev->callbacks->overflow )( ( uint32_t )tim_dev, tim_dev->context, j, overflow_c
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 64
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 64
 
 
  529              		.loc 1 346 11 is_stmt 1 view .LVU171
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  572              	.L29:
  361:flight/uvos/stm32f4xx/uvos_tim.c ****           }
  362:flight/uvos/stm32f4xx/uvos_tim.c ****         }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 65
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 65
 
 
  363:flight/uvos/stm32f4xx/uvos_tim.c ****       } else if ( overflow_event && tim_dev->callbacks->overflow ) {
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  623              		.loc 1 366 11 view .LVU197
  624 01d6 039E     		ldr	r6, [sp, #12]
  625              	.LVL62:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 66
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 66
 
 
  626              	.L15:
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  665              		.loc 1 239 12 is_stmt 0 view .LVU213
  666 0200 0121     		movs	r1, #1
  667 0202 5846     		mov	r0, fp
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 67
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 67
 
 
  668 0204 FFF7FEFF 		bl	TIM_GetITStatus
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  251:flight/uvos/stm32f4xx/uvos_tim.c ****     }
  709              		.loc 1 251 7 is_stmt 1 view .LVU227
  710 0238 CEE7     		b	.L15
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 68
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 68
 
 
  711              	.LVL69:
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  758 0006 4168     		ldr	r1, [r0, #4]
  759 0008 0068     		ldr	r0, [r0]
  760              	.LVL72:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 69
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 69
 
 
  119:flight/uvos/stm32f4xx/uvos_tim.c **** 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
 2668:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** __STATIC_INLINE uint32_t LL_TIM_IsEnabledExternalClock(TIM_TypeDef *TIMx)
 2669:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** {
 2670:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h ****   return ((READ_BIT(TIMx->SMCR, TIM_SMCR_ECE) == (TIM_SMCR_ECE)) ? 1UL : 0UL);
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 70
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 70
 
 
 2671:./flight/uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h **** }
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  795              	.LBE48:
  128:flight/uvos/stm32f4xx/uvos_tim.c **** 
  796              		.loc 1 128 3 is_stmt 1 view .LVU244
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 71
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 71
 
 
  797 002a FFF7FEFF 		bl	NVIC_Init
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  842              		.section	.text.UVOS_TIM_InitTimebase,"ax",%progbits
  843              		.align	1
  844              		.global	UVOS_TIM_InitTimebase
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 72
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 72
 
 
  845              		.syntax unified
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  886              		.loc 1 164 25 is_stmt 0 view .LVU268
  887 0016 DE60     		str	r6, [r3, #12]
  165:flight/uvos/stm32f4xx/uvos_tim.c **** 
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 73
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 73
 
 
  888              		.loc 1 165 3 is_stmt 1 view .LVU269
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  934              		.cfi_offset 8, -8
  935              		.cfi_offset 14, -4
  936 0006 0746     		mov	r7, r0
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 74
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 74
 
 
  937 0008 1546     		mov	r5, r2
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  977              		.loc 1 182 6 is_stmt 0 discriminator 2 view .LVU293
  978 0018 8046     		mov	r8, r0
  979 001a 78B3     		cbz	r0, .L72
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 75
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 75
 
 
  188:flight/uvos/stm32f4xx/uvos_tim.c ****   tim_dev->num_channels = num_channels;
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  194:flight/uvos/stm32f4xx/uvos_tim.c ****     const struct uvos_tim_channel * chan = &( channels[i] );
  1017              		.loc 1 194 43 view .LVU311
  1018 0032 E4B2     		uxtb	r4, r4
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 76
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 76
 
 
  1019              	.LVL95:
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  199:flight/uvos/stm32f4xx/uvos_tim.c ****     }
  1060              		.loc 1 199 7 is_stmt 1 discriminator 3 view .LVU325
  199:flight/uvos/stm32f4xx/uvos_tim.c ****     }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 77
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 77
 
 
  1061              		.loc 1 199 7 discriminator 3 view .LVU326
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  377:flight/uvos/stm32f4xx/uvos_tim.c **** void TIM1_CC_IRQHandler( void ) __attribute__( ( alias( "UVOS_TIM_1_CC_irq_handler" ) ) );
  378:flight/uvos/stm32f4xx/uvos_tim.c **** static void UVOS_TIM_1_CC_irq_handler( void )
  379:flight/uvos/stm32f4xx/uvos_tim.c **** {
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 78
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 78
 
 
  1102              		.loc 1 379 1 is_stmt 1 view -0
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1150              	.LFE1381:
  1152              		.global	TIM2_IRQHandler
  1153              		.thumb_set TIM2_IRQHandler,UVOS_TIM_2_irq_handler
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 79
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 79
 
 
  1154              		.section	.text.UVOS_TIM_3_irq_handler,"ax",%progbits
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1201              		.cfi_offset 3, -8
  1202              		.cfi_offset 14, -4
  398:flight/uvos/stm32f4xx/uvos_tim.c ****   UVOS_TIM_generic_irq_handler( TIM4 );
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 80
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 80
 
 
  1203              		.loc 1 398 3 view .LVU346
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1253              		.thumb
  1254              		.thumb_func
  1256              	UVOS_TIM_9_CC_irq_handler:
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 81
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 81
 
 
  1257              	.LFB1385:
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  437:flight/uvos/stm32f4xx/uvos_tim.c ****   } else if ( TIM_GetITStatus( TIM9, UVOS_TIM_ALL_FLAGS ) ) {
  438:flight/uvos/stm32f4xx/uvos_tim.c ****     UVOS_TIM_generic_irq_handler( TIM9 );
  439:flight/uvos/stm32f4xx/uvos_tim.c ****   }
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 82
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 82
 
 
  440:flight/uvos/stm32f4xx/uvos_tim.c **** }
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1326              		.loc 1 445 8 is_stmt 0 view .LVU364
  1327 0002 0121     		movs	r1, #1
  1328 0004 0848     		ldr	r0, .L106
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 83
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 83
 
 
  1329 0006 FFF7FEFF 		bl	TIM_GetITStatus
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  453:flight/uvos/stm32f4xx/uvos_tim.c **** static void UVOS_TIM_11_CC_irq_handler( void )
  454:flight/uvos/stm32f4xx/uvos_tim.c **** {
  1374              		.loc 1 454 1 is_stmt 1 view -0
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 84
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 84
 
 
  1375              		.cfi_startproc
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1419              		.cfi_endproc
  1420              	.LFE1387:
  1422              		.global	TIM1_TRG_COM_TIM11_IRQHandler
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 85
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 85
 
 
  1423              		.thumb_set TIM1_TRG_COM_TIM11_IRQHandler,UVOS_TIM_11_CC_irq_handler
@@ -5066,67 +5066,67 @@ ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 1
  1445              		.file 9 "./flight/uvos/inc/misc.h"
  1446              		.file 10 "./flight/uvos/inc/uvos_stm32.h"
  1447              		.file 11 "./flight/uvos/inc/uvos_tim_priv.h"
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 86
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 86
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 uvos_tim.c
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:20     .text.TIM_GetITStatus:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:25     .text.TIM_GetITStatus:00000000 TIM_GetITStatus
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:78     .text.UVOS_TIM_alloc:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:83     .text.UVOS_TIM_alloc:00000000 UVOS_TIM_alloc
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:126    .text.UVOS_TIM_alloc:00000024 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:133    .text.UVOS_TIM_generic_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:138    .text.UVOS_TIM_generic_irq_handler:00000000 UVOS_TIM_generic_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:727    .text.UVOS_TIM_generic_irq_handler:00000240 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:733    .text.UVOS_TIM_InitClock:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:739    .text.UVOS_TIM_InitClock:00000000 UVOS_TIM_InitClock
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:837    .text.UVOS_TIM_InitClock:00000050 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:843    .text.UVOS_TIM_InitTimebase:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:849    .text.UVOS_TIM_InitTimebase:00000000 UVOS_TIM_InitTimebase
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:911    .text.UVOS_TIM_InitChannels:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:917    .text.UVOS_TIM_InitChannels:00000000 UVOS_TIM_InitChannels
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1090   .text.UVOS_TIM_InitChannels:00000084 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1095   .text.UVOS_TIM_1_CC_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1100   .text.UVOS_TIM_1_CC_irq_handler:00000000 UVOS_TIM_1_CC_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1120   .text.UVOS_TIM_1_CC_irq_handler:0000000c $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1100   .text.UVOS_TIM_1_CC_irq_handler:00000000 TIM1_CC_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1127   .text.UVOS_TIM_2_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1132   .text.UVOS_TIM_2_irq_handler:00000000 UVOS_TIM_2_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1132   .text.UVOS_TIM_2_irq_handler:00000000 TIM2_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1155   .text.UVOS_TIM_3_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1160   .text.UVOS_TIM_3_irq_handler:00000000 UVOS_TIM_3_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1180   .text.UVOS_TIM_3_irq_handler:0000000c $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1160   .text.UVOS_TIM_3_irq_handler:00000000 TIM3_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1187   .text.UVOS_TIM_4_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1192   .text.UVOS_TIM_4_irq_handler:00000000 UVOS_TIM_4_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1212   .text.UVOS_TIM_4_irq_handler:0000000c $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1192   .text.UVOS_TIM_4_irq_handler:00000000 TIM4_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1219   .text.UVOS_TIM_5_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1224   .text.UVOS_TIM_5_irq_handler:00000000 UVOS_TIM_5_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1244   .text.UVOS_TIM_5_irq_handler:0000000c $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1224   .text.UVOS_TIM_5_irq_handler:00000000 TIM5_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1251   .text.UVOS_TIM_9_CC_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1256   .text.UVOS_TIM_9_CC_irq_handler:00000000 UVOS_TIM_9_CC_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1301   .text.UVOS_TIM_9_CC_irq_handler:00000028 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1256   .text.UVOS_TIM_9_CC_irq_handler:00000000 TIM1_BRK_TIM9_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1309   .text.UVOS_TIM_10_CC_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1314   .text.UVOS_TIM_10_CC_irq_handler:00000000 UVOS_TIM_10_CC_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1359   .text.UVOS_TIM_10_CC_irq_handler:00000028 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1314   .text.UVOS_TIM_10_CC_irq_handler:00000000 TIM1_UP_TIM10_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1367   .text.UVOS_TIM_11_CC_irq_handler:00000000 $t
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1372   .text.UVOS_TIM_11_CC_irq_handler:00000000 UVOS_TIM_11_CC_irq_handler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1417   .text.UVOS_TIM_11_CC_irq_handler:00000028 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1372   .text.UVOS_TIM_11_CC_irq_handler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1425   .bss.uvos_tim_devs:00000000 $d
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1429   .bss.uvos_tim_devs:00000000 uvos_tim_devs
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1435   .bss.uvos_tim_num_devs:00000000 uvos_tim_num_devs
-C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s:1436   .bss.uvos_tim_num_devs:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:20     .text.TIM_GetITStatus:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:25     .text.TIM_GetITStatus:00000000 TIM_GetITStatus
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:78     .text.UVOS_TIM_alloc:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:83     .text.UVOS_TIM_alloc:00000000 UVOS_TIM_alloc
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:126    .text.UVOS_TIM_alloc:00000024 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:133    .text.UVOS_TIM_generic_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:138    .text.UVOS_TIM_generic_irq_handler:00000000 UVOS_TIM_generic_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:727    .text.UVOS_TIM_generic_irq_handler:00000240 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:733    .text.UVOS_TIM_InitClock:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:739    .text.UVOS_TIM_InitClock:00000000 UVOS_TIM_InitClock
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:837    .text.UVOS_TIM_InitClock:00000050 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:843    .text.UVOS_TIM_InitTimebase:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:849    .text.UVOS_TIM_InitTimebase:00000000 UVOS_TIM_InitTimebase
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:911    .text.UVOS_TIM_InitChannels:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:917    .text.UVOS_TIM_InitChannels:00000000 UVOS_TIM_InitChannels
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1090   .text.UVOS_TIM_InitChannels:00000084 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1095   .text.UVOS_TIM_1_CC_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1100   .text.UVOS_TIM_1_CC_irq_handler:00000000 UVOS_TIM_1_CC_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1120   .text.UVOS_TIM_1_CC_irq_handler:0000000c $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1100   .text.UVOS_TIM_1_CC_irq_handler:00000000 TIM1_CC_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1127   .text.UVOS_TIM_2_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1132   .text.UVOS_TIM_2_irq_handler:00000000 UVOS_TIM_2_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1132   .text.UVOS_TIM_2_irq_handler:00000000 TIM2_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1155   .text.UVOS_TIM_3_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1160   .text.UVOS_TIM_3_irq_handler:00000000 UVOS_TIM_3_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1180   .text.UVOS_TIM_3_irq_handler:0000000c $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1160   .text.UVOS_TIM_3_irq_handler:00000000 TIM3_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1187   .text.UVOS_TIM_4_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1192   .text.UVOS_TIM_4_irq_handler:00000000 UVOS_TIM_4_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1212   .text.UVOS_TIM_4_irq_handler:0000000c $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1192   .text.UVOS_TIM_4_irq_handler:00000000 TIM4_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1219   .text.UVOS_TIM_5_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1224   .text.UVOS_TIM_5_irq_handler:00000000 UVOS_TIM_5_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1244   .text.UVOS_TIM_5_irq_handler:0000000c $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1224   .text.UVOS_TIM_5_irq_handler:00000000 TIM5_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1251   .text.UVOS_TIM_9_CC_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1256   .text.UVOS_TIM_9_CC_irq_handler:00000000 UVOS_TIM_9_CC_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1301   .text.UVOS_TIM_9_CC_irq_handler:00000028 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1256   .text.UVOS_TIM_9_CC_irq_handler:00000000 TIM1_BRK_TIM9_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1309   .text.UVOS_TIM_10_CC_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1314   .text.UVOS_TIM_10_CC_irq_handler:00000000 UVOS_TIM_10_CC_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1359   .text.UVOS_TIM_10_CC_irq_handler:00000028 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1314   .text.UVOS_TIM_10_CC_irq_handler:00000000 TIM1_UP_TIM10_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1367   .text.UVOS_TIM_11_CC_irq_handler:00000000 $t
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1372   .text.UVOS_TIM_11_CC_irq_handler:00000000 UVOS_TIM_11_CC_irq_handler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1417   .text.UVOS_TIM_11_CC_irq_handler:00000028 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1372   .text.UVOS_TIM_11_CC_irq_handler:00000000 TIM1_TRG_COM_TIM11_IRQHandler
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1425   .bss.uvos_tim_devs:00000000 $d
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1429   .bss.uvos_tim_devs:00000000 uvos_tim_devs
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1435   .bss.uvos_tim_num_devs:00000000 uvos_tim_num_devs
+C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s:1436   .bss.uvos_tim_num_devs:00000000 $d
 
 UNDEFINED SYMBOLS
 LL_TIM_Init
 NVIC_Init
-ARM GAS  C:\Users\geoma\AppData\Local\Temp\cczRJoz3.s 			page 87
+ARM GAS  C:\Users\geoma\AppData\Local\Temp\cc0qKmoM.s 			page 87
 
 
 LL_GPIO_Init
