@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UAVWARE_H
+#define UAVWARE_H
 
 /* UVOS Includes */
 #include <uvos.h>
@@ -19,3 +20,5 @@
 
 /* Global Functions */
 void UAVWare_init(void);
+
+#endif // UAVWARE_H
