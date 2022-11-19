@@ -12,8 +12,9 @@ static struct uvos_sched_task sch_tasks_g[SCH_MAX_TASKS];
 static volatile uint32_t tick_count_g = 0;
 static volatile bool scheduler_overrun_flag = false;
 
-/* Scheduler timer handle */ 
+/* Scheduler timer handle */
 static uint32_t uvos_sched_tim_id     = 0;
+static const TIM_TypeDef * uvos_sched_timer;
 
 static const struct uvos_tim_callbacks uvos_sched_tim_callbacks = {
   .overflow = UVOS_SCHED_tick_handler,
@@ -53,53 +54,51 @@ static const struct uvos_tim_callbacks uvos_sched_tim_callbacks = {
 void UVOS_SCHED_tick_handler( uint32_t tim_id, uint32_t context, uint8_t chan_idx, uint16_t count )
 {
 
-  // LL_GPIO_SetOutputPin( testPin1_GPIO_Port, testPin1_Pin );
-
   // Increment tick count
   tick_count_g++;
 
-#ifdef UVOS_COM_DEBUG
+// #define UVOS_COM_DEBUG_SCHED_TICK
+#ifdef UVOS_COM_DEBUG_SCHED_TICK
+  UVOS_LED_Toggle( UVOS_LED_HEARTBEAT );
   UVOS_COM_SendChar( UVOS_COM_DEBUG, tick_count_g );
-#endif
+#endif // UVOS_COM_DEBUG_SCHED_TICK
 
   // check against limit
   if ( tick_count_g > SCH_TICK_COUNT_LIMIT ) {
     // One or more tasks has taken too long to complete
     scheduler_overrun_flag = true;
   }
-
-  // LL_GPIO_ResetOutputPin( testPin1_GPIO_Port, testPin1_Pin );
-
 }
 
 /*----------------------------------------------------------------------------*/
-void UVOS_SCHED_init_hz( const uint32_t TICKhz )
+void UVOS_SCHED_init( const TIM_TypeDef * timer )
 {
+  uvos_sched_timer = timer;
+
   for ( uint32_t Task_id = 0; Task_id < SCH_MAX_TASKS; Task_id++ ) {
     sch_tasks_g[Task_id].pTask = SCH_NULL_PTR; // Set pTask to "null pointer"
   }
   // UVOS_TIME_RegisterTickCallback( UVOS_SCHED_tick_handler );
   // UVOS_TIME_sched_init( TICKhz );
-  if ( UVOS_TIM_InitTimebase( &uvos_sched_tim_id, &uvos_sched_tim_callbacks, 0 ) ) {
+  if ( UVOS_TIM_InitTimebase( &uvos_sched_tim_id, timer , &uvos_sched_tim_callbacks, 0 ) ) {
     UVOS_Assert( 0 );
   }
 }
 
 /*----------------------------------------------------------------------------*/
-void UVOS_SCHED_start( uint32_t * tim_id )
+// void UVOS_SCHED_start( uint32_t * tim_id )
+void UVOS_SCHED_start( void )
 {
   tick_count_g = 0;
   scheduler_overrun_flag = false;
-  // UVOS_TIME_sched_start();
-  struct uvos_tim_dev * tim_dev;
-  tim_dev = ( struct uvos_tim_dev * )tim_id;
-  LL_TIM_EnableIT_UPDATE( TIM11 );
+
+  LL_TIM_EnableIT_UPDATE( ( TIM_TypeDef * )uvos_sched_timer );
 }
 
 /*----------------------------------------------------------------------------*/
 void UVOS_SCHED_stop( void )
 {
-  LL_TIM_DisableIT_UPDATE( TIM11 );
+  LL_TIM_DisableIT_UPDATE( ( TIM_TypeDef * )uvos_sched_timer );
 }
 
 /*----------------------------------------------------------------------------*-

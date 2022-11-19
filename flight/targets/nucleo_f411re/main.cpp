@@ -3,9 +3,9 @@
 // #include <systemmod.h>
 #include "printf.h"
 
-  /* Global Variables */
+/* Global Variables */
 
-  /* Local Variables */
+/* Local Variables */
 
 /**
  * UAVWare Main function:
@@ -34,7 +34,12 @@ int main( void )
   /* Start the FreeRTOS scheduler */
   // vTaskStartScheduler();
 
-  printf_( "Debug console initialized\r\n" );
+  /* Start the UVOS scheduler */
+  UVOS_SCHED_start();
+
+#ifdef UVOS_COM_DEBUG
+  printf_( "System initialized\r\n" );
+#endif // UVOS_COM_DEBUG
 
   /* If all is well we will never reach here as the scheduler will now be running. */
   /* Do some UVOS_LED_HEARTBEAT to user that something bad just happened */

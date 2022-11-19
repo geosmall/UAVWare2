@@ -12,22 +12,14 @@ struct uvos_sched_task {
 
 // ------ Public function prototypes -----------------------------------------
 
-extern void UVOS_SCHED_init_hz( const uint32_t TICKhz );
-extern void UVOS_SCHED_start( uint32_t * tim_id );
+extern void UVOS_SCHED_init( const TIM_TypeDef * timer );
+extern void UVOS_SCHED_start( void );
+extern void UVOS_SCHED_stop( void );
 extern int32_t UVOS_SCHED_dispatch_tasks( void );
 extern void UVOS_SCHED_tick_handler( uint32_t tim_id, uint32_t context, uint8_t chan_idx, uint16_t count );
 extern int32_t UVOS_SCHED_add_task( void ( * pTask )(), const uint32_t DELAY, const uint32_t PERIOD );
 
 // ------ Public constants -------------------------------------------------------------
-
-// The maximum number of tasks required at any one time
-// during the execution of the program
-//
-// MUST BE CHECKED FOR EACH PROJECT (*not* dynamic)
-#define SCH_MAX_TASKS ( 5 )
-
-// Usually set to 1, unless 'Long Tasks' are employed
-#define SCH_TICK_COUNT_LIMIT ( 20 )
 
 // Default value for pTask (no task at this location)
 #define SCH_NULL_PTR ( ( void (*) ( void ) ) 0 )

@@ -206,9 +206,15 @@ extern uint32_t uvos_packet_handler;
 #define UVOS_IRQ_PRIO_HIGHEST        4               // for USART etc...
 
 // -------------------------
-// Scheduler tick 
+// Scheduler defines 
 // -------------------------
-#define UVOS_SCHED_UPDATE_HZ         2
+#define UVOS_SCHED_UPDATE_HZ         1000
+
+// The maximum number of tasks required at any one time
+#define SCH_MAX_TASKS ( 5 )
+
+// Usually set to 1, unless 'Long Tasks' are employed
+#define SCH_TICK_COUNT_LIMIT ( 20 )
 
 // ------------------------
 // UVOS_RCVR

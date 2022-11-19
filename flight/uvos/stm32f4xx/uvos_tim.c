@@ -4,6 +4,24 @@
 
 #include "uvos_tim_priv.h"
 
+enum uvos_tim_dev_magic {
+  UVOS_TIM_DEV_MAGIC = 0x87654098,
+};
+
+struct uvos_tim_dev {
+  enum uvos_tim_dev_magic magic;
+
+  const TIM_TypeDef   *  timer;
+
+  const struct uvos_tim_channel  * channels;
+  uint8_t num_channels;
+
+  const struct uvos_tim_callbacks * callbacks;
+  uint32_t context;
+};
+
+#define UVOS_TIM_ALL_FLAGS TIM_IT_CC1 | TIM_IT_CC2 | TIM_IT_CC3 | TIM_IT_CC4 | TIM_IT_Trigger | TIM_IT_Update
+
 // STM32 SPL compatibility ------------------------------------>>>
 
 /**
@@ -74,21 +92,6 @@ static inline void TIM_ClearITPendingBit( TIM_TypeDef * TIMx, uint16_t TIM_IT )
 
 // STM32 SPL compatibility ------------------------------------<<<
 
-enum uvos_tim_dev_magic {
-  UVOS_TIM_DEV_MAGIC = 0x87654098,
-};
-
-struct uvos_tim_dev {
-  enum uvos_tim_dev_magic magic;
-
-  const struct uvos_tim_channel  * channels;
-  uint8_t num_channels;
-
-  const struct uvos_tim_callbacks * callbacks;
-  uint32_t context;
-};
-#define UVOS_TIM_ALL_FLAGS TIM_IT_CC1 | TIM_IT_CC2 | TIM_IT_CC3 | TIM_IT_CC4 | TIM_IT_Trigger | TIM_IT_Update
-
 static bool UVOS_TIM_validate( struct uvos_tim_dev * tim_dev )
 {
   return tim_dev->magic == UVOS_TIM_DEV_MAGIC;
@@ -148,8 +151,9 @@ int32_t UVOS_TIM_InitClock( const struct uvos_tim_clock_cfg * cfg )
   return 0;
 }
 
-int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const struct uvos_tim_callbacks * callbacks, uint32_t context )
+int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const TIM_TypeDef * timer, const struct uvos_tim_callbacks * callbacks, uint32_t context )
 {
+  UVOS_Assert( IS_TIM_INSTANCE( timer ) );
 
   struct uvos_tim_dev * tim_dev;
   tim_dev = ( struct uvos_tim_dev * )UVOS_TIM_alloc();
@@ -158,7 +162,7 @@ int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const struct uvos_tim_callback
   }
 
   /* Bind the configuration to the device instance, set channels to NULL for timebase */
-  // tim_dev->timer        = regs;
+  tim_dev->timer        = timer;
   tim_dev->channels     = NULL;
   tim_dev->num_channels = 0;
   tim_dev->callbacks    = callbacks;
@@ -184,7 +188,7 @@ int32_t UVOS_TIM_InitChannels( uint32_t * tim_id, const struct uvos_tim_channel 
   }
 
   /* Bind the configuration to the device instance, set timer to NULL for channels */
-  // tim_dev->timer        = NULL;
+  tim_dev->timer        = NULL;
   tim_dev->channels     = channels;
   tim_dev->num_channels = num_channels;
   tim_dev->callbacks    = callbacks;

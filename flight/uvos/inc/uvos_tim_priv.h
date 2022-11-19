@@ -45,7 +45,7 @@ struct uvos_tim_callbacks {
 };
 
 extern int32_t UVOS_TIM_InitClock( const struct uvos_tim_clock_cfg * cfg );
-extern int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const struct uvos_tim_callbacks * callbacks, uint32_t context );
+extern int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const TIM_TypeDef * timer, const struct uvos_tim_callbacks * callbacks, uint32_t context );
 extern int32_t UVOS_TIM_InitChannels( uint32_t * tim_id, const struct uvos_tim_channel * channels, uint8_t num_channels, const struct uvos_tim_callbacks * callbacks, uint32_t context );
 
 #endif /* UVOS_TIM_PRIV_H */

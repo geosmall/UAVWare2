@@ -61,7 +61,7 @@ uint32_t uvos_com_rf_id        = 0;
 uint32_t uvos_com_mavlink_id   = 0;
 
 /* Scheduler timer handle */ 
-static uint32_t uvos_sched_tim_id     = 0;
+// static uint32_t uvos_sched_tim_id     = 0;
 
 /*
  * Setup a com port based on the passed cfg, driver and buffer sizes.
@@ -130,14 +130,14 @@ void putchar_( char c )
 }
 
 
-void SCHED_tick ( uint32_t tim_id, uint32_t context, uint8_t chan_idx, uint16_t count )
-{
-  UVOS_LED_Toggle( UVOS_LED_HEARTBEAT );
-}
-const static struct uvos_tim_callbacks tim_callbacks = {
-  .overflow = SCHED_tick,
-  .edge     = NULL,
-};
+// void SCHED_tick ( uint32_t tim_id, uint32_t context, uint8_t chan_idx, uint16_t count )
+// {
+//   UVOS_LED_Toggle( UVOS_LED_HEARTBEAT );
+// }
+// const static struct uvos_tim_callbacks tim_callbacks = {
+//   .overflow = SCHED_tick,
+//   .edge     = NULL,
+// };
 
 
 void DMA_Transaction_Complete( bool crc_ok, uint8_t crc_val )
@@ -165,22 +165,19 @@ void UVOS_Board_Init( void )
   /* Set up scheduler timer */
   UVOS_TIM_InitClock( &tim_11_cfg );
 
-#if 0
+// #if 0
 // #if defined( UVOS_INCLUDE_DEBUG_CONSOLE )
   UVOS_Board_configure_com( &uvos_usart_flexi_cfg,
                             UVOS_COM_DEBUGCONSOLE_RX_BUF_LEN,
                             UVOS_COM_DEBUGCONSOLE_TX_BUF_LEN,
                             &uvos_usart_com_driver, &uvos_com_debug_id );
-#endif
+// #endif
 
-#if defined(UVOS_INCLUDE_IBUS)
-  UVOS_Board_configure_ibus( &uvos_usart_ibus_flexi_cfg );
-#endif /* UVOS_INCLUDE_IBUS */
+// #if defined(UVOS_INCLUDE_IBUS)
+  // UVOS_Board_configure_ibus( &uvos_usart_ibus_flexi_cfg );
+// #endif /* UVOS_INCLUDE_IBUS */
 
-  if ( UVOS_TIM_InitTimebase( &uvos_sched_tim_id, &tim_callbacks, 0 ) ) {
-    UVOS_Assert( 0 );
-  }
-  LL_TIM_EnableIT_UPDATE( TIM11 );
+  UVOS_SCHED_init( tim_11_cfg.timer );
 
 }
 

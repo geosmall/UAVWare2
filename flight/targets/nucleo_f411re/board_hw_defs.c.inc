@@ -223,9 +223,9 @@ static const LL_TIM_InitTypeDef tim_9_10_time_base = {
   .RepetitionCounter = 0x0000,
 };
 static const LL_TIM_InitTypeDef tim_11_time_base = {
-  .Prescaler         = ( UVOS_PERIPHERAL_APB2_CLOCK / 20000 ) - 1,
+  .Prescaler         = ( UVOS_PERIPHERAL_APB2_CLOCK / 1000000 ) - 1,
   .CounterMode       = LL_TIM_COUNTERMODE_UP,
-  .Autoreload        = ( ( 20000 / UVOS_SCHED_UPDATE_HZ ) - 1 ),
+  .Autoreload        = ( ( 1000000 / UVOS_SCHED_UPDATE_HZ ) - 1 ),
   .ClockDivision     = LL_TIM_CLOCKDIVISION_DIV1,
   .RepetitionCounter = 0x0000,
 };
