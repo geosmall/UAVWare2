@@ -46,9 +46,9 @@ extern "C" {
 /* UVOS debug interface */
 /* #define UVOS_INCLUDE_DEBUG_CONSOLE */
 /* #define DEBUG_LEVEL 0 */
-/* #define UVOS_ENABLE_DEBUG_PINS */
+#define UVOS_ENABLE_DEBUG_PINS
 #include <uvos_debug.h>
-// #include <uvos_debuglog.h>
+#include <uvos_debuglog.h>
 
 /* UVOS FreeRTOS support */
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -122,6 +122,14 @@ extern "C" {
 /* UVOS common peripherals */
 #ifdef UVOS_INCLUDE_LED
 #include <uvos_led.h>
+#endif
+
+#ifdef UVOS_INCLUDE_SERVO
+#include <uvos_servo.h>
+#endif
+
+#ifdef UVOS_INCLUDE_MPU
+#include <uvos_mpu.h>
 #endif
 
 #if 0 // GLS

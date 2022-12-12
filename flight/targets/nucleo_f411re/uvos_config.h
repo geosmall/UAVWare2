@@ -1,8 +1,8 @@
-#pragma once
+#ifndef UVOS_CONFIG_H
+#define UVOS_CONFIG_H
 
-
-/* Revolution series */
-#define REVOLUTION
+/* ST Nucleo F411RE series */
+#define NUCLEO_F411RE
 
 /*
  * Below is a complete list of UVOS configurable options.
@@ -28,20 +28,20 @@
 // #define UVOS_INCLUDE_TASK_MONITOR
 
 /* UVOS hardware peripherals */
-// #define UVOS_INCLUDE_IRQ
+#define UVOS_INCLUDE_IRQ
 #define UVOS_INCLUDE_RTC
 #define UVOS_INCLUDE_TIM
 #define UVOS_INCLUDE_USART
 // #define UVOS_INCLUDE_ADC
 // #define UVOS_INCLUDE_I2C
-// #define UVOS_INCLUDE_SPI
+#define UVOS_INCLUDE_SPI
 #define UVOS_INCLUDE_GPIO
 // #define UVOS_INCLUDE_EXTI
 // #define UVOS_INCLUDE_WDG
 
 /* UVOS sensor interfaces */
-// #define UVOS_INCLUDE_MPU6000
-// #define UVOS_MPU6000_ACCEL
+#define UVOS_INCLUDE_MPU
+// #define UVOS_MPU_ACCEL
 
 /* UVOS receiver drivers */
 // #define UVOS_INCLUDE_DSM
@@ -53,6 +53,7 @@
 
 /* UVOS common peripherals */
 #define UVOS_INCLUDE_LED
+#define UVOS_INCLUDE_SERVO
 // #define UVOS_INCLUDE_FLASH
 // #define UVOS_INCLUDE_SDCARD
 // #define UVOS_FLASHFS_LOGFS_MAX_DEVS 5
@@ -210,3 +211,5 @@
 #define PIOS_EVENTDISAPTCHER_QUEUE 10
 
 #endif // GLS
+
+#endif // UVOS_CONFIG_H

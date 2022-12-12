@@ -3,21 +3,21 @@
 
 #define MAVLINK_MSG_ID_GPS2_RAW 124
 
-MAVPACKED(
+
 typedef struct __mavlink_gps2_raw_t {
- uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
  int32_t alt; /*< [mm] Altitude (MSL). Positive for up.*/
  uint32_t dgps_age; /*< [ms] Age of DGPS info*/
- uint16_t eph; /*< [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX*/
- uint16_t epv; /*< [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX*/
+ uint16_t eph; /*<  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX*/
+ uint16_t epv; /*<  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX*/
  uint16_t vel; /*< [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX*/
  uint16_t cog; /*< [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX*/
  uint8_t fix_type; /*<  GPS fix type.*/
- uint8_t satellites_visible; /*<  Number of satellites visible. If unknown, set to 255*/
+ uint8_t satellites_visible; /*<  Number of satellites visible. If unknown, set to UINT8_MAX*/
  uint8_t dgps_numch; /*<  Number of DGPS satellites*/
-}) mavlink_gps2_raw_t;
+} mavlink_gps2_raw_t;
 
 #define MAVLINK_MSG_ID_GPS2_RAW_LEN 35
 #define MAVLINK_MSG_ID_GPS2_RAW_MIN_LEN 35
@@ -74,16 +74,16 @@ typedef struct __mavlink_gps2_raw_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
- * @param satellites_visible  Number of satellites visible. If unknown, set to 255
+ * @param satellites_visible  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param dgps_numch  Number of DGPS satellites
  * @param dgps_age [ms] Age of DGPS info
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -135,16 +135,16 @@ static inline uint16_t mavlink_msg_gps2_raw_pack(uint8_t system_id, uint8_t comp
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
- * @param satellites_visible  Number of satellites visible. If unknown, set to 255
+ * @param satellites_visible  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param dgps_numch  Number of DGPS satellites
  * @param dgps_age [ms] Age of DGPS info
  * @return length of the message in bytes (excluding serial stream start sign)
@@ -222,16 +222,16 @@ static inline uint16_t mavlink_msg_gps2_raw_encode_chan(uint8_t system_id, uint8
  * @brief Send a gps2_raw message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param fix_type  GPS fix type.
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [mm] Altitude (MSL). Positive for up.
- * @param eph [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
- * @param epv [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @param eph  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
+ * @param epv  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  * @param vel [cm/s] GPS ground speed. If unknown, set to: UINT16_MAX
  * @param cog [cdeg] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
- * @param satellites_visible  Number of satellites visible. If unknown, set to 255
+ * @param satellites_visible  Number of satellites visible. If unknown, set to UINT8_MAX
  * @param dgps_numch  Number of DGPS satellites
  * @param dgps_age [ms] Age of DGPS info
  */
@@ -290,7 +290,7 @@ static inline void mavlink_msg_gps2_raw_send_struct(mavlink_channel_t chan, cons
 
 #if MAVLINK_MSG_ID_GPS2_RAW_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -342,7 +342,7 @@ static inline void mavlink_msg_gps2_raw_send_buf(mavlink_message_t *msgbuf, mavl
 /**
  * @brief Get field time_usec from gps2_raw message
  *
- * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
 static inline uint64_t mavlink_msg_gps2_raw_get_time_usec(const mavlink_message_t* msg)
 {
@@ -392,7 +392,7 @@ static inline int32_t mavlink_msg_gps2_raw_get_alt(const mavlink_message_t* msg)
 /**
  * @brief Get field eph from gps2_raw message
  *
- * @return [cm] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
+ * @return  GPS HDOP horizontal dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps2_raw_get_eph(const mavlink_message_t* msg)
 {
@@ -402,7 +402,7 @@ static inline uint16_t mavlink_msg_gps2_raw_get_eph(const mavlink_message_t* msg
 /**
  * @brief Get field epv from gps2_raw message
  *
- * @return [cm] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+ * @return  GPS VDOP vertical dilution of position (unitless * 100). If unknown, set to: UINT16_MAX
  */
 static inline uint16_t mavlink_msg_gps2_raw_get_epv(const mavlink_message_t* msg)
 {
@@ -432,7 +432,7 @@ static inline uint16_t mavlink_msg_gps2_raw_get_cog(const mavlink_message_t* msg
 /**
  * @brief Get field satellites_visible from gps2_raw message
  *
- * @return  Number of satellites visible. If unknown, set to 255
+ * @return  Number of satellites visible. If unknown, set to UINT8_MAX
  */
 static inline uint8_t mavlink_msg_gps2_raw_get_satellites_visible(const mavlink_message_t* msg)
 {

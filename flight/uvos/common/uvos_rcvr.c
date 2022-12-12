@@ -33,7 +33,7 @@ static struct uvos_rcvr_dev * UVOS_RCVR_alloc( void )
   return rcvr_dev;
 }
 #else
-static struct uvos_rcvr_dev uvos_rcvr_devs[UVOS_RCVR_MAX_DEVS];
+static struct uvos_rcvr_dev uvos_rcvr_devs[ UVOS_RCVR_MAX_DEVS ];
 static uint8_t uvos_rcvr_num_devs;
 static struct uvos_rcvr_dev * UVOS_RCVR_alloc( void )
 {
@@ -141,32 +141,7 @@ uint8_t UVOS_RCVR_GetQuality( uint32_t rcvr_id )
   return rcvr_dev->driver->get_quality( rcvr_dev->lower_id );
 }
 
-/**
- * @brief Get a flag that signals when a new rcvr frame is available.
- * @param[in] rcvr_id driver to read from
- * @returns The flag, or NULL if not supported.
- */
-bool UVOS_RCVR_GetFrameAvailableFlag( uint32_t rcvr_id )
-{
-
-  if ( rcvr_id == 0 ) {
-    return false;
-  }
-
-  struct uvos_rcvr_dev * rcvr_dev = ( struct uvos_rcvr_dev * )rcvr_id;
-
-  if ( !UVOS_RCVR_validate( rcvr_dev ) ) {
-    /* Undefined RCVR port for this board (see uvos_board.c) */
-    UVOS_Assert( 0 );
-  }
-
-  if ( rcvr_dev->driver->get_flag ) {
-    return rcvr_dev->driver->get_flag( rcvr_dev->lower_id );
-  }
-  return false;
-}
-
-#if 0 // GLS
+#if defined( UVOS_INCLUDE_FREERTOS )
 
 /**
  * @brief Get a semaphore that signals when a new sample is available.
@@ -200,7 +175,34 @@ xSemaphoreHandle UVOS_RCVR_GetSemaphore( uint32_t rcvr_id, uint8_t channel )
   return NULL;
 }
 
-#endif // GLS
+#else
+
+/**
+ * @brief Get a flag that signals when a new rcvr frame is available.
+ * @param[in] rcvr_id driver to read from
+ * @returns The flag, or NULL if not supported.
+ */
+bool UVOS_RCVR_GetFrameAvailableFlag( uint32_t rcvr_id )
+{
+
+  if ( rcvr_id == 0 ) {
+    return false;
+  }
+
+  struct uvos_rcvr_dev * rcvr_dev = ( struct uvos_rcvr_dev * )rcvr_id;
+
+  if ( !UVOS_RCVR_validate( rcvr_dev ) ) {
+    /* Undefined RCVR port for this board (see uvos_board.c) */
+    UVOS_Assert( 0 );
+  }
+
+  if ( rcvr_dev->driver->get_flag ) {
+    return rcvr_dev->driver->get_flag( rcvr_dev->lower_id );
+  }
+  return false;
+}
+
+#endif // defined( UVOS_INCLUDE_FREERTOS )
 
 #endif /* UVOS_INCLUDE_RCVR */
 

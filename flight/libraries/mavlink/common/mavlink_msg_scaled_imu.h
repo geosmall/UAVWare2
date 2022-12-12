@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SCALED_IMU 26
 
-MAVPACKED(
+
 typedef struct __mavlink_scaled_imu_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  int16_t xacc; /*< [mG] X acceleration*/
@@ -12,10 +12,10 @@ typedef struct __mavlink_scaled_imu_t {
  int16_t xgyro; /*< [mrad/s] Angular speed around X axis*/
  int16_t ygyro; /*< [mrad/s] Angular speed around Y axis*/
  int16_t zgyro; /*< [mrad/s] Angular speed around Z axis*/
- int16_t xmag; /*< [mT] X Magnetic field*/
- int16_t ymag; /*< [mT] Y Magnetic field*/
- int16_t zmag; /*< [mT] Z Magnetic field*/
-}) mavlink_scaled_imu_t;
+ int16_t xmag; /*< [mgauss] X Magnetic field*/
+ int16_t ymag; /*< [mgauss] Y Magnetic field*/
+ int16_t zmag; /*< [mgauss] Z Magnetic field*/
+} mavlink_scaled_imu_t;
 
 #define MAVLINK_MSG_ID_SCALED_IMU_LEN 22
 #define MAVLINK_MSG_ID_SCALED_IMU_MIN_LEN 22
@@ -75,9 +75,9 @@ typedef struct __mavlink_scaled_imu_t {
  * @param xgyro [mrad/s] Angular speed around X axis
  * @param ygyro [mrad/s] Angular speed around Y axis
  * @param zgyro [mrad/s] Angular speed around Z axis
- * @param xmag [mT] X Magnetic field
- * @param ymag [mT] Y Magnetic field
- * @param zmag [mT] Z Magnetic field
+ * @param xmag [mgauss] X Magnetic field
+ * @param ymag [mgauss] Y Magnetic field
+ * @param zmag [mgauss] Z Magnetic field
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_scaled_imu_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -130,9 +130,9 @@ static inline uint16_t mavlink_msg_scaled_imu_pack(uint8_t system_id, uint8_t co
  * @param xgyro [mrad/s] Angular speed around X axis
  * @param ygyro [mrad/s] Angular speed around Y axis
  * @param zgyro [mrad/s] Angular speed around Z axis
- * @param xmag [mT] X Magnetic field
- * @param ymag [mT] Y Magnetic field
- * @param zmag [mT] Z Magnetic field
+ * @param xmag [mgauss] X Magnetic field
+ * @param ymag [mgauss] Y Magnetic field
+ * @param zmag [mgauss] Z Magnetic field
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_scaled_imu_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -211,9 +211,9 @@ static inline uint16_t mavlink_msg_scaled_imu_encode_chan(uint8_t system_id, uin
  * @param xgyro [mrad/s] Angular speed around X axis
  * @param ygyro [mrad/s] Angular speed around Y axis
  * @param zgyro [mrad/s] Angular speed around Z axis
- * @param xmag [mT] X Magnetic field
- * @param ymag [mT] Y Magnetic field
- * @param zmag [mT] Z Magnetic field
+ * @param xmag [mgauss] X Magnetic field
+ * @param ymag [mgauss] Y Magnetic field
+ * @param zmag [mgauss] Z Magnetic field
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -266,7 +266,7 @@ static inline void mavlink_msg_scaled_imu_send_struct(mavlink_channel_t chan, co
 
 #if MAVLINK_MSG_ID_SCALED_IMU_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -384,7 +384,7 @@ static inline int16_t mavlink_msg_scaled_imu_get_zgyro(const mavlink_message_t* 
 /**
  * @brief Get field xmag from scaled_imu message
  *
- * @return [mT] X Magnetic field
+ * @return [mgauss] X Magnetic field
  */
 static inline int16_t mavlink_msg_scaled_imu_get_xmag(const mavlink_message_t* msg)
 {
@@ -394,7 +394,7 @@ static inline int16_t mavlink_msg_scaled_imu_get_xmag(const mavlink_message_t* m
 /**
  * @brief Get field ymag from scaled_imu message
  *
- * @return [mT] Y Magnetic field
+ * @return [mgauss] Y Magnetic field
  */
 static inline int16_t mavlink_msg_scaled_imu_get_ymag(const mavlink_message_t* msg)
 {
@@ -404,7 +404,7 @@ static inline int16_t mavlink_msg_scaled_imu_get_ymag(const mavlink_message_t* m
 /**
  * @brief Get field zmag from scaled_imu message
  *
- * @return [mT] Z Magnetic field
+ * @return [mgauss] Z Magnetic field
  */
 static inline int16_t mavlink_msg_scaled_imu_get_zmag(const mavlink_message_t* msg)
 {

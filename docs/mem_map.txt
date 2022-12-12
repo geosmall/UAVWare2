@@ -1,7 +1,7 @@
 https://www.embeddedrelated.com/showarticle/900.php
     ________________ 
-   |       |        |RAM_MAX_ADDRESS
-   |       |        |
+   |A5A5A5A5A5A5A5A5|RAM_MAX_ADDRESS
+   |A5A5A5A5A5A5A5A5|
    |       |        |
    |       V        |
    |     STACK      |
@@ -14,9 +14,9 @@ https://www.embeddedrelated.com/showarticle/900.php
    |       |        |
    |_______|________|
    |                |
-   |     BSS        |
+   |     BSS        |Uninitialized data, zero when loaded
    |________________|
    |                |
-   |     DATA       |
+   |     DATA       |Initialized data
    |                |
    |________________|0x00000000

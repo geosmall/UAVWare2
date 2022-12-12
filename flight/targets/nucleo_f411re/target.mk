@@ -19,7 +19,6 @@ $(TARGET_DIR)/system_stm32f4xx.c \
 $(TARGET_DIR)/uvos_board.c \
 
 CPP_SOURCES += \
-$(TARGET_DIR)/main.cpp
 
 ASM_SOURCES += \
 $(TARGET_DIR)/startup_stm32f411xe.s

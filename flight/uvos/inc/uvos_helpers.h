@@ -1,5 +1,7 @@
-#pragma once
+#ifndef UVOS_HELPERS_H
+#define UVOS_HELPERS_H
 
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 /**
  * @brief return the number of elements contained in the array x.
@@ -38,3 +40,6 @@
 
 // For future multicore ARM v7 or later:
 // The above three macros would be replaced with: asm volatile("dmb":::"memory")
+
+
+#endif // UVOS_HELPERS_H

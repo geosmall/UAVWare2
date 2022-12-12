@@ -3,18 +3,18 @@
 
 #define MAVLINK_MSG_ID_GPS_INPUT 232
 
-MAVPACKED(
+
 typedef struct __mavlink_gps_input_t {
- uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  uint32_t time_week_ms; /*< [ms] GPS time (from start of GPS week)*/
  int32_t lat; /*< [degE7] Latitude (WGS84)*/
  int32_t lon; /*< [degE7] Longitude (WGS84)*/
  float alt; /*< [m] Altitude (MSL). Positive for up.*/
- float hdop; /*< [m] GPS HDOP horizontal dilution of position*/
- float vdop; /*< [m] GPS VDOP vertical dilution of position*/
- float vn; /*< [m/s] GPS velocity in NORTH direction in earth-fixed NED frame*/
- float ve; /*< [m/s] GPS velocity in EAST direction in earth-fixed NED frame*/
- float vd; /*< [m/s] GPS velocity in DOWN direction in earth-fixed NED frame*/
+ float hdop; /*<  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX*/
+ float vdop; /*<  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX*/
+ float vn; /*< [m/s] GPS velocity in north direction in earth-fixed NED frame*/
+ float ve; /*< [m/s] GPS velocity in east direction in earth-fixed NED frame*/
+ float vd; /*< [m/s] GPS velocity in down direction in earth-fixed NED frame*/
  float speed_accuracy; /*< [m/s] GPS speed accuracy*/
  float horiz_accuracy; /*< [m] GPS horizontal accuracy*/
  float vert_accuracy; /*< [m] GPS vertical accuracy*/
@@ -23,7 +23,7 @@ typedef struct __mavlink_gps_input_t {
  uint8_t gps_id; /*<  ID of the GPS for multiple GPS inputs*/
  uint8_t fix_type; /*<  0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK*/
  uint8_t satellites_visible; /*<  Number of satellites visible.*/
-}) mavlink_gps_input_t;
+} mavlink_gps_input_t;
 
 #define MAVLINK_MSG_ID_GPS_INPUT_LEN 63
 #define MAVLINK_MSG_ID_GPS_INPUT_MIN_LEN 63
@@ -92,7 +92,7 @@ typedef struct __mavlink_gps_input_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -101,11 +101,11 @@ typedef struct __mavlink_gps_input_t {
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
- * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
  * @param speed_accuracy [m/s] GPS speed accuracy
  * @param horiz_accuracy [m] GPS horizontal accuracy
  * @param vert_accuracy [m] GPS vertical accuracy
@@ -171,7 +171,7 @@ static inline uint16_t mavlink_msg_gps_input_pack(uint8_t system_id, uint8_t com
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -180,11 +180,11 @@ static inline uint16_t mavlink_msg_gps_input_pack(uint8_t system_id, uint8_t com
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
- * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
  * @param speed_accuracy [m/s] GPS speed accuracy
  * @param horiz_accuracy [m] GPS horizontal accuracy
  * @param vert_accuracy [m] GPS vertical accuracy
@@ -276,7 +276,7 @@ static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint
  * @brief Send a gps_input message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param gps_id  ID of the GPS for multiple GPS inputs
  * @param ignore_flags  Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
  * @param time_week_ms [ms] GPS time (from start of GPS week)
@@ -285,11 +285,11 @@ static inline uint16_t mavlink_msg_gps_input_encode_chan(uint8_t system_id, uint
  * @param lat [degE7] Latitude (WGS84)
  * @param lon [degE7] Longitude (WGS84)
  * @param alt [m] Altitude (MSL). Positive for up.
- * @param hdop [m] GPS HDOP horizontal dilution of position
- * @param vdop [m] GPS VDOP vertical dilution of position
- * @param vn [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
- * @param ve [m/s] GPS velocity in EAST direction in earth-fixed NED frame
- * @param vd [m/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @param hdop  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vdop  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
+ * @param vn [m/s] GPS velocity in north direction in earth-fixed NED frame
+ * @param ve [m/s] GPS velocity in east direction in earth-fixed NED frame
+ * @param vd [m/s] GPS velocity in down direction in earth-fixed NED frame
  * @param speed_accuracy [m/s] GPS speed accuracy
  * @param horiz_accuracy [m] GPS horizontal accuracy
  * @param vert_accuracy [m] GPS vertical accuracy
@@ -362,7 +362,7 @@ static inline void mavlink_msg_gps_input_send_struct(mavlink_channel_t chan, con
 
 #if MAVLINK_MSG_ID_GPS_INPUT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -426,7 +426,7 @@ static inline void mavlink_msg_gps_input_send_buf(mavlink_message_t *msgbuf, mav
 /**
  * @brief Get field time_usec from gps_input message
  *
- * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
 static inline uint64_t mavlink_msg_gps_input_get_time_usec(const mavlink_message_t* msg)
 {
@@ -516,7 +516,7 @@ static inline float mavlink_msg_gps_input_get_alt(const mavlink_message_t* msg)
 /**
  * @brief Get field hdop from gps_input message
  *
- * @return [m] GPS HDOP horizontal dilution of position
+ * @return  GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline float mavlink_msg_gps_input_get_hdop(const mavlink_message_t* msg)
 {
@@ -526,7 +526,7 @@ static inline float mavlink_msg_gps_input_get_hdop(const mavlink_message_t* msg)
 /**
  * @brief Get field vdop from gps_input message
  *
- * @return [m] GPS VDOP vertical dilution of position
+ * @return  GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
  */
 static inline float mavlink_msg_gps_input_get_vdop(const mavlink_message_t* msg)
 {
@@ -536,7 +536,7 @@ static inline float mavlink_msg_gps_input_get_vdop(const mavlink_message_t* msg)
 /**
  * @brief Get field vn from gps_input message
  *
- * @return [m/s] GPS velocity in NORTH direction in earth-fixed NED frame
+ * @return [m/s] GPS velocity in north direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_gps_input_get_vn(const mavlink_message_t* msg)
 {
@@ -546,7 +546,7 @@ static inline float mavlink_msg_gps_input_get_vn(const mavlink_message_t* msg)
 /**
  * @brief Get field ve from gps_input message
  *
- * @return [m/s] GPS velocity in EAST direction in earth-fixed NED frame
+ * @return [m/s] GPS velocity in east direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_gps_input_get_ve(const mavlink_message_t* msg)
 {
@@ -556,7 +556,7 @@ static inline float mavlink_msg_gps_input_get_ve(const mavlink_message_t* msg)
 /**
  * @brief Get field vd from gps_input message
  *
- * @return [m/s] GPS velocity in DOWN direction in earth-fixed NED frame
+ * @return [m/s] GPS velocity in down direction in earth-fixed NED frame
  */
 static inline float mavlink_msg_gps_input_get_vd(const mavlink_message_t* msg)
 {

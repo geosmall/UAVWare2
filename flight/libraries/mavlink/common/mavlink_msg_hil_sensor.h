@@ -3,9 +3,9 @@
 
 #define MAVLINK_MSG_ID_HIL_SENSOR 107
 
-MAVPACKED(
+
 typedef struct __mavlink_hil_sensor_t {
- uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.*/
+ uint64_t time_usec; /*< [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.*/
  float xacc; /*< [m/s/s] X acceleration*/
  float yacc; /*< [m/s/s] Y acceleration*/
  float zacc; /*< [m/s/s] Z acceleration*/
@@ -15,12 +15,12 @@ typedef struct __mavlink_hil_sensor_t {
  float xmag; /*< [gauss] X Magnetic field*/
  float ymag; /*< [gauss] Y Magnetic field*/
  float zmag; /*< [gauss] Z Magnetic field*/
- float abs_pressure; /*< [mbar] Absolute pressure*/
- float diff_pressure; /*< [mbar] Differential pressure (airspeed)*/
+ float abs_pressure; /*< [hPa] Absolute pressure*/
+ float diff_pressure; /*< [hPa] Differential pressure (airspeed)*/
  float pressure_alt; /*<  Altitude calculated from pressure*/
  float temperature; /*< [degC] Temperature*/
- uint32_t fields_updated; /*<  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.*/
-}) mavlink_hil_sensor_t;
+ uint32_t fields_updated; /*<  Bitmap for fields that have updated since last message*/
+} mavlink_hil_sensor_t;
 
 #define MAVLINK_MSG_ID_HIL_SENSOR_LEN 64
 #define MAVLINK_MSG_ID_HIL_SENSOR_MIN_LEN 64
@@ -83,7 +83,7 @@ typedef struct __mavlink_hil_sensor_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -93,11 +93,11 @@ typedef struct __mavlink_hil_sensor_t {
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
- * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param fields_updated  Bitmap for fields that have updated since last message
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
@@ -153,7 +153,7 @@ static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -163,11 +163,11 @@ static inline uint16_t mavlink_msg_hil_sensor_pack(uint8_t system_id, uint8_t co
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
- * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param fields_updated  Bitmap for fields that have updated since last message
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_hil_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
@@ -249,7 +249,7 @@ static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uin
  * @brief Send a hil_sensor message
  * @param chan MAVLink channel to send the message
  *
- * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @param time_usec [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  * @param xacc [m/s/s] X acceleration
  * @param yacc [m/s/s] Y acceleration
  * @param zacc [m/s/s] Z acceleration
@@ -259,11 +259,11 @@ static inline uint16_t mavlink_msg_hil_sensor_encode_chan(uint8_t system_id, uin
  * @param xmag [gauss] X Magnetic field
  * @param ymag [gauss] Y Magnetic field
  * @param zmag [gauss] Z Magnetic field
- * @param abs_pressure [mbar] Absolute pressure
- * @param diff_pressure [mbar] Differential pressure (airspeed)
+ * @param abs_pressure [hPa] Absolute pressure
+ * @param diff_pressure [hPa] Differential pressure (airspeed)
  * @param pressure_alt  Altitude calculated from pressure
  * @param temperature [degC] Temperature
- * @param fields_updated  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @param fields_updated  Bitmap for fields that have updated since last message
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
@@ -326,7 +326,7 @@ static inline void mavlink_msg_hil_sensor_send_struct(mavlink_channel_t chan, co
 
 #if MAVLINK_MSG_ID_HIL_SENSOR_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -384,7 +384,7 @@ static inline void mavlink_msg_hil_sensor_send_buf(mavlink_message_t *msgbuf, ma
 /**
  * @brief Get field time_usec from hil_sensor message
  *
- * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.
+ * @return [us] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
  */
 static inline uint64_t mavlink_msg_hil_sensor_get_time_usec(const mavlink_message_t* msg)
 {
@@ -484,7 +484,7 @@ static inline float mavlink_msg_hil_sensor_get_zmag(const mavlink_message_t* msg
 /**
  * @brief Get field abs_pressure from hil_sensor message
  *
- * @return [mbar] Absolute pressure
+ * @return [hPa] Absolute pressure
  */
 static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_message_t* msg)
 {
@@ -494,7 +494,7 @@ static inline float mavlink_msg_hil_sensor_get_abs_pressure(const mavlink_messag
 /**
  * @brief Get field diff_pressure from hil_sensor message
  *
- * @return [mbar] Differential pressure (airspeed)
+ * @return [hPa] Differential pressure (airspeed)
  */
 static inline float mavlink_msg_hil_sensor_get_diff_pressure(const mavlink_message_t* msg)
 {
@@ -524,7 +524,7 @@ static inline float mavlink_msg_hil_sensor_get_temperature(const mavlink_message
 /**
  * @brief Get field fields_updated from hil_sensor message
  *
- * @return  Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
+ * @return  Bitmap for fields that have updated since last message
  */
 static inline uint32_t mavlink_msg_hil_sensor_get_fields_updated(const mavlink_message_t* msg)
 {

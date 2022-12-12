@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-void UVOS_Board_Init( void );
+uint32_t UVOS_Board_Init( void );
 void SystemClock_Config( void );
 
 // ------------------------
@@ -50,7 +50,7 @@ void SystemClock_Config( void );
 // UVOS_LED
 // ------------------------
 #define UVOS_LED_HEARTBEAT 0
-// #define UVOS_LED_ALARM     1
+#define UVOS_LED_ALARM     1
 #ifdef UVOS_RFM22B_DEBUG_ON_TELEM
 #define UVOS_LED_D1        2
 #define UVOS_LED_D2        3
@@ -176,10 +176,10 @@ extern uint32_t uvos_packet_handler;
 
 #define UVOS_SYSCLK 96000000
 // Peripherals that belongs to APB1 are:
-// DAC			|PWR				|CAN1,2
-// I2C1,2,3		|UART4,5			|USART3,2
-// I2S3Ext		|SPI3/I2S3		|SPI2/I2S2
-// I2S2Ext		|IWDG				|WWDG
+// DAC      |PWR        |CAN1,2
+// I2C1,2,3   |UART4,5      |USART3,2
+// I2S3Ext    |SPI3/I2S3    |SPI2/I2S2
+// I2S2Ext    |IWDG       |WWDG
 // RTC/BKP reg
 // TIM2,3,4,5,6,7,12,13,14
 
@@ -188,7 +188,7 @@ extern uint32_t uvos_packet_handler;
 #define UVOS_PERIPHERAL_APB1_CLOCK UVOS_SYSCLK
 
 // Peripherals belonging to APB2
-// SDIO			|EXTI				|SYSCFG			|SPI1
+// SDIO     |EXTI       |SYSCFG     |SPI1
 // ADC1,2,3
 // USART1,6
 // TIM1,8,9,10,11
@@ -206,7 +206,7 @@ extern uint32_t uvos_packet_handler;
 #define UVOS_IRQ_PRIO_HIGHEST        4               // for USART etc...
 
 // -------------------------
-// Scheduler defines 
+// Scheduler defines
 // -------------------------
 #define UVOS_SCHED_UPDATE_HZ         1000
 
@@ -299,20 +299,20 @@ extern uint32_t uvos_packet_handler;
 // UVOS_ADC_PinGet(4) = VREF
 // UVOS_ADC_PinGet(5) = Temperature sensor
 // -------------------------
-#define UVOS_DMA_PIN_CONFIG                                                 \
-    {                                                                       \
-        { GPIOB, GPIO_Pin_1, ADC_Channel_9, false }, /* FLEXI-IO PIN 4     */ \
-        { GPIOB, GPIO_Pin_0, ADC_Channel_8, false }, /* FLEXI-IO PIN 5     */ \
-        { GPIOA, GPIO_Pin_7, ADC_Channel_7, false }, /* FLEXI-IO PIN 6     */ \
-        { GPIOA, GPIO_Pin_6, ADC_Channel_6, false }, /* FLEXI-IO PIN 7     */ \
-        { GPIOA, GPIO_Pin_5, ADC_Channel_5, false }, /* FLEXI-IO PIN 8     */ \
-                                                                            \
-        { GPIOA, GPIO_Pin_0, ADC_Channel_0, false }, /* SERVO PIN 5        */ \
-        { GPIOA, GPIO_Pin_1, ADC_Channel_1, false }, /* SERVO PIN 6        */ \
-                                                                            \
-        { NULL, 0, ADC_Channel_Vrefint, false }, /* Voltage reference  */ \
-        { NULL, 0, ADC_Channel_TempSensor, false }, /* Temperature sensor */ \
-    }
+#define UVOS_DMA_PIN_CONFIG                                               \
+  {                                                                       \
+    { GPIOB, GPIO_Pin_1, ADC_Channel_9, false }, /* FLEXI-IO PIN 4     */ \
+    { GPIOB, GPIO_Pin_0, ADC_Channel_8, false }, /* FLEXI-IO PIN 5     */ \
+    { GPIOA, GPIO_Pin_7, ADC_Channel_7, false }, /* FLEXI-IO PIN 6     */ \
+    { GPIOA, GPIO_Pin_6, ADC_Channel_6, false }, /* FLEXI-IO PIN 7     */ \
+    { GPIOA, GPIO_Pin_5, ADC_Channel_5, false }, /* FLEXI-IO PIN 8     */ \
+                                                                          \
+    { GPIOA, GPIO_Pin_0, ADC_Channel_0, false }, /* SERVO PIN 5        */ \
+    { GPIOA, GPIO_Pin_1, ADC_Channel_1, false }, /* SERVO PIN 6        */ \
+                                                                          \
+    { NULL, 0, ADC_Channel_Vrefint, false }, /* Voltage reference  */     \
+    { NULL, 0, ADC_Channel_TempSensor, false }, /* Temperature sensor */  \
+  }
 
 /* we have to do all this to satisfy the UVOS_ADC_MAX_SAMPLES define in uvos_adc.h */
 /* which is annoying because this then determines the rate at which we generate buffer turnover events */

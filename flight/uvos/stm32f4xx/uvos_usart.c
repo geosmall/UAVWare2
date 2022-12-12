@@ -55,7 +55,7 @@ static struct uvos_usart_dev * UVOS_USART_alloc( void )
   return usart_dev;
 }
 #else
-static struct uvos_usart_dev uvos_usart_devs[UVOS_USART_MAX_DEVS];
+static struct uvos_usart_dev uvos_usart_devs[ UVOS_USART_MAX_DEVS ];
 static uint8_t uvos_usart_num_devs;
 static struct uvos_usart_dev * UVOS_USART_alloc( void )
 {
@@ -65,7 +65,7 @@ static struct uvos_usart_dev * UVOS_USART_alloc( void )
     return NULL;
   }
 
-  usart_dev = &uvos_usart_devs[uvos_usart_num_devs++];
+  usart_dev = &uvos_usart_devs[ uvos_usart_num_devs++ ];
 
   memset( usart_dev, 0, sizeof( struct uvos_usart_dev ) );
   usart_dev->magic = UVOS_USART_DEV_MAGIC;

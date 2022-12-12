@@ -119,6 +119,7 @@ C_INCLUDES =  \
 -I./flight/uavobjects/inc \
 -I./flight/libraries/inc \
 -I./flight/libraries/math \
+-I./flight/libraries/mavlink \
 -I./flight/libraries/printf \
 -I./flight/targets/$(TARGET) \
 -I./flight/modules/System/inc \
@@ -139,9 +140,9 @@ C_INCLUDES =  \
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -std=gnu99 -fdata-sections -ffunction-sections
+CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -std=gnu99 -fdata-sections -ffunction-sections -Wno-address-of-packed-member -Wno-cast-align
 
-CPPFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -std=c++11 -fdata-sections -ffunction-sections
+CPPFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -std=c++11 -fdata-sections -ffunction-sections -Wno-address-of-packed-member -Wno-cast-align
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2

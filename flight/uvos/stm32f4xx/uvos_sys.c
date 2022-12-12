@@ -201,6 +201,8 @@ void UVOS_SYS_Init( void )
 #endif
   );
 
+return;
+
   /*
    * Configure all pins as input / pullup to avoid issues with
    * uncommitted pins, excepting special-function pins that we need to

@@ -4,8 +4,11 @@
 struct uvos_rcvr_driver {
   void    ( *init )( uint32_t id );
   int32_t ( *read )( uint32_t id, uint8_t channel );
+#if defined( UVOS_INCLUDE_FREERTOS )
   // xSemaphoreHandle (*get_semaphore)(uint32_t id, uint8_t channel);
+#else
   uint32_t  ( *get_flag )( uint32_t id );
+#endif // defined( UVOS_INCLUDE_FREERTOS )
   uint8_t ( *get_quality )( uint32_t id );
 };
 
@@ -27,11 +30,10 @@ enum UVOS_RCVR_errors {
 
 // Enumeration options for field ChannelGroups
 typedef enum {
-  MANUALCONTROLSETTINGS_CHANNELGROUPS_PPM = 0,
-  MANUALCONTROLSETTINGS_CHANNELGROUPS_SBUS = 1,
-  MANUALCONTROLSETTINGS_CHANNELGROUPS_IBUS = 2,
-  MANUALCONTROLSETTINGS_CHANNELGROUPS_NONE = 3
-} ManualControlSettingsChannelGroupsOptions;
+  UVOS_RCVR_CHANNELGROUPS_SBUS = 1,
+  UVOS_RCVR_CHANNELGROUPS_IBUS = 2,
+  UVOS_RCVR_CHANNELGROUPS_NONE = 3
+} uvos_rcvr_channelgroups_type_e;
 
 #endif /* UVOS_RCVR_H */
 

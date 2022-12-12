@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef UVOS_MATH_H
+#define UVOS_MATH_H
 
 // Generic float math constants
 #define M_E_F        2.71828182845904523536028747135f      /* e */
@@ -61,3 +61,4 @@
 #define SET_MASK(field, mask)   (field) |= (mask)
 #define UNSET_MASK(field, mask) (field) &= ~(mask)
 
+#endif // UVOS_MATH_H

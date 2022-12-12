@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A 170
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_udb_extra_f2_a_t {
  uint32_t sue_time; /*<  Serial UDB Extra Time*/
  int32_t sue_latitude; /*<  Serial UDB Extra Latitude*/
@@ -29,10 +29,10 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  int16_t sue_magFieldEarth0; /*<  Serial UDB Extra Magnetic Field Earth 0 */
  int16_t sue_magFieldEarth1; /*<  Serial UDB Extra Magnetic Field Earth 1 */
  int16_t sue_magFieldEarth2; /*<  Serial UDB Extra Magnetic Field Earth 2 */
- int16_t sue_svs; /*<  Serial UDB Extra Number of Sattelites in View*/
+ int16_t sue_svs; /*<  Serial UDB Extra Number of Satellites in View*/
  int16_t sue_hdop; /*<  Serial UDB Extra GPS Horizontal Dilution of Precision*/
  uint8_t sue_status; /*<  Serial UDB Extra Status*/
-}) mavlink_serial_udb_extra_f2_a_t;
+} mavlink_serial_udb_extra_f2_a_t;
 
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN 61
 #define MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_MIN_LEN 61
@@ -144,7 +144,7 @@ typedef struct __mavlink_serial_udb_extra_f2_a_t {
  * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
  * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
  * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_svs  Serial UDB Extra Number of Satellites in View
  * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -250,7 +250,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_pack(uint8_t system_id,
  * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
  * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
  * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_svs  Serial UDB Extra Number of Satellites in View
  * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  * @return length of the message in bytes (excluding serial stream start sign)
  */
@@ -382,7 +382,7 @@ static inline uint16_t mavlink_msg_serial_udb_extra_f2_a_encode_chan(uint8_t sys
  * @param sue_magFieldEarth0  Serial UDB Extra Magnetic Field Earth 0 
  * @param sue_magFieldEarth1  Serial UDB Extra Magnetic Field Earth 1 
  * @param sue_magFieldEarth2  Serial UDB Extra Magnetic Field Earth 2 
- * @param sue_svs  Serial UDB Extra Number of Sattelites in View
+ * @param sue_svs  Serial UDB Extra Number of Satellites in View
  * @param sue_hdop  Serial UDB Extra GPS Horizontal Dilution of Precision
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
@@ -470,7 +470,7 @@ static inline void mavlink_msg_serial_udb_extra_f2_a_send_struct(mavlink_channel
 
 #if MAVLINK_MSG_ID_SERIAL_UDB_EXTRA_F2_A_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
@@ -802,7 +802,7 @@ static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_magFieldEarth2(c
 /**
  * @brief Get field sue_svs from serial_udb_extra_f2_a message
  *
- * @return  Serial UDB Extra Number of Sattelites in View
+ * @return  Serial UDB Extra Number of Satellites in View
  */
 static inline int16_t mavlink_msg_serial_udb_extra_f2_a_get_sue_svs(const mavlink_message_t* msg)
 {

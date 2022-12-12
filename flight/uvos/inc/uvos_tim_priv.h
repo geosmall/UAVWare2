@@ -15,6 +15,8 @@
 #define TIM_IT_Break                       ((uint16_t)0x0080)
 #define IS_TIM_IT(IT) ((((IT) & (uint16_t)0xFF00) == 0x0000) && ((IT) != 0x0000))
 
+#define UVOS_TIM_ALL_FLAGS TIM_IT_Update | TIM_IT_CC1 | TIM_IT_CC2 | TIM_IT_CC3 | TIM_IT_CC4 | TIM_IT_Trigger | TIM_IT_Break
+
 #define IS_TIM_GET_IT(IT) (((IT) == TIM_IT_Update) || \
                            ((IT) == TIM_IT_CC1) || \
                            ((IT) == TIM_IT_CC2) || \

@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-void UVOS_Board_Init( void );
+uint32_t UVOS_Board_Init( void );
 void SystemClock_Config( void );
 
 // ------------------------

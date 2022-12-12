@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ALTITUDES 181
 
-MAVPACKED(
+
 typedef struct __mavlink_altitudes_t {
  uint32_t time_boot_ms; /*<  Timestamp (milliseconds since system boot)*/
  int32_t alt_gps; /*<  GPS altitude (MSL) in meters, expressed as * 1000 (millimeters)*/
@@ -12,7 +12,7 @@ typedef struct __mavlink_altitudes_t {
  int32_t alt_optical_flow; /*<  Optical flow altitude above ground in meters, expressed as * 1000 (millimeters)*/
  int32_t alt_range_finder; /*<  Rangefinder Altitude above ground in meters, expressed as * 1000 (millimeters)*/
  int32_t alt_extra; /*<  Extra altitude above ground in meters, expressed as * 1000 (millimeters)*/
-}) mavlink_altitudes_t;
+} mavlink_altitudes_t;
 
 #define MAVLINK_MSG_ID_ALTITUDES_LEN 28
 #define MAVLINK_MSG_ID_ALTITUDES_MIN_LEN 28
@@ -230,7 +230,7 @@ static inline void mavlink_msg_altitudes_send_struct(mavlink_channel_t chan, con
 
 #if MAVLINK_MSG_ID_ALTITUDES_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an

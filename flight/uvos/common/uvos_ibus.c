@@ -2,13 +2,13 @@
 
 #ifdef UVOS_INCLUDE_IBUS
 
-// 1 sync byte, 1 unknown byte, 10x channels (uint16_t), 8 unknown bytes, 2 crc bytes
+// 1 sync byte, 1 command code byte, 10x channels (uint16_t), 8 unknown bytes, 2 crc bytes
 #define UVOS_IBUS_BUFLEN   (1 + 1 + UVOS_IBUS_NUM_INPUTS * 2 + 8 + 2)
 #define UVOS_IBUS_SYNCBYTE 0x20
 #define UVOS_IBUS_MAGIC    0x84fd9a39
 
 /**
- * @brief IBus receiver driver internal state data
+ * @brief IBus receiver driver internal state data with double buffered channel data
  */
 struct uvos_ibus_dev {
   uint32_t magic;
@@ -16,7 +16,9 @@ struct uvos_ibus_dev {
   int      rx_timer;
   int      failsafe_timer;
   uint16_t checksum;
-  uint16_t channel_data[ UVOS_IBUS_NUM_INPUTS ];
+  bool     bank_0_write_enabled;
+  uint16_t channel_data_0[ UVOS_IBUS_NUM_INPUTS ];
+  uint16_t channel_data_1[ UVOS_IBUS_NUM_INPUTS ];
   uint8_t  rx_buf[ UVOS_IBUS_BUFLEN ];
 };
 
@@ -109,6 +111,7 @@ int32_t UVOS_IBUS_Init( uint32_t * ibus_id, const struct uvos_com_driver * drive
   *ibus_id = ( uint32_t )ibus_dev;
 
   UVOS_IBUS_SetAllChannels( ibus_dev, UVOS_RCVR_INVALID );
+  ibus_dev->bank_0_write_enabled = true;
 
   if ( !UVOS_RTC_RegisterTickCallback( UVOS_IBUS_Supervisor, *ibus_id ) ) {
     UVOS_Assert( 0 );
@@ -130,13 +133,18 @@ static int32_t UVOS_IBUS_Read( uint32_t context, uint8_t channel )
     return UVOS_RCVR_NODRIVER;
   }
 
-  return ibus_dev->channel_data[channel];
+  if ( ibus_dev->bank_0_write_enabled ) {
+    return ibus_dev->channel_data_1[ channel ];
+  } else {
+    return ibus_dev->channel_data_0[ channel ];
+  }
 }
 
 static void UVOS_IBUS_SetAllChannels( struct uvos_ibus_dev * ibus_dev, uint16_t value )
 {
   for ( int i = 0; i < UVOS_IBUS_NUM_INPUTS; i++ ) {
-    ibus_dev->channel_data[i] = value;
+    ibus_dev->channel_data_0[ i ] = value;
+    ibus_dev->channel_data_1[ i ] = value;
   }
 }
 
@@ -150,13 +158,13 @@ static uint16_t UVOS_IBUS_Receive( uint32_t context, uint8_t * buf, uint16_t buf
   }
 
   for ( int i = 0; i < buf_len; i++ ) {
-    if ( ibus_dev->buf_pos == 0 && buf[i] != UVOS_IBUS_SYNCBYTE ) {
+    if ( ibus_dev->buf_pos == 0 && buf[ i ] != UVOS_IBUS_SYNCBYTE ) {
       continue;
     }
 
-    ibus_dev->rx_buf[ibus_dev->buf_pos++] = buf[i];
+    ibus_dev->rx_buf[ ibus_dev->buf_pos++ ] = buf[i];
     if ( ibus_dev->buf_pos <= UVOS_IBUS_BUFLEN - 2 ) {
-      ibus_dev->checksum -= buf[i];
+      ibus_dev->checksum -= buf[ i ];
     } else if ( ibus_dev->buf_pos == UVOS_IBUS_BUFLEN ) {
       UVOS_IBUS_UnpackFrame( ibus_dev );
     }
@@ -182,19 +190,24 @@ static void UVOS_IBUS_ResetBuffer( struct uvos_ibus_dev * ibus_dev )
 
 static void UVOS_IBUS_UnpackFrame( struct uvos_ibus_dev * ibus_dev )
 {
-  uint16_t rxsum = ibus_dev->rx_buf[UVOS_IBUS_BUFLEN - 1] << 8 |
-                   ibus_dev->rx_buf[UVOS_IBUS_BUFLEN - 2];
+  uint16_t rxsum = ibus_dev->rx_buf[ UVOS_IBUS_BUFLEN - 1 ] << 8 |
+                   ibus_dev->rx_buf[ UVOS_IBUS_BUFLEN - 2 ];
 
   if ( ibus_dev->checksum != rxsum ) {
     goto out_fail;
   }
 
-  uint16_t * chan = ( uint16_t * )&ibus_dev->rx_buf[2];
+  uint16_t * chan = ( uint16_t * )&ibus_dev->rx_buf[ 2 ];
   for ( int i = 0; i < UVOS_IBUS_NUM_INPUTS; i++ ) {
-    ibus_dev->channel_data[i] = *chan++;
+    if ( ibus_dev->bank_0_write_enabled ) {
+      ibus_dev->channel_data_0[ i ] = *chan++;
+    } else {
+      ibus_dev->channel_data_1[ i ] = *chan++;
+    }
   }
 
   ibus_dev->failsafe_timer = 0;
+  ibus_dev->bank_0_write_enabled = !ibus_dev->bank_0_write_enabled;
 
 out_fail:
   UVOS_IBUS_ResetBuffer( ibus_dev );

@@ -3,11 +3,11 @@
 
 #define MAVLINK_MSG_ID_STATUSTEXT 253
 
-MAVPACKED(
+
 typedef struct __mavlink_statustext_t {
  uint8_t severity; /*<  Severity of status. Relies on the definitions within RFC-5424.*/
  char text[50]; /*<  Status text message, without null termination character*/
-}) mavlink_statustext_t;
+} mavlink_statustext_t;
 
 #define MAVLINK_MSG_ID_STATUSTEXT_LEN 51
 #define MAVLINK_MSG_ID_STATUSTEXT_MIN_LEN 51
@@ -164,7 +164,7 @@ static inline void mavlink_msg_statustext_send_struct(mavlink_channel_t chan, co
 
 #if MAVLINK_MSG_ID_STATUSTEXT_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an

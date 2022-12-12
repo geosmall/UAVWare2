@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_SERIAL_CONTROL 126
 
-MAVPACKED(
+
 typedef struct __mavlink_serial_control_t {
  uint32_t baudrate; /*< [bits/s] Baudrate of transfer. Zero means no change.*/
  uint16_t timeout; /*< [ms] Timeout for reply data*/
@@ -11,7 +11,7 @@ typedef struct __mavlink_serial_control_t {
  uint8_t flags; /*<  Bitmap of serial control flags.*/
  uint8_t count; /*< [bytes] how many bytes in this transfer*/
  uint8_t data[70]; /*<  serial data*/
-}) mavlink_serial_control_t;
+} mavlink_serial_control_t;
 
 #define MAVLINK_MSG_ID_SERIAL_CONTROL_LEN 79
 #define MAVLINK_MSG_ID_SERIAL_CONTROL_MIN_LEN 79
@@ -212,7 +212,7 @@ static inline void mavlink_msg_serial_control_send_struct(mavlink_channel_t chan
 
 #if MAVLINK_MSG_ID_SERIAL_CONTROL_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an

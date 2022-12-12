@@ -20,8 +20,6 @@ struct uvos_tim_dev {
   uint32_t context;
 };
 
-#define UVOS_TIM_ALL_FLAGS TIM_IT_CC1 | TIM_IT_CC2 | TIM_IT_CC3 | TIM_IT_CC4 | TIM_IT_Trigger | TIM_IT_Update
-
 // STM32 SPL compatibility ------------------------------------>>>
 
 /**
@@ -92,10 +90,10 @@ static inline void TIM_ClearITPendingBit( TIM_TypeDef * TIMx, uint16_t TIM_IT )
 
 // STM32 SPL compatibility ------------------------------------<<<
 
-static bool UVOS_TIM_validate( struct uvos_tim_dev * tim_dev )
-{
-  return tim_dev->magic == UVOS_TIM_DEV_MAGIC;
-}
+// static bool UVOS_TIM_validate( struct uvos_tim_dev * tim_dev )
+// {
+//   return tim_dev->magic == UVOS_TIM_DEV_MAGIC;
+// }
 
 static struct uvos_tim_dev uvos_tim_devs[UVOS_TIM_MAX_DEVS];
 static uint8_t uvos_tim_num_devs;

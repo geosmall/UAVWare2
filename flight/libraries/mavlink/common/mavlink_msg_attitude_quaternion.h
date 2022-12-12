@@ -3,7 +3,7 @@
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION 31
 
-MAVPACKED(
+
 typedef struct __mavlink_attitude_quaternion_t {
  uint32_t time_boot_ms; /*< [ms] Timestamp (time since system boot).*/
  float q1; /*<  Quaternion component 1, w (1 in null-rotation)*/
@@ -13,7 +13,7 @@ typedef struct __mavlink_attitude_quaternion_t {
  float rollspeed; /*< [rad/s] Roll angular speed*/
  float pitchspeed; /*< [rad/s] Pitch angular speed*/
  float yawspeed; /*< [rad/s] Yaw angular speed*/
-}) mavlink_attitude_quaternion_t;
+} mavlink_attitude_quaternion_t;
 
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_LEN 32
 #define MAVLINK_MSG_ID_ATTITUDE_QUATERNION_MIN_LEN 32
@@ -242,7 +242,7 @@ static inline void mavlink_msg_attitude_quaternion_send_struct(mavlink_channel_t
 
 #if MAVLINK_MSG_ID_ATTITUDE_QUATERNION_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an

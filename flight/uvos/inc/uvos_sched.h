@@ -14,7 +14,7 @@ struct uvos_sched_task {
 
 extern void UVOS_SCHED_init( const TIM_TypeDef * timer );
 extern void UVOS_SCHED_start( void );
-extern void UVOS_SCHED_stop( void );
+// extern void UVOS_SCHED_stop( void );
 extern int32_t UVOS_SCHED_dispatch_tasks( void );
 extern void UVOS_SCHED_tick_handler( uint32_t tim_id, uint32_t context, uint8_t chan_idx, uint16_t count );
 extern int32_t UVOS_SCHED_add_task( void ( * pTask )(), const uint32_t DELAY, const uint32_t PERIOD );
