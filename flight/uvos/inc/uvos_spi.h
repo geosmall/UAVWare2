@@ -17,9 +17,9 @@ typedef enum {
 extern int32_t UVOS_SPI_SetClockSpeed(uint32_t spi_id, SPIPrescalerTypeDef spi_prescaler);
 extern int32_t UVOS_SPI_RC_PinSet(uint32_t spi_id, uint32_t slave_id, uint8_t pin_value);
 extern int32_t UVOS_SPI_TransferByte(uint32_t spi_id, uint8_t b);
-// extern int32_t UVOS_SPI_TransferBlock(uint32_t spi_id, const uint8_t *send_buffer, uint8_t *receive_buffer, uint16_t len, void *callback);
-extern int32_t UVOS_SPI_TransferBlock_DMA( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback );
-extern int32_t UVOS_SPI_TransferBlock_PIO( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len );
+extern int32_t UVOS_SPI_TransferBlock(uint32_t spi_id, const uint8_t *send_buffer, uint8_t *receive_buffer, uint16_t len, void *callback);
+// extern int32_t UVOS_SPI_TransferBlock_DMA( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback );
+// extern int32_t UVOS_SPI_TransferBlock_PIO( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len );
 extern int32_t UVOS_SPI_Busy(uint32_t spi_id);
 extern int32_t UVOS_SPI_ClaimBus(uint32_t spi_id);
 extern int32_t UVOS_SPI_ClaimBusISR(uint32_t spi_id, bool *woken);

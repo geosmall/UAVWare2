@@ -44,11 +44,11 @@ bool UVOS_USER_BTN_IRQHandler( void )
 
 static const struct uvos_exti_cfg uvos_exti_user_btn_cfg __exti_config = {
   .vector = UVOS_USER_BTN_IRQHandler,
-  .line   = LL_EXTI_LINE_3,
+  .line   = LL_EXTI_LINE_13,
   .pin    = {
-    .gpio = GPIOB,
+    .gpio = GPIOC,
     .init = {
-      .Pin   = LL_GPIO_PIN_3,
+      .Pin   = LL_GPIO_PIN_13,
       .Mode = LL_GPIO_MODE_INPUT,
       .Speed = LL_GPIO_SPEED_FREQ_HIGH,
       .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
@@ -57,7 +57,7 @@ static const struct uvos_exti_cfg uvos_exti_user_btn_cfg __exti_config = {
   },
   .irq                                       = {
     .init                                  = {
-      .NVIC_IRQChannel    = EXTI3_IRQn,
+      .NVIC_IRQChannel    = EXTI15_10_IRQn,
       .NVIC_IRQChannelPreemptionPriority = UVOS_IRQ_PRIO_MID,
       .NVIC_IRQChannelSubPriority        = 0,
       .NVIC_IRQChannelCmd = ENABLE,
@@ -65,7 +65,7 @@ static const struct uvos_exti_cfg uvos_exti_user_btn_cfg __exti_config = {
   },
   .exti                                      = {
     .init                                  = {
-      .Line_0_31    = LL_EXTI_LINE_3, // matches above GPIO pin
+      .Line_0_31    = LL_EXTI_LINE_13, // matches above GPIO pin
       .LineCommand  = ENABLE,
       .Mode         = LL_EXTI_MODE_IT,
       .Trigger      = LL_EXTI_TRIGGER_RISING,
@@ -132,6 +132,9 @@ uint32_t uvos_com_rf_id        = 0;
 // uint32_t uvos_com_msp_id       = 0;
 uint32_t uvos_com_mavlink_id   = 0;
 
+uintptr_t uvos_uavo_settings_fs_id;
+uintptr_t uvos_user_fs_id;
+
 /* Scheduler timer handle */
 // static uint32_t uvos_sched_tim_id     = 0;
 
@@ -188,12 +191,6 @@ static void UVOS_Board_configure_ibus( const struct uvos_usart_cfg * usart_cfg )
   uvos_rcvr_group_map[ UVOS_RCVR_CHANNELGROUPS_IBUS ] = uvos_ibus_rcvr_id;
 }
 
-/**
- * UVOS_Board_Init()
- * initializes all the core subsystems on this specific hardware
- * called from uavware.c
- */
-
 void putchar_( char c )
 {
 #ifdef UVOS_COM_DEBUG
@@ -206,10 +203,15 @@ void putchar_( char c )
 
 // }
 
+/**
+ * UVOS_Board_Init()
+ * initializes all the core subsystems on this specific hardware
+ * called from uavware.c
+ */
 uint32_t UVOS_Board_Init( void )
 {
 
-#if defined(UVOS_INCLUDE_LED)
+#if defined( UVOS_INCLUDE_LED )
   const struct uvos_gpio_cfg * led_cfg  = &uvos_led_cfg;
   UVOS_Assert( led_cfg );
   UVOS_LED_Init( led_cfg );
@@ -220,7 +222,46 @@ uint32_t UVOS_Board_Init( void )
     UVOS_DEBUG_Assert( 0 );
   }
 
-#if defined(UVOS_INCLUDE_RTC)
+  /* Set up the SPI interface to the flash */
+  if ( UVOS_SPI_Init( &uvos_spi_telem_flash_id, &uvos_spi_telem_flash_cfg ) ) {
+    UVOS_DEBUG_Assert( 0 );
+  }
+
+#if defined( UVOS_INCLUDE_FLASH )
+  /* Connect flash to the appropriate interface and configure it */
+  uintptr_t flash_id;
+
+  // Initialize the external USER flash
+  if ( UVOS_Flash_Jedec_Init( &flash_id, uvos_spi_telem_flash_id, 0 ) ) {
+    UVOS_DEBUG_Assert( 0 );
+  }
+
+  // UVOS_Flash_Jedec_EraseChip( flash_id );
+#if defined( ERASE_SYSTEM_FLASH )
+  UVOS_FLASHFS_Format( uvos_uavo_settings_fs_id );
+#endif // defined( ERASE_SYSTEM_FLASH )
+#if defined( ERASE_USER_FLASH )
+  UVOS_FLASHFS_Format( uvos_user_fs_id );
+#endif // defined( ERASE_USER_FLASH )
+
+// #include "fs.h"
+//   FS_Init( flash_id );
+//   FS_RunBenchmark();
+
+  if ( UVOS_FLASHFS_Logfs_Init( &uvos_uavo_settings_fs_id, &flashfs_external_system_cfg, &uvos_jedec_flash_driver, flash_id ) ) {
+    UVOS_DEBUG_Assert( 0 );
+  }
+
+  if ( UVOS_FLASHFS_Logfs_Init( &uvos_user_fs_id, &flashfs_external_user_cfg, &uvos_jedec_flash_driver, flash_id ) ) {
+    UVOS_DEBUG_Assert( 0 );
+  }
+#endif /* if defined(UVOS_INCLUDE_FLASH) */
+
+#if defined( UVOS_INCLUDE_EXTI )
+  UVOS_EXTI_Init( &uvos_exti_user_btn_cfg );
+#endif // defined( UVOS_INCLUDE_EXTI )
+
+#if defined( UVOS_INCLUDE_RTC )
   UVOS_RTC_Init( &uvos_rtc_main_cfg );
 #endif
 
@@ -257,10 +298,6 @@ uint32_t UVOS_Board_Init( void )
   if ( UVOS_MPU_Init( uvos_spi_gyro_id, 0, &uvos_mpu_cfg ) ) {
     UVOS_Assert( 0 );
   }
-
-#if defined( UVOS_INCLUDE_EXTI )
-  UVOS_EXTI_Init( &uvos_exti_user_btn_cfg );
-#endif // defined( UVOS_INCLUDE_EXTI )
 
   UVOS_SCHED_init( tim_11_cfg.timer );
 

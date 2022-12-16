@@ -26,15 +26,21 @@ int main( void )
   UVOS_SYS_Init();
 
   /* board driver init */
-  UVOS_Board_Init();
+  if ( UVOS_Board_Init() ) {
+#ifdef UVOS_INCLUDE_DEBUG_CONSOLE
+    UVOS_DEBUG_Panic( "System initialization Error\r\n" );
+#endif // UVOS_INCLUDE_DEBUG_CONSOLE
+  } else {
+#ifdef UVOS_INCLUDE_DEBUG_CONSOLE
+    UVOS_COM_SendString( UVOS_COM_DEBUG, "System initialized\r\n" );
+#endif // UVOS_INCLUDE_DEBUG_CONSOLE
+  }
 
   /* Start up System module, create main System thread */
   // SystemModStart();
 
   /* Start the FreeRTOS scheduler */
   // vTaskStartScheduler();
-
-  printf_( "Debug console initialized\r\n" );
 
   /* If all is well we will never reach here as the scheduler will now be running. */
   /* Do some UVOS_LED_HEARTBEAT to user that something bad just happened */

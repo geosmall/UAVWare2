@@ -51,7 +51,7 @@ Servo out 6: PB5  - TIM3_CH2 (41)
 
 #include <uvos_led_priv.h>
 static const struct uvos_gpio uvos_leds[] = {
-  [UVOS_LED_HEARTBEAT] = {
+  [ UVOS_LED_HEARTBEAT ] = {
     .pin               =             {
       .gpio = GPIOB,
       .init =             {
@@ -64,7 +64,7 @@ static const struct uvos_gpio uvos_leds[] = {
     },
     .active_low         = true
   },
-  [UVOS_LED_ALARM] =     {
+  [ UVOS_LED_ALARM ] =     {
     .pin               =             {
       .gpio = GPIOB,
       .init =             {
@@ -86,27 +86,12 @@ static const struct uvos_gpio_cfg uvos_led_cfg = {
 
 #endif /* UVOS_INCLUDE_LED */
 
-#if defined(UVOS_INCLUDE_SPI)
+#if defined( UVOS_INCLUDE_SPI )
 #include <uvos_spi_priv.h>
 
 /*
  * SPI1 Interface
  * Used for MPU6000 gyro and accelerometer
- 
-  SPI_InitStruct.TransferDirection = LL_SPI_FULL_DUPLEX;
-  SPI_InitStruct.Mode = LL_SPI_MODE_MASTER;
-  SPI_InitStruct.DataWidth = LL_SPI_DATAWIDTH_8BIT;
-  SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_LOW;
-  SPI_InitStruct.ClockPhase = LL_SPI_PHASE_1EDGE;
-  SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;
-  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV128;
-  SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;
-  SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;
-  SPI_InitStruct.CRCPoly = 10;
-
-  LL_SPI_Init(SPI1, &SPI_InitStruct);
-  LL_SPI_SetStandard(SPI1, LL_SPI_PROTOCOL_MOTOROLA);
-
  */
 void UVOS_SPI_gyro_irq_handler( void );
 void DMA2_Stream2_IRQHandler( void ) __attribute__( ( alias( "UVOS_SPI_gyro_irq_handler" ) ) );
@@ -235,7 +220,169 @@ void UVOS_SPI_gyro_irq_handler( void )
   UVOS_SPI_IRQ_Handler( uvos_spi_gyro_id );
 }
 
+/*
+ * SPI2 Interface
+ * Used for Flash chip
+ */
+void UVOS_SPI_telem_flash_irq_handler( void );
+void DMA1_Stream3_IRQHandler( void ) __attribute__( ( alias( "UVOS_SPI_telem_flash_irq_handler" ) ) );
+void DMA1_Stream4_IRQHandler( void ) __attribute__( ( alias( "UVOS_SPI_telem_flash_irq_handler" ) ) );
+static const struct uvos_spi_cfg uvos_spi_telem_flash_cfg = {
+  .regs  = SPI2,
+  .init  = {
+    .TransferDirection = LL_SPI_FULL_DUPLEX,
+    .Mode = LL_SPI_MODE_MASTER,
+    .DataWidth = LL_SPI_DATAWIDTH_8BIT,
+    .ClockPolarity = LL_SPI_POLARITY_LOW,
+    .ClockPhase = LL_SPI_PHASE_1EDGE,
+    .NSS = LL_SPI_NSS_SOFT,
+    .BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV8,
+    .BitOrder = LL_SPI_MSB_FIRST,
+    .CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE,
+    .CRCPoly = 7,
+  },
+  .use_crc = false,
+  .dma     = {
+    .irq                                       = {
+      // Note this is the stream ID that triggers interrupts (in this case RX)
+      .flags = ( DMA_LISR_TCIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 ),
+      .init  = {
+        .NVIC_IRQChannel    = DMA1_Stream3_IRQn,
+        .NVIC_IRQChannelPreemptionPriority = UVOS_IRQ_PRIO_HIGH,
+        .NVIC_IRQChannelSubPriority        = 0,
+        .NVIC_IRQChannelCmd = ENABLE,
+      },
+    },
+
+    .rx                                        = {
+      .DMAx = DMA1,
+      .stream = LL_DMA_STREAM_3,
+      .init    = {
+        .Channel = LL_DMA_CHANNEL_0,
+        .PeriphOrM2MSrcAddress = ( uint32_t ) & ( SPI2->DR ),
+        .MemoryOrM2MDstAddress = ( uint32_t ) NULL,
+        .Direction = LL_DMA_DIRECTION_PERIPH_TO_MEMORY,
+        .Mode = LL_DMA_MODE_NORMAL,
+        .PeriphOrM2MSrcIncMode = LL_DMA_PERIPH_NOINCREMENT,
+        .MemoryOrM2MDstIncMode = LL_DMA_MEMORY_INCREMENT,
+        .PeriphOrM2MSrcDataSize = LL_DMA_PDATAALIGN_BYTE,
+        .MemoryOrM2MDstDataSize = LL_DMA_MDATAALIGN_BYTE,
+        .NbData = ( uint32_t ) NULL,
+        .Priority = LL_DMA_PRIORITY_MEDIUM,
+        .FIFOMode = LL_DMA_FIFOMODE_DISABLE,
+        .FIFOThreshold = LL_DMA_FIFOTHRESHOLD_FULL,
+        .MemBurst = LL_DMA_MBURST_SINGLE,
+        .PeriphBurst = LL_DMA_PBURST_SINGLE,
+      },
+    },
+    .tx                                        = {
+      .DMAx = DMA1,
+      .stream = LL_DMA_STREAM_4,
+      .init    = {
+        .Channel = LL_DMA_CHANNEL_0,
+        .PeriphOrM2MSrcAddress = ( uint32_t ) & ( SPI2->DR ),
+        .MemoryOrM2MDstAddress = ( uint32_t ) NULL,
+        .Direction = LL_DMA_DIRECTION_MEMORY_TO_PERIPH,
+        .Mode = LL_DMA_MODE_NORMAL,
+        .PeriphOrM2MSrcIncMode = LL_DMA_PERIPH_NOINCREMENT,
+        .MemoryOrM2MDstIncMode = LL_DMA_MEMORY_INCREMENT,
+        .PeriphOrM2MSrcDataSize = LL_DMA_PDATAALIGN_BYTE,
+        .MemoryOrM2MDstDataSize = LL_DMA_MDATAALIGN_BYTE,
+        .NbData = ( uint32_t ) NULL,
+        .Priority = LL_DMA_PRIORITY_MEDIUM,
+        .FIFOMode = LL_DMA_FIFOMODE_DISABLE,
+        .FIFOThreshold = LL_DMA_FIFOTHRESHOLD_FULL,
+        .MemBurst = LL_DMA_MBURST_SINGLE,
+        .PeriphBurst = LL_DMA_PBURST_SINGLE,
+      },
+    },
+  },
+  .sclk                                          = {
+    .gpio = GPIOB,
+    .init = {
+      .Pin   = LL_GPIO_PIN_13,
+      .Mode = LL_GPIO_MODE_ALTERNATE,
+      .Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH,
+      .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
+      .Pull = LL_GPIO_PULL_NO,
+      .Alternate = LL_GPIO_AF_5,
+    },
+  },
+  .miso                                          = {
+    .gpio = GPIOB,
+    .init = {
+      .Pin   = LL_GPIO_PIN_14,
+      .Mode = LL_GPIO_MODE_ALTERNATE,
+      .Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH,
+      .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
+      .Pull = LL_GPIO_PULL_NO,
+      .Alternate = LL_GPIO_AF_5,
+    },
+  },
+  .mosi                                          = {
+    .gpio = GPIOB,
+    .init = {
+      .Pin   = LL_GPIO_PIN_15,
+      .Mode = LL_GPIO_MODE_ALTERNATE,
+      .Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH,
+      .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
+      .Pull = LL_GPIO_PULL_NO,
+      .Alternate = LL_GPIO_AF_5,
+    },
+  },
+  .slave_count                                   = 1,
+  .ssel                                          = {
+    {
+      // Flash
+      .gpio = GPIOB,
+      .init = {
+        .Pin   = LL_GPIO_PIN_12,
+        .Mode = LL_GPIO_MODE_OUTPUT,
+        .Speed = LL_GPIO_SPEED_FREQ_HIGH,
+        .OutputType = LL_GPIO_OUTPUT_PUSHPULL,
+        .Pull = LL_GPIO_PULL_UP,
+      },
+    },
+  },
+};
+
+static uint32_t uvos_spi_telem_flash_id;
+void UVOS_SPI_telem_flash_irq_handler( void )
+{
+  /* Call into the generic code to handle the IRQ for this specific device */
+  UVOS_SPI_IRQ_Handler( uvos_spi_telem_flash_id );
+}
+
 #endif /* UVOS_INCLUDE_SPI */
+
+#if defined( UVOS_INCLUDE_FLASH )
+#include "uvos_flashfs_logfs_priv.h"
+#include "uvos_flash_jedec_priv.h"
+// #include "uvos_flash_internal_priv.h"
+
+static const struct flashfs_logfs_cfg flashfs_external_user_cfg = {
+  .fs_magic      = 0x99abceff,
+  .total_fs_size = 0x001C0000, /* 2M bytes (32 sectors = entire chip) */
+  .arena_size    = 0x000E0000, /* biggest possible arena size fssize/2 */
+  .slot_size     = 0x00000100, /* 256 bytes */
+
+  .start_offset  = 0x00040000, /* start offset */
+  .sector_size   = 0x00010000, /* 64K bytes */
+  .page_size     = 0x00000100, /* 256 bytes */
+};
+
+static const struct flashfs_logfs_cfg flashfs_external_system_cfg = {
+  .fs_magic      = 0x99bbcdef,
+  .total_fs_size = 0x00040000, /* 2M bytes (32 sectors = entire chip) */
+  .arena_size    = 0x00010000, /* 256 * slot size */
+  .slot_size     = 0x00000100, /* 256 bytes */
+
+  .start_offset  = 0,          /* start at the beginning of the chip */
+  .sector_size   = 0x00010000, /* 64K bytes */
+  .page_size     = 0x00000100, /* 256 bytes */
+};
+
+#endif /* UVOS_INCLUDE_FLASH */
 
 #include <uvos_usart_priv.h>
 

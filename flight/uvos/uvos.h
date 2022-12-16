@@ -132,8 +132,6 @@ extern "C" {
 #include <uvos_mpu.h>
 #endif
 
-#if 0 // GLS
-
 #ifdef UVOS_INCLUDE_SDCARD
 #define LOG_FILENAME "startup.log"
 #include <dosfs.h>
@@ -146,8 +144,6 @@ extern "C" {
 #include <uvos_flash.h>
 #include <uvos_flashfs.h>
 #endif
-
-#endif // GLS
 
 /* UVOS abstract comms interface with options */
 #ifdef UVOS_INCLUDE_COM

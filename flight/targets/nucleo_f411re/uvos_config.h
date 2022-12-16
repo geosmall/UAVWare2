@@ -36,7 +36,7 @@
 // #define UVOS_INCLUDE_I2C
 #define UVOS_INCLUDE_SPI
 #define UVOS_INCLUDE_GPIO
-// #define UVOS_INCLUDE_EXTI
+#define UVOS_INCLUDE_EXTI
 // #define UVOS_INCLUDE_WDG
 
 /* UVOS sensor interfaces */
@@ -54,10 +54,10 @@
 /* UVOS common peripherals */
 #define UVOS_INCLUDE_LED
 #define UVOS_INCLUDE_SERVO
-// #define UVOS_INCLUDE_FLASH
+#define UVOS_INCLUDE_FLASH
 // #define UVOS_INCLUDE_SDCARD
-// #define UVOS_FLASHFS_LOGFS_MAX_DEVS 5
-// #define UVOS_INCLUDE_FLASH_LOGFS_SETTINGS
+#define UVOS_FLASHFS_LOGFS_MAX_DEVS 5
+#define UVOS_INCLUDE_FLASH_LOGFS_SETTINGS
 
 /* UVOS abstract comms interface with options */
 #define UVOS_INCLUDE_COM

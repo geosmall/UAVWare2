@@ -49,69 +49,104 @@ static uint8_t UVOS_EXTI_line_to_index( uint32_t line )
 uint32_t UVOS_EXTI_gpio_port_to_exti_source_port( GPIO_TypeDef * gpio_port )
 {
   switch ( ( uint32_t )gpio_port ) {
-  case ( uint32_t )GPIOA: return LL_SYSCFG_EXTI_PORTA;
-
-  case ( uint32_t )GPIOB: return LL_SYSCFG_EXTI_PORTB;
-
-  case ( uint32_t )GPIOC: return LL_SYSCFG_EXTI_PORTC;
-
-  case ( uint32_t )GPIOD: return LL_SYSCFG_EXTI_PORTD;
-
-  case ( uint32_t )GPIOE: return LL_SYSCFG_EXTI_PORTE;
-
+  case ( uint32_t )GPIOA:
+    return LL_SYSCFG_EXTI_PORTA;
+    break;
+  case ( uint32_t )GPIOB:
+    return LL_SYSCFG_EXTI_PORTB;
+    break;
+  case ( uint32_t )GPIOC:
+    return LL_SYSCFG_EXTI_PORTC;
+    break;
+  case ( uint32_t )GPIOD:
+    return LL_SYSCFG_EXTI_PORTD;
+    break;
+  case ( uint32_t )GPIOE:
+    return LL_SYSCFG_EXTI_PORTE;
+    break;
 #if defined(GPIOF)
-  case ( uint32_t )GPIOF: return LL_SYSCFG_EXTI_PORTF;
+  case ( uint32_t )GPIOF:
+    return LL_SYSCFG_EXTI_PORTF;
+    break;
 #endif
-
 #if defined(GPIOG)
-  case ( uint32_t )GPIOG: return LL_SYSCFG_EXTI_PORTG;
+  case ( uint32_t )GPIOG:
+    return LL_SYSCFG_EXTI_PORTG;
+    break;
 #endif
-
+  default:
+    UVOS_Assert( 0 );
+    return 0xFF;
   }
 
   UVOS_Assert( 0 );
   return 0xFF;
 }
+
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
 
 uint32_t UVOS_EXTI_gpio_pin_to_exti_source_pin( uint32_t gpio_pin )
 {
   switch ( ( uint32_t )gpio_pin ) {
-  case LL_GPIO_PIN_0: return LL_SYSCFG_EXTI_LINE0;
-
-  case LL_GPIO_PIN_1: return LL_SYSCFG_EXTI_LINE1;
-
-  case LL_GPIO_PIN_2: return LL_SYSCFG_EXTI_LINE2;
-
-  case LL_GPIO_PIN_3: return LL_SYSCFG_EXTI_LINE3;
-
-  case LL_GPIO_PIN_4: return LL_SYSCFG_EXTI_LINE4;
-
-  case LL_GPIO_PIN_5: return LL_SYSCFG_EXTI_LINE5;
-
-  case LL_GPIO_PIN_6: return LL_SYSCFG_EXTI_LINE6;
-
-  case LL_GPIO_PIN_7: return LL_SYSCFG_EXTI_LINE7;
-
-  case LL_GPIO_PIN_8: return LL_SYSCFG_EXTI_LINE8;
-
-  case LL_GPIO_PIN_9: return LL_SYSCFG_EXTI_LINE9;
-
-  case LL_GPIO_PIN_10: return LL_SYSCFG_EXTI_LINE10;
-
-  case LL_GPIO_PIN_11: return LL_SYSCFG_EXTI_LINE11;
-
-  case LL_GPIO_PIN_12: return LL_SYSCFG_EXTI_LINE12;
-
-  case LL_GPIO_PIN_13: return LL_SYSCFG_EXTI_LINE13;
-
-  case LL_GPIO_PIN_14: return LL_SYSCFG_EXTI_LINE14;
-
-  case LL_GPIO_PIN_15: return LL_SYSCFG_EXTI_LINE15;
+  case LL_GPIO_PIN_0:
+    return LL_SYSCFG_EXTI_LINE0;
+    break;
+  case LL_GPIO_PIN_1:
+    return LL_SYSCFG_EXTI_LINE1;
+    break;
+  case LL_GPIO_PIN_2:
+    return LL_SYSCFG_EXTI_LINE2;
+    break;
+  case LL_GPIO_PIN_3:
+    return LL_SYSCFG_EXTI_LINE3;
+    break;
+  case LL_GPIO_PIN_4:
+    return LL_SYSCFG_EXTI_LINE4;
+    break;
+  case LL_GPIO_PIN_5:
+    return LL_SYSCFG_EXTI_LINE5;
+    break;
+  case LL_GPIO_PIN_6:
+    return LL_SYSCFG_EXTI_LINE6;
+    break;
+  case LL_GPIO_PIN_7:
+    return LL_SYSCFG_EXTI_LINE7;
+    break;
+  case LL_GPIO_PIN_8:
+    return LL_SYSCFG_EXTI_LINE8;
+    break;
+  case LL_GPIO_PIN_9:
+    return LL_SYSCFG_EXTI_LINE9;
+    break;
+  case LL_GPIO_PIN_10:
+    return LL_SYSCFG_EXTI_LINE10;
+    break;
+  case LL_GPIO_PIN_11:
+    return LL_SYSCFG_EXTI_LINE11;
+    break;
+  case LL_GPIO_PIN_12:
+    return LL_SYSCFG_EXTI_LINE12;
+    break;
+  case LL_GPIO_PIN_13:
+    return LL_SYSCFG_EXTI_LINE13;
+    break;
+  case LL_GPIO_PIN_14:
+    return LL_SYSCFG_EXTI_LINE14;
+    break;
+  case LL_GPIO_PIN_15:
+    return LL_SYSCFG_EXTI_LINE15;
+    break;
+  default:
+    UVOS_Assert( 0 );
+    return 0;
   }
 
   UVOS_Assert( 0 );
-  return 0xFF;
+  return 0;
 }
+
+#pragma GCC pop_options
 
 int32_t UVOS_EXTI_Init( const struct uvos_exti_cfg * cfg )
 {
@@ -132,9 +167,9 @@ int32_t UVOS_EXTI_Init( const struct uvos_exti_cfg * cfg )
   LL_GPIO_Init( cfg->pin.gpio, ( LL_GPIO_InitTypeDef * ) & cfg->pin.init );
 
   /* Set up the EXTI interrupt source */
-  uint8_t exti_source_port = UVOS_EXTI_gpio_port_to_exti_source_port( cfg->pin.gpio );
+  uint32_t exti_source_port = UVOS_EXTI_gpio_port_to_exti_source_port( cfg->pin.gpio );
   /* Following is not entirely correct! There is cfg->pin.pin_source to serve this purpose, and GPIO_Pin can also contain more than one bit set */
-  uint8_t exti_source_pin  = UVOS_EXTI_gpio_pin_to_exti_source_pin( cfg->pin.init.Pin );
+  uint32_t exti_source_pin  = UVOS_EXTI_gpio_pin_to_exti_source_pin( cfg->pin.init.Pin );
   // SYSCFG_EXTILineConfig( exti_source_port, exti_source_pin );
   // __STATIC_INLINE void LL_SYSCFG_SetEXTISource( uint32_t Port, uint32_t Line )
   LL_SYSCFG_SetEXTISource( exti_source_port, exti_source_pin );
@@ -195,7 +230,7 @@ static void UVOS_EXTI_0_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 0, xHigherPriorityTaskWoken );
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -209,7 +244,7 @@ static void UVOS_EXTI_1_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 1, xHigherPriorityTaskWoken );
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -223,7 +258,7 @@ static void UVOS_EXTI_2_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 2, xHigherPriorityTaskWoken );
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -237,7 +272,7 @@ static void UVOS_EXTI_3_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 3, xHigherPriorityTaskWoken );
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -251,7 +286,7 @@ static void UVOS_EXTI_4_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 4, xHigherPriorityTaskWoken );
 #ifdef UVOS_INCLUDE_FREERTOS
@@ -265,7 +300,7 @@ static void UVOS_EXTI_9_5_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 5, xHigherPriorityTaskWoken );
   UVOS_EXTI_HANDLE_LINE( 6, xHigherPriorityTaskWoken );
@@ -283,7 +318,7 @@ static void UVOS_EXTI_15_10_irq_handler( void )
 #ifdef UVOS_INCLUDE_FREERTOS
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 #else
-  bool __attribute__((unused)) xHigherPriorityTaskWoken;
+  bool __attribute__( ( unused ) ) xHigherPriorityTaskWoken;
 #endif
   UVOS_EXTI_HANDLE_LINE( 10, xHigherPriorityTaskWoken );
   UVOS_EXTI_HANDLE_LINE( 11, xHigherPriorityTaskWoken );

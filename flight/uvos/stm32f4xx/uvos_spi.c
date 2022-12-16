@@ -458,7 +458,7 @@ int32_t UVOS_SPI_TransferByte( uint32_t spi_id, uint8_t b )
  * \return -1 if disabled SPI port selected
  * \return -3 if function has been called during an ongoing DMA transfer
  */
-int32_t UVOS_SPI_TransferBlock_DMA( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback )
+static int32_t UVOS_SPI_TransferBlock_DMA( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback )
 {
   struct uvos_spi_dev * spi_dev = ( struct uvos_spi_dev * )spi_id;
 
@@ -626,7 +626,7 @@ int32_t UVOS_SPI_TransferBlock_DMA( uint32_t spi_id, const uint8_t * send_buffer
  * \return -1 if disabled SPI port selected
  * \return -3 if function has been called during an ongoing DMA transfer
  */
-int32_t UVOS_SPI_TransferBlock_PIO( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len )
+static int32_t UVOS_SPI_TransferBlock_PIO( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len )
 {
   struct uvos_spi_dev * spi_dev = ( struct uvos_spi_dev * )spi_id;
   uint8_t b;
@@ -687,13 +687,13 @@ int32_t UVOS_SPI_TransferBlock_PIO( uint32_t spi_id, const uint8_t * send_buffer
  * \return -1 if disabled SPI port selected
  * \return -3 if function has been called during an ongoing DMA transfer
  */
-// int32_t UVOS_SPI_TransferBlock( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback )
-// {
-//   if ( callback || len > SPI_MAX_BLOCK_PIO ) {
-//     return SPI_DMA_TransferBlock( spi_id, send_buffer, receive_buffer, len, callback );
-//   }
-//   return SPI_PIO_TransferBlock( spi_id, send_buffer, receive_buffer, len );
-// }
+int32_t UVOS_SPI_TransferBlock( uint32_t spi_id, const uint8_t * send_buffer, uint8_t * receive_buffer, uint16_t len, void * callback )
+{
+  if ( callback || len > SPI_MAX_BLOCK_PIO ) {
+    return UVOS_SPI_TransferBlock_DMA( spi_id, send_buffer, receive_buffer, len, callback );
+  }
+  return UVOS_SPI_TransferBlock_PIO( spi_id, send_buffer, receive_buffer, len );
+}
 
 /**
  * Check if a transfer is in progress

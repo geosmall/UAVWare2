@@ -9,6 +9,8 @@ uvos/common/syscalls.c
 uvos/common/uvos_com.c
 uvos/common/uvos_delay.c
 uvos/common/uvos_heap.c
+uvos/common/uvos_flash_jedec.c
+uvos/common/uvos_flashfs_logfs.c
 uvos/common/uvos_ibus.c
 uvos/common/uvos_led.c
 uvos/common/uvos_mpu.c
