@@ -22,6 +22,10 @@ struct uvos_flash_jedec_cfg {
 };
 
 int32_t UVOS_Flash_Jedec_Init( uintptr_t * flash_id, uint32_t spi_id, uint32_t slave_num );
-// int32_t UVOS_Flash_Jedec_EraseChip( uintptr_t flash_id );
+int32_t UVOS_Flash_Jedec_EraseChip( uintptr_t flash_id );
+int32_t UVOS_Flash_Jedec_EraseSector( uintptr_t flash_id, uint32_t addr );
+int32_t UVOS_Flash_Jedec_WriteChunks( uintptr_t flash_id, uint32_t addr, struct uvos_flash_chunk chunks[], uint32_t num );
+int32_t UVOS_Flash_Jedec_WriteData( uintptr_t flash_id, uint32_t addr, uint8_t * data, uint16_t len );
+int32_t UVOS_Flash_Jedec_ReadData( uintptr_t flash_id, uint32_t addr, uint8_t * data, uint16_t len );
 
 #endif /* UVOS_FLASH_JEDEC_H */

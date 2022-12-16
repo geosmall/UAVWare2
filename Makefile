@@ -100,6 +100,7 @@ AS_DEFS =
 C_DEFS = \
 -DUSE_FULL_LL_DRIVER \
 -DLFS_CONFIG=lfs_config.h \
+-DLFS_NO_MALLOC
 
 # AS includes
 AS_INCLUDES = 

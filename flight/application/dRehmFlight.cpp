@@ -189,6 +189,8 @@ float s1_command, s2_command, s3_command, s4_command, s5_command, s6_command, s7
 void setup( void )
 {
 
+  UW_fs_run_benchmark();
+
   /* Set config struct default values */
   config_set_defaults();
 
@@ -199,8 +201,8 @@ void setup( void )
   UW_time_delay_us( 10000 );
 
   // Set IMU full-scale ranges for accel and gyro
-  mpu_set_imu_ranges( GYRO_SCALE, ACCEL_SCALE, FILTER_SETTING );
-  mpu_set_speed_fast();
+  UW_mpu_set_imu_ranges( GYRO_SCALE, ACCEL_SCALE, FILTER_SETTING );
+  UW_mpu_set_speed_fast();
 
 
   // Set radio channels to default (safe) values before entering main loop
@@ -367,10 +369,10 @@ void getIMUdata()
 
 #if defined USE_MPU_9DOF
   int16_t AcX, AcY, AcZ, GyX, GyY, GyZ, MgX, MgY, MgZ;
-  mpu_read_imu9( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ, &MgX, &MgY, &MgZ );
+  UW_mpu_read_imu9( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ, &MgX, &MgY, &MgZ );
 #else
   int16_t AcX, AcY, AcZ, GyX, GyY, GyZ;
-  mpu_read_imu( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ );
+  UW_mpu_read_imu( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ );
 #endif
 
   // Accelerometer
@@ -442,9 +444,9 @@ void calculate_IMU_error()
   int c = 0;
   while ( c < IMU_CAL_ITERATION_LOOPS ) {
 #if defined USE_MPU_9DOF
-    mpu_read_imu9( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ, &MgX, &MgY, &MgZ );
+    UW_mpu_read_imu9( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ, &MgX, &MgY, &MgZ );
 #else
-    mpu_read_imu( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ );
+    UW_mpu_read_imu( &AcX, &AcY, &AcZ, &GyX, &GyY, &GyZ );
 #endif
 
     AccX  = AcX / ACCEL_SCALE_FACTOR;

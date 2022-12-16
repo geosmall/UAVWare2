@@ -219,12 +219,12 @@ uint32_t UVOS_Board_Init( void )
 
   /* Set up the SPI interface to the gyro/acelerometer */
   if ( UVOS_SPI_Init( &uvos_spi_gyro_id, &uvos_spi_gyro_cfg ) ) {
-    UVOS_DEBUG_Assert( 0 );
+    return -1;
   }
 
   /* Set up the SPI interface to the flash */
   if ( UVOS_SPI_Init( &uvos_spi_telem_flash_id, &uvos_spi_telem_flash_cfg ) ) {
-    UVOS_DEBUG_Assert( 0 );
+    return -1;
   }
 
 #if defined( UVOS_INCLUDE_FLASH )
@@ -232,6 +232,24 @@ uint32_t UVOS_Board_Init( void )
   uintptr_t flash_id;
 
   // Initialize the external USER flash
+  if ( UVOS_Flash_Jedec_Init( &flash_id, uvos_spi_telem_flash_id, 0 ) ) {
+    return -2;
+  }
+
+  // UVOS_Flash_Jedec_EraseChip( flash_id );
+
+  if ( UW_fs_init( flash_id ) ) {
+    return -3;
+  }
+
+#endif // defined( UVOS_INCLUDE_FLASH )
+
+#if 0 // GLS
+// #if defined( UVOS_INCLUDE_FLASH )
+  /* Connect flash to the appropriate interface and configure it */
+  uintptr_t flash_id;
+
+// Initialize the external USER flash
   if ( UVOS_Flash_Jedec_Init( &flash_id, uvos_spi_telem_flash_id, 0 ) ) {
     UVOS_DEBUG_Assert( 0 );
   }
@@ -296,7 +314,9 @@ uint32_t UVOS_Board_Init( void )
 #endif // !defined( UVOS_ENABLE_DEBUG_PINS )
 
   if ( UVOS_MPU_Init( uvos_spi_gyro_id, 0, &uvos_mpu_cfg ) ) {
-    UVOS_Assert( 0 );
+#if !defined( SKIP_MPU_EXISTS_CHECK )
+    return -4;
+#endif // !defined( SKIP_MPU_EXISTS_ASSERT )
   }
 
   UVOS_SCHED_init( tim_11_cfg.timer );
