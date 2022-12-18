@@ -236,7 +236,9 @@ uint32_t UVOS_Board_Init( void )
     return -2;
   }
 
-  // UVOS_Flash_Jedec_EraseChip( flash_id );
+#if defined( ERASE_SYSTEM_FLASH )
+  UVOS_Flash_Jedec_EraseChip( flash_id );
+#endif // defined( ERASE_SYSTEM_FLASH )
 
   if ( UW_fs_init( flash_id ) ) {
     return -3;
@@ -261,10 +263,6 @@ uint32_t UVOS_Board_Init( void )
 #if defined( ERASE_USER_FLASH )
   UVOS_FLASHFS_Format( uvos_user_fs_id );
 #endif // defined( ERASE_USER_FLASH )
-
-// #include "fs.h"
-//   FS_Init( flash_id );
-//   FS_RunBenchmark();
 
   if ( UVOS_FLASHFS_Logfs_Init( &uvos_uavo_settings_fs_id, &flashfs_external_system_cfg, &uvos_jedec_flash_driver, flash_id ) ) {
     UVOS_DEBUG_Assert( 0 );

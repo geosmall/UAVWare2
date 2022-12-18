@@ -16,6 +16,7 @@ extern "C" {
 
 extern void setup( void );
 extern void loop( void );
+extern int UAVWare_init( void );
 
 #ifdef __cplusplus
 } // extern "C"

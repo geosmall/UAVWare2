@@ -1,4 +1,5 @@
-#include "uvos.h"
+#include <uvos.h>
+#include <time.h>
 
 #ifdef UVOS_INCLUDE_RTC
 
@@ -300,6 +301,23 @@ void UVOS_RTC_irq_handler( void )
     // EXTI_ClearITPendingBit( EXTI_Line22 );
     LL_EXTI_ClearFlag_0_31( EXTI_LINE_WAKEUPTIMER_EVENT );
   }
+}
+
+time_t UW_RTC__get_timestamp( void )
+{
+  time_t timestamp;
+  struct tm currTime;
+
+  /* Note: need to convert to decimal value using __LL_RTC_CONVERT_BCD2BIN helper macro */
+  currTime.tm_hour = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_TIME_GetHour( RTC ) );
+  currTime.tm_min = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_TIME_GetMinute( RTC ) );
+  currTime.tm_sec = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_TIME_GetSecond( RTC ) );
+  currTime.tm_mon = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_DATE_GetMonth( RTC ) );
+  currTime.tm_mday = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_DATE_GetDay( RTC ) );
+  currTime.tm_year = __LL_RTC_CONVERT_BCD2BIN( LL_RTC_DATE_GetYear( RTC ) );
+
+  timestamp = mktime( &currTime );
+  return timestamp;
 }
 
 #endif /* UVOS_INCLUDE_RTC */

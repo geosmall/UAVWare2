@@ -30,26 +30,37 @@ OPT = -Og
 # paths
 #######################################
 # Build path
-SRC_DIR = flight
-TARGET_DIR = flight/targets/$(TARGET)
+APP_DIR = application
+UAVW_DIR = flight
+TARGET_DIR = $(UAVW_DIR)/targets/$(TARGET)
 BUILD_DIR = build
 
+
 ######################################
-# source
+# Application source files
 ######################################
 
-# Generate from source file list
+CPP_SOURCES := \
+$(APP_DIR)/dRehmFlight.cpp \
+
+C_SOURCES := \
+$(APP_DIR)/config.c \
+
+
+######################################
+# UAVWare source files
+######################################
+
+# Generate UAVW file list from source file list
 INPUT_FILE = file_list.txt
-# TARGET_INPUT_FILE += $(TARGET_DIR)/file_list.txt
 # $(info $$INPUT_FILE := [${INPUT_FILE}])
 
-SRCS := $(addprefix $(SRC_DIR)/, $(file < $(INPUT_FILE)))
-# SRCS += $(addprefix $(TARGET_DIR)/, $(file < $(TARGET_INPUT_FILE)))
+SRCS := $(addprefix $(UAVW_DIR)/, $(file < $(INPUT_FILE)))
 # $(info $$SRCS := [${SRCS}])
 
-C_SOURCES := $(filter %.c,$(SRCS))
+C_SOURCES += $(filter %.c,$(SRCS))
 # $(info $$C_SOURCES := [${C_SOURCES}])
-CPP_SOURCES := $(filter %.cpp,$(SRCS))
+CPP_SOURCES += $(filter %.cpp,$(SRCS))
 # $(info $$CPP_SOURCES := [${CPP_SOURCES}])
 ASM_SOURCES := $(filter %.s,$(SRCS))
 # $(info $$ASM_SOURCES := [${ASM_SOURCES}])

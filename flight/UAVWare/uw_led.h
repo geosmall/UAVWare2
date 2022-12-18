@@ -1,5 +1,5 @@
-#ifndef LED_H
-#define LED_H
+#ifndef UW_LED_H
+#define UW_LED_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,4 +20,4 @@ extern void UW_led_alarm_toggle( void );
 }
 #endif
 
-#endif // LED_H
+#endif // UW_LED_H

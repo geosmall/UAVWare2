@@ -46,7 +46,6 @@ extern "C" {
 /* UVOS debug interface */
 /* #define UVOS_INCLUDE_DEBUG_CONSOLE */
 /* #define DEBUG_LEVEL 0 */
-#define UVOS_ENABLE_DEBUG_PINS
 #include <uvos_debug.h>
 #include <uvos_debuglog.h>
 

@@ -1,6 +1,6 @@
-application/dRehmFlight.cpp
-application/config.c
 UAVWare/main.cpp
+UAVWare/UAVWare.c
+UAVWare/uw_actuator.c
 UAVWare/uw_led.c
 UAVWare/uw_fs.c
 UAVWare/uw_mpu.c

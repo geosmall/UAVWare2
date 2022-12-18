@@ -1,5 +1,5 @@
-#ifndef TIME_H
-#define TIME_H
+#ifndef UW_TIME_H
+#define UW_TIME_H
 
 #include <stdint.h>
 
@@ -16,4 +16,4 @@ extern void UW_time_delay_ms( uint32_t mSec );
 }
 #endif
 
-#endif // TIME_H
+#endif // UW_TIME_H

@@ -28,10 +28,13 @@ int main( void )
 #endif // UVOS_INCLUDE_DEBUG_CONSOLE
   }
 
-  // Call application setup()
+  /* Initialize UAVWare */
+  UAVWare_init();
+
+  /* Call application setup() */
   setup();
 
-  // Call application main loop
+  /* Call application main loop */
   for ( ;; ) {
     loop();
   }

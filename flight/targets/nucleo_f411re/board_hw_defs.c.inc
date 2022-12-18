@@ -720,7 +720,7 @@ static const struct uvos_tim_channel uvos_tim_servoport_all_pins[] = {
   },
   {
     .timer = TIM1,
-    .timer_chan = LL_TIM_CHANNEL_CH1,
+    .timer_chan = LL_TIM_CHANNEL_CH3,
     .pin   = {
       .gpio = GPIOA,
       .init = {

@@ -1,5 +1,5 @@
-#ifndef MPU_H
-#define MPU_H
+#ifndef UW_MPU_H
+#define UW_MPU_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,4 +16,4 @@ extern void UW_mpu_set_speed_fast( void );
 }
 #endif
 
-#endif // MPU_H
+#endif // UW_MPU_H

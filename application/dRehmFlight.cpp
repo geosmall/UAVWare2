@@ -189,10 +189,13 @@ float s1_command, s2_command, s3_command, s4_command, s5_command, s6_command, s7
 void setup( void )
 {
 
-  UW_fs_run_benchmark();
-
-  /* Set config struct default values */
-  config_set_defaults();
+  // Load config settings from file system
+  // UW_fs_run_benchmark();
+  // UW_fs_unmount();
+  // UW_fs_format();
+  // UW_fs_mount();
+  config_load_from_file(); // Config now contains valid values
+  config_print_file();
 
   // LED on to signal startup & not to disturb vehicle during IMU calibration
   UW_led_heartbeat_on();

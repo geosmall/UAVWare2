@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include "common/mavlink.h"
 
+#define CFG_ERR_OK                         0L /*!< OK */
+#define CFG_ERR_FAILED                    -1L /*!< Requested functionality or process failed */
+#define CFG_ERR_NO_FILE                   -2L /*!< Requested file does not exist */
 
 #ifdef __cplusplus
 extern "C" {
@@ -88,12 +91,14 @@ struct config_s {
 
 extern config_t config;
 
-void config_set_defaults( void );
-uint32_t get_param_index_from_id( char * param_id );
-uint32_t get_sizeof_param_index( void );
-const char * get_param_name( uint32_t index );
-uintptr_t get_param_offset( uint32_t index );
-MAV_PARAM_TYPE get_param_mav_type( uint32_t index );
+extern int config_load_from_file( void );
+extern void config_print_file( void );
+
+extern uint32_t get_param_index_from_id( char * param_id );
+extern uint32_t get_sizeof_param_index( void );
+extern const char * get_param_name( uint32_t index );
+extern uintptr_t get_param_offset( uint32_t index );
+extern MAV_PARAM_TYPE get_param_mav_type( uint32_t index );
 
 #ifdef __cplusplus
 }
