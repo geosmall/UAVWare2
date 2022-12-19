@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTLIST_H_
+#define UTLIST_H_
 
 #define UTLIST_VERSION 1.8
 
@@ -351,3 +352,5 @@
 
 #define CDL_FOREACH(head, el)                                                     \
     for (el = head; el; el = (el->next == head ? 0L : el->next))
+
+#endif // UTLIST_H_

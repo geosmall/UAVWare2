@@ -1,4 +1,7 @@
-#pragma once
+#ifndef SHELL_H_
+#define SHELL_H_
+
+// https://github.com/memfault/interrupt/tree/master/example/firmware-shell/complex/shell
 
 #include <stddef.h>
 
@@ -35,3 +38,5 @@ void shell_put_line(const char *str);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // SHELL_H_
