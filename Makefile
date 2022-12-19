@@ -132,7 +132,6 @@ C_INCLUDES =  \
 -I./flight/libraries/inc \
 -I./flight/libraries/math \
 -I./flight/libraries/mavlink \
--I./flight/libraries/printf \
 -I./flight/targets/$(TARGET) \
 -I./flight/modules/System/inc \
 -I./flight/UAVWare \
