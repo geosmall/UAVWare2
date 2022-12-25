@@ -3,11 +3,12 @@
 
 /* UVOS Includes */
 #include <uvos.h>
+#include "uw_actuator.h"
 #include "uw_fs.h"
 #include "uw_led.h"
 #include "uw_mpu.h"
-#include "uw_time.h"
 #include "uw_receiver.h"
+#include "uw_time.h"
 
 
 #ifdef __cplusplus

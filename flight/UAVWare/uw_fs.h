@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-extern int UW_fs_init( uintptr_t flash_id );
+extern int UW_fs_init( void );
 extern int UW_fs_read_file( const char * srcPath, uint8_t * buf, size_t bufSize );
 extern int UW_fs_write_file( const char * filePath , const uint8_t * buf, size_t bufSize );
 extern int UW_fs_format( void );

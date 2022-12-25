@@ -11,12 +11,12 @@ enum uvos_tim_dev_magic {
 struct uvos_tim_dev {
   enum uvos_tim_dev_magic magic;
 
-  const TIM_TypeDef   *  timer;
+  const TIM_TypeDef *timer;
 
-  const struct uvos_tim_channel  * channels;
+  const struct uvos_tim_channel *channels;
   uint8_t num_channels;
 
-  const struct uvos_tim_callbacks * callbacks;
+  const struct uvos_tim_callbacks *callbacks;
   uint32_t context;
 };
 
@@ -41,7 +41,7 @@ struct uvos_tim_dev {
   *
   * @retval The new state of the TIM_IT(SET or RESET).
   */
-static ITStatus TIM_GetITStatus( TIM_TypeDef * TIMx, uint16_t TIM_IT )
+static ITStatus TIM_GetITStatus( TIM_TypeDef *TIMx, uint16_t TIM_IT )
 {
   ITStatus bitstatus = RESET;
   uint16_t itstatus = 0x0, itenable = 0x0;
@@ -79,7 +79,7 @@ static ITStatus TIM_GetITStatus( TIM_TypeDef * TIMx, uint16_t TIM_IT )
   *
   * @retval None
   */
-static inline void TIM_ClearITPendingBit( TIM_TypeDef * TIMx, uint16_t TIM_IT )
+static inline void TIM_ClearITPendingBit( TIM_TypeDef *TIMx, uint16_t TIM_IT )
 {
   /* Check the parameters */
   assert_param( IS_TIM_INSTANCE( TIMx ) );
@@ -97,9 +97,9 @@ static inline void TIM_ClearITPendingBit( TIM_TypeDef * TIMx, uint16_t TIM_IT )
 
 static struct uvos_tim_dev uvos_tim_devs[UVOS_TIM_MAX_DEVS];
 static uint8_t uvos_tim_num_devs;
-static struct uvos_tim_dev * UVOS_TIM_alloc( void )
+static struct uvos_tim_dev *UVOS_TIM_alloc( void )
 {
-  struct uvos_tim_dev * tim_dev;
+  struct uvos_tim_dev *tim_dev;
 
   if ( uvos_tim_num_devs >= UVOS_TIM_MAX_DEVS ) {
     return NULL;
@@ -112,7 +112,7 @@ static struct uvos_tim_dev * UVOS_TIM_alloc( void )
 }
 
 
-int32_t UVOS_TIM_InitClock( const struct uvos_tim_clock_cfg * cfg )
+int32_t UVOS_TIM_InitClock( const struct uvos_tim_clock_cfg *cfg )
 {
   UVOS_DEBUG_Assert( cfg );
 
@@ -149,11 +149,11 @@ int32_t UVOS_TIM_InitClock( const struct uvos_tim_clock_cfg * cfg )
   return 0;
 }
 
-int32_t UVOS_TIM_InitTimebase( uint32_t * tim_id, const TIM_TypeDef * timer, const struct uvos_tim_callbacks * callbacks, uint32_t context )
+int32_t UVOS_TIM_InitTimebase( uint32_t *tim_id, const TIM_TypeDef *timer, const struct uvos_tim_callbacks *callbacks, uint32_t context )
 {
   UVOS_Assert( IS_TIM_INSTANCE( timer ) );
 
-  struct uvos_tim_dev * tim_dev;
+  struct uvos_tim_dev *tim_dev;
   tim_dev = ( struct uvos_tim_dev * )UVOS_TIM_alloc();
   if ( !tim_dev ) {
     goto out_fail;
@@ -174,12 +174,12 @@ out_fail:
   return -1;
 }
 
-int32_t UVOS_TIM_InitChannels( uint32_t * tim_id, const struct uvos_tim_channel * channels, uint8_t num_channels, const struct uvos_tim_callbacks * callbacks, uint32_t context )
+int32_t UVOS_TIM_InitChannels( uint32_t *tim_id, const struct uvos_tim_channel *channels, uint8_t num_channels, const struct uvos_tim_callbacks *callbacks, uint32_t context )
 {
   UVOS_Assert( channels );
   UVOS_Assert( num_channels );
 
-  struct uvos_tim_dev * tim_dev;
+  struct uvos_tim_dev *tim_dev;
   tim_dev = ( struct uvos_tim_dev * )UVOS_TIM_alloc();
   if ( !tim_dev ) {
     goto out_fail;
@@ -194,7 +194,7 @@ int32_t UVOS_TIM_InitChannels( uint32_t * tim_id, const struct uvos_tim_channel 
 
   /* Configure the pins */
   for ( uint8_t i = 0; i < num_channels; i++ ) {
-    const struct uvos_tim_channel * chan = &( channels[i] );
+    const struct uvos_tim_channel *chan = &( channels[i] );
     if ( IS_GPIO_ALL_INSTANCE( chan->pin.gpio ) ) {
       LL_GPIO_Init( chan->pin.gpio, ( LL_GPIO_InitTypeDef * ) & chan->pin.init );
     } else {
@@ -230,11 +230,11 @@ out_fail:
 //   }
 // }
 
-static void UVOS_TIM_generic_irq_handler( TIM_TypeDef * timer )
+static void UVOS_TIM_generic_irq_handler( TIM_TypeDef *timer )
 {
   /* Iterate over all registered clients of the TIM layer to find channels on this timer */
   for ( uint8_t i = 0; i < uvos_tim_num_devs; i++ ) {
-    const struct uvos_tim_dev * tim_dev = &uvos_tim_devs[i];
+    const struct uvos_tim_dev *tim_dev = &uvos_tim_devs[i];
 
     if ( !tim_dev->channels || tim_dev->num_channels == 0 ) {
       /* No channels to process on this client */
@@ -269,7 +269,7 @@ static void UVOS_TIM_generic_irq_handler( TIM_TypeDef * timer )
     }
 
     for ( uint8_t j = 0; j < tim_dev->num_channels; j++ ) {
-      const struct uvos_tim_channel * chan = &tim_dev->channels[j];
+      const struct uvos_tim_channel *chan = &tim_dev->channels[j];
 
       if ( chan->timer != timer ) {
         /* channel is not on this timer */

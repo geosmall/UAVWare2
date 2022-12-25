@@ -32,6 +32,7 @@ uvos/stm32f4xx/uvos_usart.c
 libraries/fifo_buffer.c
 libraries/printf.c
 libraries/shell.c
+libraries/UTIL1.c
 uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_adc.c
 uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dma.c
 uvos/stm32f4xx/libraries/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c

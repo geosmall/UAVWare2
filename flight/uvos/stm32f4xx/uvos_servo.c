@@ -7,7 +7,7 @@
 
 /* Private Function Prototypes */
 
-static const struct uvos_servo_cfg * servo_cfg;
+static const struct uvos_servo_cfg *servo_cfg;
 
 // determine if the related timer will work in synchronous (or OneShot/OneShot125) One Pulse mode.
 static uint8_t uvos_servo_bank_mode[ UVOS_SERVO_BANKS ] = { 0 };
@@ -15,42 +15,49 @@ static uint8_t uvos_servo_bank_mode[ UVOS_SERVO_BANKS ] = { 0 };
 static uint16_t uvos_servo_bank_next_update[ UVOS_SERVO_BANKS ] = { 0 };
 static uint16_t uvos_servo_bank_max_pulse[ UVOS_SERVO_BANKS ] = { 0 };
 // timer associated to each bank
-static TIM_TypeDef * uvos_servo_bank_timer[ UVOS_SERVO_BANKS ] = { 0 };
+static TIM_TypeDef *uvos_servo_bank_timer[ UVOS_SERVO_BANKS ] = { 0 };
 
 // index of bank used for each pin
-static uint8_t * uvos_servo_pin_bank;
+static uint8_t *uvos_servo_pin_bank;
 
 #define UVOS_SERVO_TIMER_CLOCK 1000000
 #define UVOS_SERVO_SAFE_MARGIN 50
 /**
  * Initialise Servos
  */
-int32_t UVOS_Servo_Init( const struct uvos_servo_cfg * cfg )
+int32_t UVOS_Servo_Init( const struct uvos_servo_cfg *cfg )
 {
   uint32_t tim_id;
 
+  /* Initialize the servo output pins */
   if ( UVOS_TIM_InitChannels( &tim_id, cfg->channels, cfg->num_channels, NULL, 0 ) ) {
     return -1;
   }
 
   /* Store away the requested configuration */
   servo_cfg = cfg;
+
+  /* Create servo pin bank array, sized to total number of channels */
   uvos_servo_pin_bank = UVOS_malloc( sizeof( uint8_t ) * cfg->num_channels );
+  memset( uvos_servo_pin_bank, 0, ( cfg->num_channels ) ); // memset(void *str, int c, size_t n)
 
   uint8_t bank = 0;
+
   for ( uint8_t i = 0; ( i < servo_cfg->num_channels ); i++ ) {
-    const struct uvos_tim_channel * chan = &servo_cfg->channels[i];
+
+    const struct uvos_tim_channel *chan = &servo_cfg->channels[ i ];
+
     bool new = true;
     /* See if any previous channels use that same timer */
     for ( uint8_t j = 0; ( j < i ) && new; j++ ) {
-      new &= chan->timer != servo_cfg->channels[j].timer;
+      new &= chan->timer != servo_cfg->channels[ j ].timer;
     }
 
     if ( new ) {
       UVOS_Assert( bank < UVOS_SERVO_BANKS );
       for ( uint8_t j = i; j < servo_cfg->num_channels; j++ ) {
-        if ( servo_cfg->channels[j].timer == chan->timer ) {
-          uvos_servo_pin_bank[j] = bank;
+        if ( servo_cfg->channels[ j ].timer == chan->timer ) {
+          uvos_servo_pin_bank[ j ] = bank;
         }
       }
       uvos_servo_bank_timer[bank] = chan->timer;
@@ -104,7 +111,7 @@ int32_t UVOS_Servo_Init( const struct uvos_servo_cfg * cfg )
   * @param  mode enum  UVOS_SERVO_BANK_MODE_PWM, UVOS_SERVO_BANK_MODE_SINGLE_PULSE
   * @retval None
   */
-void UVOS_Servo_SetBankMode( uint8_t bank, uint8_t mode )
+void UVOS_Servo_SetBankMode( uint8_t bank, uvos_servo_bank_mode_e mode )
 {
   UVOS_Assert( bank < UVOS_SERVO_BANKS );
 
@@ -113,7 +120,7 @@ void UVOS_Servo_SetBankMode( uint8_t bank, uint8_t mode )
   if ( uvos_servo_bank_timer[ bank ] ) {
     for ( uint8_t i = 0; ( i < servo_cfg->num_channels ); i++ ) {
       if ( uvos_servo_pin_bank[ i ] == bank ) {
-        const struct uvos_tim_channel * chan = &servo_cfg->channels[ i ];
+        const struct uvos_tim_channel *chan = &servo_cfg->channels[ i ];
         /* Set up for output compare function */
         switch ( chan->timer_chan ) {
         case LL_TIM_CHANNEL_CH1:
@@ -148,10 +155,10 @@ void UVOS_Servo_SetBankMode( uint8_t bank, uint8_t mode )
 void UVOS_Servo_Update()
 {
   for ( uint8_t i = 0; ( i < UVOS_SERVO_BANKS ); i++ ) {
-    const TIM_TypeDef * timer = uvos_servo_bank_timer[ i ];
+    const TIM_TypeDef *timer = uvos_servo_bank_timer[ i ];
     if ( timer && uvos_servo_bank_mode[ i ] == UVOS_SERVO_BANK_MODE_SINGLE_PULSE ) {
       // a pulse to be generated is longer than cycle period. skip this update.
-      if ( LL_TIM_GetCounter( ( TIM_TypeDef * )timer ) > ( uint32_t )( uvos_servo_bank_next_update[i] + UVOS_SERVO_SAFE_MARGIN ) ) {
+      if ( LL_TIM_GetCounter( ( TIM_TypeDef * )timer ) > ( uint32_t )( uvos_servo_bank_next_update[ i ] + UVOS_SERVO_SAFE_MARGIN ) ) {
         // TIM_GenerateEvent( ( TIM_TypeDef * )timer, TIM_EventSource_Update );
         LL_TIM_GenerateEvent_UPDATE( ( TIM_TypeDef * )timer );
         uvos_servo_bank_next_update[ i ] = uvos_servo_bank_max_pulse[ i ];
@@ -164,7 +171,7 @@ void UVOS_Servo_Update()
     uint8_t mode = uvos_servo_bank_mode[ bank ];
     if ( mode == UVOS_SERVO_BANK_MODE_SINGLE_PULSE ) {
       /* Update the position */
-      const struct uvos_tim_channel * chan = &servo_cfg->channels[ i ];
+      const struct uvos_tim_channel *chan = &servo_cfg->channels[ i ];
 
       switch ( chan->timer_chan ) {
       case LL_TIM_CHANNEL_CH1:
@@ -188,12 +195,13 @@ void UVOS_Servo_Update()
   }
 }
 /**
- * Set the servo update rate (Max 500Hz)
- * \param[in] array of rates in Hz
- * \param[in] array of timer clocks in Hz
- * \param[in] maximum number of banks
+ * @brief  Set the servo update rate (Max 500Hz)
+ * @param  speeds array of rates in Hz
+ * @param  clock  array of timer clocks in Hz
+ * @param  banks  maximum number of banks
+ * @retval None
  */
-void UVOS_Servo_SetHz( const uint16_t * speeds, const uint32_t * clock, uint8_t banks )
+void UVOS_Servo_SetHz( const uint16_t *speeds, const uint32_t *clock, uint8_t banks )
 {
   UVOS_Assert( banks <= UVOS_SERVO_BANKS );
   if ( !servo_cfg ) {
@@ -205,11 +213,11 @@ void UVOS_Servo_SetHz( const uint16_t * speeds, const uint32_t * clock, uint8_t 
   TIM_TimeBaseStructure.CounterMode   = LL_TIM_COUNTERMODE_UP;
 
   for ( uint8_t i = 0; i < banks && i < UVOS_SERVO_BANKS; i++ ) {
-    const TIM_TypeDef * timer = uvos_servo_bank_timer[ i ];
+    const TIM_TypeDef *timer = uvos_servo_bank_timer[ i ];
     if ( timer ) {
       uint32_t new_clock = UVOS_SERVO_TIMER_CLOCK;
       if ( clock[ i ] ) {
-        new_clock = clock[i];
+        new_clock = clock[ i ];
       }
       // Choose the correct prescaler value for the APB the timer is attached
       if ( timer == TIM1 ||
@@ -223,7 +231,7 @@ void UVOS_Servo_SetHz( const uint16_t * speeds, const uint32_t * clock, uint8_t 
       } else {
         TIM_TimeBaseStructure.Prescaler = ( UVOS_PERIPHERAL_APB1_CLOCK / new_clock ) - 1;
       }
-      TIM_TimeBaseStructure.Autoreload = ( ( new_clock / speeds[i] ) - 1 );
+      TIM_TimeBaseStructure.Autoreload = ( ( new_clock / speeds[ i ] ) - 1 );
       // TIM_TimeBaseInit( ( TIM_TypeDef * )timer, &TIM_TimeBaseStructure );
       LL_TIM_Init( ( TIM_TypeDef * )timer, &TIM_TimeBaseStructure );
     }
@@ -244,7 +252,7 @@ void UVOS_Servo_Set( uint8_t servo, uint16_t position )
 
 
   /* Update the position */
-  const struct uvos_tim_channel * chan = &servo_cfg->channels[ servo ];
+  const struct uvos_tim_channel *chan = &servo_cfg->channels[ servo ];
   uint16_t val    = position;
   uint16_t margin = chan->timer->ARR / 50; // Leave 2% of period as margin to prevent overlaps
   if ( val > ( chan->timer->ARR - margin ) ) {

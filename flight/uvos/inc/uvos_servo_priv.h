@@ -9,7 +9,7 @@ struct uvos_servo_cfg {
   LL_TIM_InitTypeDef tim_base_init;
   LL_TIM_OC_InitTypeDef tim_oc_init;
   LL_GPIO_InitTypeDef gpio_init;
-  uint32_t remap;
+  // uint32_t remap;
   const struct uvos_tim_channel * channels;
   uint8_t  num_channels;
 };

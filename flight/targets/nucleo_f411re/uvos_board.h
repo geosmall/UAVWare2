@@ -141,11 +141,10 @@ extern uint32_t uvos_com_debug_id;
 #define UVOS_COM_DEBUG     (uvos_com_debug_id)
 #endif /* UVOS_INCLUDE_DEBUG_CONSOLE */
 
-#if defined(UVOS_INCLUDE_RFM22B)
-extern uint32_t uvos_rfm22b_id;
-extern uint32_t uvos_spi_telem_flash_id;
-#define UVOS_RFM22_SPI_PORT (uvos_spi_telem_flash_id)
-#endif /* UVOS_INCLUDE_RFM22B */
+#if defined(UVOS_INCLUDE_FLASH)
+extern uintptr_t uvos_spi_flash_id;
+#define UVOS_FLASH_SPI_PORT (uvos_spi_flash_id)
+#endif /* UVOS_INCLUDE_FLASH */
 
 // -------------------------
 // Packet Handler

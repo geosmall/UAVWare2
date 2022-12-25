@@ -98,7 +98,7 @@ __attribute__((format(__printf__, (one_based_format_index), (first_arg))))
  * @param c the single character to print
  */
 PRINTF_VISIBILITY
-void putchar_(char c);
+int putchar_(char c);
 
 
 /**

@@ -563,7 +563,7 @@ void UVOS_RTC_IRQ_Handler( void )
 
 #include "uvos_tim_priv.h"
 
-static const LL_TIM_InitTypeDef tim_1_9_10_time_base = {
+static const LL_TIM_InitTypeDef tim_1_8_9_10_time_base = {
   .Prescaler         = ( UVOS_PERIPHERAL_APB2_CLOCK / 1000000 ) - 1,
   .CounterMode       = LL_TIM_COUNTERMODE_UP,
   .Autoreload        = ( ( 1000000 / UVOS_SERVO_UPDATE_HZ ) - 1 ),
@@ -587,7 +587,7 @@ static const LL_TIM_InitTypeDef tim_11_time_base = {
 
 static const struct uvos_tim_clock_cfg tim_1_cfg = {
   .timer = TIM1,
-  .time_base_init                            = &tim_1_9_10_time_base,
+  .time_base_init                            = &tim_1_8_9_10_time_base,
   .irq   = {
     .init                                  = {
       .NVIC_IRQChannel    = TIM1_UP_TIM10_IRQn,
@@ -639,7 +639,7 @@ static const struct uvos_tim_clock_cfg tim_5_cfg = {
 
 static const struct uvos_tim_clock_cfg tim_9_cfg = {
   .timer = TIM9,
-  .time_base_init                            = &tim_1_9_10_time_base,
+  .time_base_init                            = &tim_1_8_9_10_time_base,
   .irq   = {
     .init                                  = {
       .NVIC_IRQChannel    = TIM1_BRK_TIM9_IRQn,
@@ -652,7 +652,7 @@ static const struct uvos_tim_clock_cfg tim_9_cfg = {
 
 static const struct uvos_tim_clock_cfg tim_10_cfg = {
   .timer = TIM10,
-  .time_base_init                            = &tim_1_9_10_time_base,
+  .time_base_init                            = &tim_1_8_9_10_time_base,
   .irq   = {
     .init                                  = {
       .NVIC_IRQChannel    = TIM1_UP_TIM10_IRQn,
@@ -679,14 +679,15 @@ static const struct uvos_tim_clock_cfg tim_11_cfg = {
 /**
  * Pios servo configuration structures
  * Using TIM1, TIM3
- *      o1  |   PA8     |   TIM1_CH1    |
- *      o2  |   PA9     |   TIM1_CH2    |   USART1_TX
- *      o3  |   PA10    |   TIM1_CH3    |   USART1_RX
- *      o4  |   PB0     |   TIM3_CH3    |   ADC1_8
- *      o5  |   PB4     |   TIM3_CH1    |   SPI1_MISO
- *      o6  |   PB5     |   TIM3_CH2    |   SPI1_MOSI
+ *      o1  |   PA8    |  TIM1_CH1   |   AF01   |
+ *      o2  |   PA9    |  TIM1_CH2   |   AF01   |  USART1_TX
+ *      o3  |   PA10   |  TIM1_CH3   |   AF01   |  USART1_RX
+ *      o4  |   PB0    |  TIM3_CH3   |   AF02   |  ADC1_8
+ *      o5  |   PB4    |  TIM3_CH1   |   AF02   |  SPI1_MISO
+ *      o6  |   PB5    |  TIM3_CH2   |   AF02   |  SPI1_MOSI
  */
 #include <uvos_servo_priv.h>
+#include <uvos_servo_config.h>
 static const struct uvos_tim_channel uvos_tim_servoport_all_pins[] = {
   {
     .timer = TIM1,

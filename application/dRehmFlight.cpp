@@ -4,6 +4,7 @@
 #include <UAVWare.h>
 #include "printf.h"
 #include "config.h"
+#include "shell.h"
 
 //========================================================================================================================//
 //                                                 USER Function Declarations                                             //
@@ -186,6 +187,31 @@ float s1_command, s2_command, s3_command, s4_command, s5_command, s6_command, s7
 //                                                      VOID SETUP                                                        //
 //========================================================================================================================//
 
+int putchar_( char c )
+{
+#if defined( UVOS_COM_DEBUG )
+  UVOS_COM_SendChar( UVOS_COM_DEBUG, c );
+#endif // defined( UVOS_COM_DEBUG )
+  return 0;
+}
+
+char getchar_( void )
+{
+  char c;
+#if defined( UVOS_COM_DEBUG )
+  /* getchar is a blocking fcn - wait forever for a character */
+  while ( UVOS_COM_RX_Data_Available( UVOS_COM_DEBUG ) == 0 );
+  /* UVOS_COM_ReceiveChar() returns -1 on errer */
+  int32_t res = UVOS_COM_ReceiveChar( UVOS_COM_DEBUG, &c );
+  if ( res >= 0 ) {
+    return c;
+  }
+#endif // defined( UVOS_COM_DEBUG )
+  return EOF;
+}
+
+sShellImpl shell_impl = { .send_char = putchar_ };
+
 void setup( void )
 {
 
@@ -244,8 +270,17 @@ void setup( void )
   // Indicate entering main loop with 3 quick blinks
   setupBlink( 3, 160, 70 ); //numBlinks, upTime (ms), downTime (ms)
 
+  /* Start command line shell */
+  shell_init( &shell_impl );
+
   // If using MPU9250 IMU, uncomment for one-time magnetometer calibration (may need to repeat for new locations)
   // calibrateMagnetometer(); //Generates magentometer error and scale factors to be pasted in user-specified variables section
+
+  char c;
+  while ( 1 ) {
+    c = getchar_();
+    shell_receive_char( c );
+  }
 
 }
 

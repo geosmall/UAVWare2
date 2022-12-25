@@ -16,7 +16,7 @@ enum uvos_com_dev_magic {
 struct uvos_com_dev {
   enum uvos_com_dev_magic magic;
   uint32_t lower_id;
-  const struct uvos_com_driver * driver;
+  const struct uvos_com_driver *driver;
 
 #if defined(UVOS_INCLUDE_FREERTOS)
   xSemaphoreHandle tx_sem;
@@ -31,15 +31,15 @@ struct uvos_com_dev {
   t_fifo_buffer tx;
 };
 
-static bool UVOS_COM_validate( struct uvos_com_dev * com_dev )
+static bool UVOS_COM_validate( struct uvos_com_dev *com_dev )
 {
   return com_dev && ( com_dev->magic == UVOS_COM_DEV_MAGIC );
 }
 
 #if defined(UVOS_INCLUDE_FREERTOS)
-static struct uvos_com_dev * UVOS_COM_alloc( void )
+static struct uvos_com_dev *UVOS_COM_alloc( void )
 {
-  struct uvos_com_dev * com_dev;
+  struct uvos_com_dev *com_dev;
 
   com_dev = ( struct uvos_com_dev * )UVOS_malloc( sizeof( struct uvos_com_dev ) );
   if ( !com_dev ) {
@@ -53,9 +53,9 @@ static struct uvos_com_dev * UVOS_COM_alloc( void )
 #else
 static struct uvos_com_dev uvos_com_devs[UVOS_COM_MAX_DEVS];
 static uint8_t uvos_com_num_devs;
-static struct uvos_com_dev * UVOS_COM_alloc( void )
+static struct uvos_com_dev *UVOS_COM_alloc( void )
 {
-  struct uvos_com_dev * com_dev;
+  struct uvos_com_dev *com_dev;
 
   if ( uvos_com_num_devs >= UVOS_COM_MAX_DEVS ) {
     return NULL;
@@ -70,10 +70,10 @@ static struct uvos_com_dev * UVOS_COM_alloc( void )
 }
 #endif /* if defined(UVOS_INCLUDE_FREERTOS) */
 
-static uint16_t UVOS_COM_TxOutCallback( uint32_t context, uint8_t * buf, uint16_t buf_len, uint16_t * headroom, bool * need_yield );
-static uint16_t UVOS_COM_RxInCallback( uint32_t context, uint8_t * buf, uint16_t buf_len, uint16_t * headroom, bool * need_yield );
-static void UVOS_COM_UnblockRx( struct uvos_com_dev * com_dev, bool * need_yield );
-static void UVOS_COM_UnblockTx( struct uvos_com_dev * com_dev, bool * need_yield );
+static uint16_t UVOS_COM_TxOutCallback( uint32_t context, uint8_t *buf, uint16_t buf_len, uint16_t *headroom, bool *need_yield );
+static uint16_t UVOS_COM_RxInCallback( uint32_t context, uint8_t *buf, uint16_t buf_len, uint16_t *headroom, bool *need_yield );
+static void UVOS_COM_UnblockRx( struct uvos_com_dev *com_dev, bool *need_yield );
+static void UVOS_COM_UnblockTx( struct uvos_com_dev *com_dev, bool *need_yield );
 
 /**
  * Initialises COM layer
@@ -82,7 +82,7 @@ static void UVOS_COM_UnblockTx( struct uvos_com_dev * com_dev, bool * need_yield
  * \param[in] id
  * \return < 0 if initialisation failed
  */
-int32_t UVOS_COM_Init( uint32_t * com_id, const struct uvos_com_driver * driver, uint32_t lower_id, uint8_t * rx_buffer, uint16_t rx_buffer_len, uint8_t * tx_buffer, uint16_t tx_buffer_len )
+int32_t UVOS_COM_Init( uint32_t *com_id, const struct uvos_com_driver *driver, uint32_t lower_id, uint8_t *rx_buffer, uint16_t rx_buffer_len, uint8_t *tx_buffer, uint16_t tx_buffer_len )
 {
   UVOS_Assert( com_id );
   UVOS_Assert( driver );
@@ -93,7 +93,7 @@ int32_t UVOS_COM_Init( uint32_t * com_id, const struct uvos_com_driver * driver,
   UVOS_Assert( driver->bind_tx_cb || !has_tx );
   UVOS_Assert( driver->bind_rx_cb || !has_rx );
 
-  struct uvos_com_dev * com_dev;
+  struct uvos_com_dev *com_dev;
 
   com_dev = ( struct uvos_com_dev * )UVOS_COM_alloc();
   if ( !com_dev ) {
@@ -138,7 +138,7 @@ out_fail:
 }
 
 #if defined(UVOS_INCLUDE_FREERTOS)
-static void UVOS_COM_UnblockRx( struct uvos_com_dev * com_dev, bool * need_yield )
+static void UVOS_COM_UnblockRx( struct uvos_com_dev *com_dev, bool *need_yield )
 {
   static signed portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
@@ -151,14 +151,14 @@ static void UVOS_COM_UnblockRx( struct uvos_com_dev * com_dev, bool * need_yield
   }
 }
 #else
-static void UVOS_COM_UnblockRx( __attribute__( ( unused ) ) struct uvos_com_dev * com_dev, bool * need_yield )
+static void UVOS_COM_UnblockRx( __attribute__( ( unused ) ) struct uvos_com_dev *com_dev, bool *need_yield )
 {
   *need_yield = false;
 }
 #endif
 
 #if defined(UVOS_INCLUDE_FREERTOS)
-static void UVOS_COM_UnblockTx( struct uvos_com_dev * com_dev, bool * need_yield )
+static void UVOS_COM_UnblockTx( struct uvos_com_dev *com_dev, bool *need_yield )
 {
   static signed portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 
@@ -171,16 +171,16 @@ static void UVOS_COM_UnblockTx( struct uvos_com_dev * com_dev, bool * need_yield
   }
 }
 #else
-static void UVOS_COM_UnblockTx( __attribute__( ( unused ) ) struct uvos_com_dev * com_dev, bool * need_yield )
+static void UVOS_COM_UnblockTx( __attribute__( ( unused ) ) struct uvos_com_dev *com_dev, bool *need_yield )
 {
   *need_yield = false;
 }
 #endif
 
 
-static uint16_t UVOS_COM_RxInCallback( uint32_t context, uint8_t * buf, uint16_t buf_len, uint16_t * headroom, bool * need_yield )
+static uint16_t UVOS_COM_RxInCallback( uint32_t context, uint8_t *buf, uint16_t buf_len, uint16_t *headroom, bool *need_yield )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )context;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )context;
 
   bool valid = UVOS_COM_validate( com_dev );
 
@@ -204,9 +204,9 @@ static uint16_t UVOS_COM_RxInCallback( uint32_t context, uint8_t * buf, uint16_t
   return bytes_into_fifo;
 }
 
-static uint16_t UVOS_COM_TxOutCallback( uint32_t context, uint8_t * buf, uint16_t buf_len, uint16_t * headroom, bool * need_yield )
+static uint16_t UVOS_COM_TxOutCallback( uint32_t context, uint8_t *buf, uint16_t buf_len, uint16_t *headroom, bool *need_yield )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )context;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )context;
 
   bool valid = UVOS_COM_validate( com_dev );
 
@@ -238,7 +238,7 @@ static uint16_t UVOS_COM_TxOutCallback( uint32_t context, uint8_t * buf, uint16_
  */
 int32_t UVOS_COM_ChangeBaud( uint32_t com_id, uint32_t baud )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     /* Undefined COM port for this board (see uvos_board.c) */
@@ -263,7 +263,7 @@ int32_t UVOS_COM_ChangeBaud( uint32_t com_id, uint32_t baud )
  */
 int32_t UVOS_COM_RegisterBaudRateCallback( uint32_t com_id, uvos_com_callback_baud_rate baud_rate_cb, uint32_t context )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     /* Undefined COM port for this board (see uvos_board.c) */
@@ -278,7 +278,7 @@ int32_t UVOS_COM_RegisterBaudRateCallback( uint32_t com_id, uvos_com_callback_ba
   return 0;
 }
 
-static int32_t UVOS_COM_SendBufferNonBlockingInternal( struct uvos_com_dev * com_dev, const uint8_t * buffer, uint16_t len )
+static int32_t UVOS_COM_SendBufferNonBlockingInternal( struct uvos_com_dev *com_dev, const uint8_t *buffer, uint16_t len )
 {
   UVOS_Assert( com_dev );
   UVOS_Assert( com_dev->has_tx );
@@ -323,9 +323,9 @@ static int32_t UVOS_COM_SendBufferNonBlockingInternal( struct uvos_com_dev * com
  *            retry until com is available again
  * \return number of bytes transmitted on success
  */
-int32_t UVOS_COM_SendBufferNonBlocking( uint32_t com_id, const uint8_t * buffer, uint16_t len )
+int32_t UVOS_COM_SendBufferNonBlocking( uint32_t com_id, const uint8_t *buffer, uint16_t len )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     /* Undefined COM port for this board (see uvos_board.c) */
@@ -355,9 +355,9 @@ int32_t UVOS_COM_SendBufferNonBlocking( uint32_t com_id, const uint8_t * buffer,
  * \return -3 if data cannot be sent in the max allotted time of 5000msec
  * \return number of bytes transmitted on success
  */
-int32_t UVOS_COM_SendBuffer( uint32_t com_id, const uint8_t * buffer, uint16_t len )
+int32_t UVOS_COM_SendBuffer( uint32_t com_id, const uint8_t *buffer, uint16_t len )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     /* Undefined COM port for this board (see uvos_board.c) */
@@ -457,7 +457,7 @@ int32_t UVOS_COM_SendChar( uint32_t com_id, char c )
  *         caller should retry until buffer is free again
  * \return 0 on success
  */
-int32_t UVOS_COM_SendStringNonBlocking( uint32_t com_id, const char * str )
+int32_t UVOS_COM_SendStringNonBlocking( uint32_t com_id, const char *str )
 {
   return UVOS_COM_SendBufferNonBlocking( com_id, ( uint8_t * )str, ( uint16_t )strlen( str ) );
 }
@@ -470,7 +470,7 @@ int32_t UVOS_COM_SendStringNonBlocking( uint32_t com_id, const char * str )
  * \return -1 if port not available
  * \return 0 on success
  */
-int32_t UVOS_COM_SendString( uint32_t com_id, const char * str )
+int32_t UVOS_COM_SendString( uint32_t com_id, const char *str )
 {
   return UVOS_COM_SendBuffer( com_id, ( uint8_t * )str, strlen( str ) );
 }
@@ -485,7 +485,7 @@ int32_t UVOS_COM_SendString( uint32_t com_id, const char * str )
  *         caller should retry until buffer is free again
  * \return 0 on success
  */
-int32_t UVOS_COM_SendFormattedStringNonBlocking( uint32_t com_id, const char * format, ... )
+int32_t UVOS_COM_SendFormattedStringNonBlocking( uint32_t com_id, const char *format, ... )
 {
   uint8_t buffer[128]; // TODO: tmp!!! Provide a streamed COM method later!
 
@@ -505,7 +505,7 @@ int32_t UVOS_COM_SendFormattedStringNonBlocking( uint32_t com_id, const char * f
  * \return -1 if port not available
  * \return 0 on success
  */
-int32_t UVOS_COM_SendFormattedString( uint32_t com_id, const char * format, ... )
+int32_t UVOS_COM_SendFormattedString( uint32_t com_id, const char *format, ... )
 {
   uint8_t buffer[128]; // TODO: tmp!!! Provide a streamed COM method later!
   va_list args;
@@ -518,15 +518,15 @@ int32_t UVOS_COM_SendFormattedString( uint32_t com_id, const char * format, ... 
 /**
  * Transfer bytes from port buffers into another buffer
  * \param[in] port COM port
- * \returns Byte from buffer
+ * \returns num received bytes from buffer
  */
-uint16_t UVOS_COM_ReceiveBuffer( uint32_t com_id, uint8_t * buf, uint16_t buf_len, uint32_t timeout_ms )
+uint16_t UVOS_COM_ReceiveBuffer( uint32_t com_id, uint8_t *buf, uint16_t buf_len, uint32_t timeout_ms )
 {
   UVOS_Assert( buf );
   UVOS_Assert( buf_len );
   uint16_t bytes_from_fifo;
 
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     /* Undefined COM port for this board (see uvos_board.c) */
@@ -560,8 +560,51 @@ check_again:
     }
   }
 
-  /* Return received byte */
+  /* Return num received bytes */
   return bytes_from_fifo;
+}
+
+/**
+ * Query if a com port has data available for RX in buffer.
+ */
+int32_t UVOS_COM_ReceiveChar( uint32_t com_id, char *c )
+{
+  char buf;
+  uint16_t bytes_from_fifo;
+
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
+
+  if ( !UVOS_COM_validate( com_dev ) ) {
+    /* Undefined COM port for this board (see uvos_board.c) */
+    UVOS_Assert( 0 );
+  }
+  UVOS_Assert( com_dev->has_rx );
+
+  /* Note: fifoBuf_getData() returns num bytes copied */
+  bytes_from_fifo = fifoBuf_getData( &com_dev->rx, &buf, 1 );
+  if ( bytes_from_fifo < 1 ) {
+    return -1;
+  }
+
+  *c = buf;
+  return 0;
+}
+
+/**
+ * Query if a com port has data available for RX in buffer.
+ */
+int32_t UVOS_COM_RX_Data_Available ( uint32_t com_id )
+{
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
+
+  if ( !UVOS_COM_validate( com_dev ) ) {
+    /* Undefined COM port for this board (see uvos_board.c) */
+    UVOS_Assert( 0 );
+  }
+  UVOS_Assert( com_dev->has_rx );
+
+  /* Note: fifoBuf_getUsed() returns num bytes available in rx buffer */
+  return fifoBuf_getUsed( &com_dev->rx );
 }
 
 /**
@@ -571,7 +614,7 @@ check_again:
  */
 uint32_t UVOS_COM_Available( uint32_t com_id )
 {
-  struct uvos_com_dev * com_dev = ( struct uvos_com_dev * )com_id;
+  struct uvos_com_dev *com_dev = ( struct uvos_com_dev * )com_id;
 
   if ( !UVOS_COM_validate( com_dev ) ) {
     return COM_AVAILABLE_NONE;

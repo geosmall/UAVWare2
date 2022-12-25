@@ -121,6 +121,10 @@ uint32_t uvos_rcvr_group_map[ UVOS_RCVR_CHANNELGROUPS_NONE ];
 uint32_t uvos_com_debug_id;
 #endif /* UVOS_INCLUDE_DEBUG_CONSOLE */
 
+#if defined(UVOS_INCLUDE_FLASH)
+uintptr_t uvos_spi_flash_id;
+#endif /* UVOS_INCLUDE_FLASH */
+
 // uint32_t uvos_com_gps_id       = 0;
 // uint32_t uvos_com_telem_usb_id = 0;
 uint32_t uvos_com_telem_rf_id  = 0;
@@ -144,8 +148,8 @@ uintptr_t uvos_user_fs_id;
  * rx size = 0 make the port tx only
  * having both tx and rx size = 0 is not valid and will fail further down in UVOS_COM_Init()
  */
-static void UVOS_Board_configure_com( const struct uvos_usart_cfg * usart_port_cfg, uint16_t rx_buf_len, uint16_t tx_buf_len,
-                                      const struct uvos_com_driver * com_driver, uint32_t * uvos_com_id )
+static void UVOS_Board_configure_com( const struct uvos_usart_cfg *usart_port_cfg, uint16_t rx_buf_len, uint16_t tx_buf_len,
+                                      const struct uvos_com_driver *com_driver, uint32_t *uvos_com_id )
 {
   uint32_t uvos_usart_id;
 
@@ -153,7 +157,7 @@ static void UVOS_Board_configure_com( const struct uvos_usart_cfg * usart_port_c
     UVOS_Assert( 0 );
   }
 
-  uint8_t * rx_buffer = 0, * tx_buffer = 0;
+  uint8_t *rx_buffer = 0, * tx_buffer = 0;
 
   if ( rx_buf_len > 0 ) {
     rx_buffer = ( uint8_t * )UVOS_malloc( rx_buf_len );
@@ -170,7 +174,7 @@ static void UVOS_Board_configure_com( const struct uvos_usart_cfg * usart_port_c
   }
 }
 
-static void UVOS_Board_configure_ibus( const struct uvos_usart_cfg * usart_cfg )
+static void UVOS_Board_configure_ibus( const struct uvos_usart_cfg *usart_cfg )
 {
   uint32_t uvos_usart_ibus_id;
 
@@ -191,13 +195,6 @@ static void UVOS_Board_configure_ibus( const struct uvos_usart_cfg * usart_cfg )
   uvos_rcvr_group_map[ UVOS_RCVR_CHANNELGROUPS_IBUS ] = uvos_ibus_rcvr_id;
 }
 
-void putchar_( char c )
-{
-#ifdef UVOS_COM_DEBUG
-  UVOS_COM_SendChar( UVOS_COM_DEBUG, c );
-#endif
-}
-
 // void DMA_Transaction_Complete( bool crc_ok, uint8_t crc_val )
 // {
 
@@ -212,7 +209,7 @@ uint32_t UVOS_Board_Init( void )
 {
 
 #if defined( UVOS_INCLUDE_LED )
-  const struct uvos_gpio_cfg * led_cfg  = &uvos_led_cfg;
+  const struct uvos_gpio_cfg *led_cfg  = &uvos_led_cfg;
   UVOS_Assert( led_cfg );
   UVOS_LED_Init( led_cfg );
 #endif /* UVOS_INCLUDE_LED */
@@ -229,20 +226,22 @@ uint32_t UVOS_Board_Init( void )
 
 #if defined( UVOS_INCLUDE_FLASH )
   /* Connect flash to the appropriate interface and configure it */
-  uintptr_t flash_id;
+  // uintptr_t flash_id;
 
   // Initialize the external USER flash
-  if ( UVOS_Flash_Jedec_Init( &flash_id, uvos_spi_telem_flash_id, 0 ) ) {
+  // if ( UVOS_Flash_Jedec_Init( &flash_id, uvos_spi_telem_flash_id, 0 ) ) {
+  if ( UVOS_Flash_Jedec_Init( &uvos_spi_flash_id, uvos_spi_telem_flash_id, 0 ) ) {
     return -2;
   }
 
 #if defined( ERASE_SYSTEM_FLASH )
-  UVOS_Flash_Jedec_EraseChip( flash_id );
+  UVOS_Flash_Jedec_EraseChip( uvos_spi_flash_id );
 #endif // defined( ERASE_SYSTEM_FLASH )
 
-  if ( UW_fs_init( flash_id ) ) {
-    return -3;
-  }
+  // if ( UW_fs_init( flash_id ) ) {
+  // if ( UW_fs_init( uvos_spi_flash_id ) ) {
+  //   return -3;
+  // }
 
 #endif // defined( UVOS_INCLUDE_FLASH )
 

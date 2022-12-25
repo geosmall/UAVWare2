@@ -9,7 +9,7 @@
 
 #define SHELL_RX_BUFFER_SIZE (256)
 #define SHELL_MAX_ARGS (16)
-#define SHELL_PROMPT "uavw> "
+#define SHELL_PROMPT "oav>"
 
 #define SHELL_FOR_EACH_COMMAND(command) \
   for (const sShellCommand *command = g_shell_commands; \
@@ -119,7 +119,7 @@ static void prv_process(void) {
   prv_send_prompt();
 }
 
-void shell_boot(const sShellImpl *impl) {
+void shell_init(const sShellImpl *impl) {
   s_shell.send_char = impl->send_char;
   prv_reset_rx_buffer();
   prv_echo_str("\n" SHELL_PROMPT);
@@ -132,9 +132,7 @@ void shell_receive_char(char c) {
   prv_echo(c);
 
   if (c == '\b') {
-    if (s_shell.rx_size > 0) {
-      s_shell.rx_buffer[--s_shell.rx_size] = '\0';
-    }
+    s_shell.rx_buffer[--s_shell.rx_size] = '\0';
     return;
   }
 

@@ -3,6 +3,7 @@
 #include <lfs.h>
 #include "uw_fs.h"
 #include <uvos_flash_jedec_priv.h>
+#include "UTIL1.h"
 
 #define FS_FILE_NAME_SIZE  32 /* Length of file name, used in FS buffers */
 #define LFS_CACHE_SIZE 256
@@ -50,13 +51,14 @@ const struct lfs_config FS_cfg = {
 /* variables used by the file system */
 static bool _FS_isMounted = false;
 static lfs_t _FS_lfs;
-static uintptr_t _flash_id;
+// static uintptr_t _flash_id;
 
 static int block_device_read( const struct lfs_config * c, lfs_block_t block,  lfs_off_t off, void * buffer, lfs_size_t size )
 {
   uint32_t result;
 
-  result = UVOS_Flash_Jedec_ReadData( _flash_id, block * c->block_size + off, buffer, size );
+  // result = UVOS_Flash_Jedec_ReadData( _flash_id, block * c->block_size + off, buffer, size );
+  result = UVOS_Flash_Jedec_ReadData( UVOS_FLASH_SPI_PORT, block * c->block_size + off, buffer, size );
   if ( result ) {
     return LFS_ERR_IO;
   }
@@ -67,7 +69,8 @@ static int block_device_prog( const struct lfs_config * c, lfs_block_t block, lf
 {
   uint32_t result;
 
-  result = UVOS_Flash_Jedec_WriteData( _flash_id, block * c->block_size + off, ( uint8_t * )buffer, size );
+  // result = UVOS_Flash_Jedec_WriteData( _flash_id, block * c->block_size + off, ( uint8_t * )buffer, size );
+  result = UVOS_Flash_Jedec_WriteData( UVOS_FLASH_SPI_PORT, block * c->block_size + off, ( uint8_t * )buffer, size );
   if ( result ) {
     return LFS_ERR_IO;
   }
@@ -78,7 +81,8 @@ static int block_device_erase( const struct lfs_config * c, lfs_block_t block )
 {
   uint32_t result;
 
-  result = UVOS_Flash_Jedec_EraseSector( _flash_id, block * c->block_size );
+  // result = UVOS_Flash_Jedec_EraseSector( _flash_id, block * c->block_size );
+  result = UVOS_Flash_Jedec_EraseSector( UVOS_FLASH_SPI_PORT, block * c->block_size );
   if ( result ) {
     return LFS_ERR_IO;
   }
@@ -90,12 +94,12 @@ static int block_device_sync( const struct lfs_config * c )
   return LFS_ERR_OK;
 }
 
-int UW_fs_init( uintptr_t flash_id )
+int UW_fs_init( void )
 {
   /* Save local pointer to SPI flash */
-  _flash_id = flash_id;
+  // _flash_id = UVOS_FLASH_SPI_PORT;
 
-  UVOS_COM_SendString( UVOS_COM_DEBUG, "Attempting to mount existing media\r\n" );
+  // UVOS_COM_SendString( UVOS_COM_DEBUG, "Attempting to mount existing media\r\n" );
   if ( UW_fs_mount() != FS_ERR_OK ) {
     /* FS mount failed, try formatting underlying FS */
     UVOS_COM_SendString( UVOS_COM_DEBUG, "Could not mount media, attemping to format\r\n" );
@@ -573,6 +577,8 @@ __attribute__( ( unused ) ) static uint32_t UW_fs_print_status( void )
   return FS_ERR_OK;
 }
 
+#if 0 // GLS
+
 static void UTIL1_strcpy( uint8_t * dst, size_t dstSize, const unsigned char * src )
 {
   dstSize--; /* for zero byte */
@@ -692,6 +698,8 @@ static void UTIL1_chcat( uint8_t * dst, size_t dstSize, uint8_t ch )
   /* terminate the string */
   *dst = '\0';
 }
+
+#endif // GLS
 
 static int printMemory( void * hndl, uint32_t startAddr, uint32_t endAddr, uint8_t addrSize, uint8_t bytesPerLine, uint8_t ( *readfp )( void *, uint32_t, uint8_t *, size_t ) )
 {

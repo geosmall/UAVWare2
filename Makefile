@@ -45,6 +45,7 @@ $(APP_DIR)/dRehmFlight.cpp \
 
 C_SOURCES := \
 $(APP_DIR)/config.c \
+$(APP_DIR)/shell_commands.c \
 
 
 ######################################
