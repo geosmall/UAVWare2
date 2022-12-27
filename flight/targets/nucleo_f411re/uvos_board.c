@@ -1,4 +1,4 @@
-#include "uavware.h"
+#include <uvos.h>
 // #include <uvos_board_info.h>
 
 // #include <uavobjectsinit.h>
